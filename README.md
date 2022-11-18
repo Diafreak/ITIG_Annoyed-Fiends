@@ -1,12 +1,15 @@
 # AnnoyedFiends - GDD
+
 ## Projektbeschreibung
 <li>Kurze Zusammenfassung</li>
 <li>Vergleich (z.B. Es spielt sich wie Temple Run)</li>
 <li>Teile, die noch aktiv in Entwicklung sind (z.B. Die Story ist noch nicht konkret)</li>
+
 ## Character & Story
 <li>Wichtige Charaktere + Beschreibung</li>
 <li>Wichtige Story-Abschnitte + Wendungen</li>
 <li>Theme (z.B. Steampunk, Post-Apokalypse, Cottage Core)</li>
+
 ## Gameplay
 <details>
 <summary>Game-Loop</summary>
@@ -84,5 +87,6 @@ Boss-Wellen<br>
 <li>Beschreibung “Look and Feel”</li>
 <li>Konzept Art</li>
 <li>Inspiration</li>
+
 ## Technische Beschreibung
 <li>Wie in der Spiel-Analyse (RAM, Speicher...)</li>
