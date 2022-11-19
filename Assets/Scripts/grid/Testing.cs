@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class Testing : MonoBehaviour
 {
-    private Grid grid;
+    private Grid<HeatMapGridObject> grid;
 
     private void Start()
     {
-        grid = new Grid(4, 2, 10f, new Vector3(20, 0));
+        grid = new Grid<HeatMapGridObject>(4, 2, 10f, Vector3.zero, (Grid<HeatMapGridObject> g, int x, int y) => new HeatMapGridObject(g, x, y));
     }
 
     private void Update() {
         if (Input.GetMouseButtonDown(0)) {
-            grid.SetValue(GetMouseWorldPosition(), 56);
+            Vector3 position = GetMouseWorldPosition();
+            HeatMapGridObject heatMapGridObject = grid.GetGridObject(position);
+            if (heatMapGridObject != null) {
+                heatMapGridObject.AddValue(5);
+            }
+            // grid.AddValue(position, 100, 2, 25);
+            // grid.SetValue(GetMouseWorldPosition(), 56);
         }
 
         if (Input.GetMouseButtonDown(1)) {
-            Debug.Log(grid.GetValue(GetMouseWorldPosition()));
+            // Debug.Log(grid.GetValue(GetMouseWorldPosition()));
         }
     }
 
@@ -32,5 +38,29 @@ public class Testing : MonoBehaviour
     private static Vector3 GetMouseWorldPositionWithZ(Vector3 screenPostition, Camera worldCamera) {
         Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPostition);
         return worldPosition;
+    }
+}
+
+
+public class HeatMapGridObject {
+    
+    private Grid<HeatMapGridObject> grid;
+    private int x;
+    private int y;
+    private int value;
+
+    public HeatMapGridObject(Grid<HeatMapGridObject> grid, int x, int y) {
+        this.grid = grid;
+        this.x = x;
+        this.y = y;
+    }
+
+    public void AddValue(int addValue) {
+        value += addValue;
+        grid.TriggerGridObjectChanged(x, y);
+    }
+
+    public override string ToString() {
+        return value.ToString();
     }
 }
