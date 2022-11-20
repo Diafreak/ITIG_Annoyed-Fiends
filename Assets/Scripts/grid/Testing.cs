@@ -13,7 +13,7 @@ public class Testing : MonoBehaviour
 
     private void Update() {
         if (Input.GetMouseButtonDown(0)) {
-            Vector3 position = GetMouseWorldPosition();
+            Vector3 position = GridUtils.GetMouseWorldPosition();
             HeatMapGridObject heatMapGridObject = grid.GetGridObject(position);
             if (heatMapGridObject != null) {
                 heatMapGridObject.AddValue(5);
@@ -27,18 +27,6 @@ public class Testing : MonoBehaviour
         }
     }
 
-
-    // Z = 0
-    public static Vector3 GetMouseWorldPosition() {
-        Vector3 vec = GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
-        vec.z = 0f;
-        return vec;
-    }
-
-    private static Vector3 GetMouseWorldPositionWithZ(Vector3 screenPostition, Camera worldCamera) {
-        Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPostition);
-        return worldPosition;
-    }
 }
 
 
