@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -199,8 +199,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370881014}
-  m_LocalRotation: {x: 0.59639025, y: 0.002408126, z: -0.0017891373, w: 0.8026891}
-  m_LocalPosition: {x: 68.941635, y: 157.25606, z: -18.918839}
+  m_LocalRotation: {x: -0.4132797, y: -0.10830929, z: 0.049583, w: -0.90277934}
+  m_LocalPosition: {x: 11.249634, y: 119.98398, z: -71.53537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0acb037393f02604fa482a01de2543ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testTransform: {fileID: 2499414142690952232, guid: 24602e9b848b1d040bf7e2b4f47f2d19, type: 3}
+  testTransform: {fileID: 1364685239344144643, guid: 4ec97d0017170ad4aa9c9face2c46313, type: 3}
   mouseColliderLayerMask:
     serializedVersion: 2
     m_Bits: 1024
