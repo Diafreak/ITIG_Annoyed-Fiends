@@ -6,9 +6,9 @@ public class GridUtils {
 
     // mouse-position in 2d space when z = 0
     public static Vector3 GetMouseWorldPosition() {
-        Vector3 vec = GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
-        vec.z = 0f;
-        return vec;
+        Vector3 mousePosition = GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
+        mousePosition.z = 0f;
+        return mousePosition;
     }
 
     private static Vector3 GetMouseWorldPositionWithZ(Vector3 screenPostition, Camera worldCamera) {
@@ -26,28 +26,6 @@ public class GridUtils {
             return Vector3.zero;
         }
     }
-    /*
-    public static Vector3 GetMouseWorldPosition() => this.GetMouseWorldPosition_Instance();
-    private Vector3 GetMouseWorldPosition_Instance() {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, mouseColliderLayerMask)) {
-            return raycastHit.point;
-        } else {
-            return Vector3.zero;
-        }
-    }
-
-    // [SerializeField] private LayerMask mouseColliderLayerMask = new LayerMask();
-
-    public static Vector3 GetMouseWorldPosition3d() {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, new LayerMask())) {
-            return raycastHit.point;
-        } else {
-            return Vector3.zero;
-        }
-    }
-    */
 
 
     // draw text-mesh
@@ -69,6 +47,28 @@ public class GridUtils {
         textMesh.color = color;
         textMesh.GetComponent<MeshRenderer>().sortingOrder = sortingOrder;
         return textMesh;
+    }
+
+
+    // create text-popup (no parent)
+    public static void CreateWorldTextPopup(string text, Vector3 localPosition) {
+        CreateWorldTextPopup(null, text, localPosition, 20, Color.white, localPosition + new Vector3(0, 10), 1f);
+    }
+    
+    public static void CreateWorldTextPopup(Transform parent, string text, Vector3 localPosition, int fontSize, Color color, Vector3 finalPopupPosition, float popupTime) {
+        TextMesh textMesh = CreateWorldText(parent, text, localPosition, fontSize, color, TextAnchor.LowerLeft, TextAlignment.Left, 5000);
+        Transform transform = textMesh.transform;
+        Vector3 moveAmount = (finalPopupPosition - localPosition) / popupTime;
+        FunctionUpdater.Create(delegate () {
+            transform.position += moveAmount * Time.deltaTime;
+            popupTime -= Time.deltaTime;
+            if (popupTime <= 0f) {
+                UnityEngine.Object.Destroy(transform.gameObject);
+                return true;
+            } else {
+                return false;
+            }
+        }, "WorldTextPopup");
     }
 
 }
