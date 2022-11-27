@@ -281,7 +281,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0acb037393f02604fa482a01de2543ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testTransform: {fileID: 1364685239344144643, guid: 4ec97d0017170ad4aa9c9face2c46313, type: 3}
+  placedTowerTypeSOList:
+  - {fileID: 11400000, guid: 6af888dffaa970c4e937e69240a097d3, type: 2}
+  - {fileID: 11400000, guid: d807dc856bcbed64fa3fafb736f9cd06, type: 2}
+  - {fileID: 11400000, guid: 5afcc27efea5a8d4394050412620524c, type: 2}
   mouseColliderLayerMask:
     serializedVersion: 2
     m_Bits: 1024
