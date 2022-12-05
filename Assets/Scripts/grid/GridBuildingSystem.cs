@@ -10,11 +10,11 @@ public class GridBuildingSystem : MonoBehaviour
     [SerializeField] private LayerMask mouseColliderLayerMask;
     private GridXZ<GridObject> grid;
 
+    public int gridWidth  = 10;
+    public int gridHeight = 10;
+    public float cellSize = 10f;
 
     private void Awake() {
-        int gridWidth  = 10;
-        int gridHeight = 10;
-        float cellSize = 10f;
         grid = new GridXZ<GridObject>(gridWidth, gridHeight, cellSize, Vector3.zero, (GridXZ<GridObject> gridObject, int x, int z) => new GridObject(gridObject, x, z));
 
         placedTowerTypeSO = placedTowerTypeSOList[0];
