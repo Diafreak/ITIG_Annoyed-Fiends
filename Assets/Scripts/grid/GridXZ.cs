@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+// Generic Grid-Class that generates a grid on the X & Z-axis
 public class GridXZ<TGridObject> {
 
     public event EventHandler<OnGridValueChangedEventArgs> OnGridValueChanged;
@@ -20,9 +21,9 @@ public class GridXZ<TGridObject> {
 
     // Constructor
     public GridXZ(int width, int height, float cellSize, Vector3 originPosition, Func<GridXZ<TGridObject>, int, int, TGridObject> createGridObject) {
-        this.width = width;
-        this.height = height;
-        this.cellSize = cellSize;
+        this.width          = width;
+        this.height         = height;
+        this.cellSize       = cellSize;
         this.originPosition = originPosition;
 
         // Array that stores the objects placed on the grid
@@ -56,6 +57,12 @@ public class GridXZ<TGridObject> {
     }
 
 
+    // manualy trigger an update on a specific grid-position when something on it is updated
+    public void TriggerGridObjectChanged(int x, int z) {
+        if (OnGridValueChanged != null) OnGridValueChanged(this, new OnGridValueChangedEventArgs {x = x, z = z});
+    }
+
+
     // sets a grid-object on a given world-position and snaps it to the grid
     public void SetGridObject(Vector3 worldPosition, TGridObject value) {
         var coordinates = GetXZ(worldPosition);
@@ -82,14 +89,9 @@ public class GridXZ<TGridObject> {
         if (x >= 0 && z >= 0 && x < width && z < height) {
             return gridArray[x, z];
         }
-
         return default(TGridObject); // for objects -> "null" | for int -> "-1" | for bool -> "false"
     }
 
-
-    public void TriggerGridObjectChanged(int x, int z) {
-        if (OnGridValueChanged != null) OnGridValueChanged(this, new OnGridValueChangedEventArgs {x = x, z = z});
-    }
 
     // takes a grid-position and returns a world-position
     public Vector3 GetWorldPosition(int x, int z) {
