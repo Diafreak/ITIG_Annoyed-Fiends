@@ -6,10 +6,16 @@ public class Tower : MonoBehaviour
 {
     // the current target of the tower
     private Transform target;
+
     // the maximum range of the turret
     public float range = 15f;
+
     // the tag to find the enemies
     public string enemyTag = "Enemy";
+
+    public Transform partToRotate;
+    public float turnSpeed = 10f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +55,12 @@ public class Tower : MonoBehaviour
         if(target == null){
             return;
         }
+
+        // target lock on
+        Vector3 direction = target.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
     // drawing a red gizmo around the selected tower that indicates the towers range
