@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     // the current target of the tower
-    public Transform target;
+    private Transform target;
     // the maximum range of the turret
     public float range = 15f;
     // the tag to find the enemies
