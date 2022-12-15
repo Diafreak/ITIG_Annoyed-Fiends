@@ -7,8 +7,13 @@ public class Tower : MonoBehaviour
     // the current target of the tower
     private Transform target;
 
-    // the maximum range of the turret
+    [Header("Attributes")]
+
     public float range = 15f;
+     public float fireRate = 1.0f;
+    private float fireCountdown = 0f;
+
+    [Header("Unity Setup Fields")]
 
     // the tag to find the enemies
     public string enemyTag = "Enemy";
@@ -16,6 +21,10 @@ public class Tower : MonoBehaviour
     // variables for rotation
     public Transform partToRotate;
     public float turnSpeed = 10f;
+
+    public GameObject projectilePrefab;
+    public Transform firePoint;
+
 
 
     // Start is called before the first frame update
@@ -62,6 +71,27 @@ public class Tower : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+
+        if(fireCountdown <= 0f)
+        {
+            Shoot();
+            fireCountdown = 1f / fireRate;
+        }
+
+        fireCountdown -= Time.deltaTime;
+    }
+
+    // shooting at the designated target
+    void Shoot()
+    {
+        Debug.Log("SHOOT!");
+        GameObject projectileGO = (GameObject) Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        Projectile projectile = projectileGO.GetComponent<Projectile>();
+
+        if(projectile != null)
+        {
+            projectile.Seek(target);
+        }
     }
 
     // drawing a red gizmo around the selected tower that indicates the towers range
