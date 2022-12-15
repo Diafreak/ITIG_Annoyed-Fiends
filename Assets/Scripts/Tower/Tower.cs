@@ -13,6 +13,7 @@ public class Tower : MonoBehaviour
     // the tag to find the enemies
     public string enemyTag = "Enemy";
 
+    // variables for rotation
     public Transform partToRotate;
     public float turnSpeed = 10f;
 
