@@ -273,6 +273,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd3b411d8af06b4e9a24c0f549dc22f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerTypeSOList:
+  - {fileID: 11400000, guid: 6af888dffaa970c4e937e69240a097d3, type: 2}
+  - {fileID: 11400000, guid: d807dc856bcbed64fa3fafb736f9cd06, type: 2}
+  - {fileID: 11400000, guid: 5afcc27efea5a8d4394050412620524c, type: 2}
 --- !u!1 &369390652
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,7 +754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0acb037393f02604fa482a01de2543ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedTowerTypeSOList:
+  towerTypeSOList:
   - {fileID: 11400000, guid: 6af888dffaa970c4e937e69240a097d3, type: 2}
   - {fileID: 11400000, guid: d807dc856bcbed64fa3fafb736f9cd06, type: 2}
   - {fileID: 11400000, guid: 5afcc27efea5a8d4394050412620524c, type: 2}
@@ -1255,6 +1259,7 @@ GameObject:
   - component: {fileID: 2004725138}
   - component: {fileID: 2004725137}
   - component: {fileID: 2004725136}
+  - component: {fileID: 2004725139}
   m_Layer: 0
   m_Name: Button_Tower
   m_TagString: Untagged
@@ -1307,7 +1312,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 0.78039217}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1347,8 +1352,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dd1c7644d74706b44a866cadbdfafd08, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1356,7 +1361,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 5
 --- !u!222 &2004725138
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1365,6 +1370,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004725134}
   m_CullTransparentMesh: 1
+--- !u!114 &2004725139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004725134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc5892aa35fca54a8ff5385db0066ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 974592714}
 --- !u!1 &2059460160
 GameObject:
   m_ObjectHideFlags: 0

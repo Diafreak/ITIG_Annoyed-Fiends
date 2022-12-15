@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlacedTower : MonoBehaviour
 {
-    private PlacedTowerTypeSO placedTowerTypeSO;
+    private TowerTypeSO towerTypeSO;
     private Vector2 origin;
 
-    public static PlacedTower Create(Vector3 worldPosition, Vector2 origin, PlacedTowerTypeSO placedTowerTypeSO) {
+    public static PlacedTower Create(Vector3 worldPosition, Vector2 origin, TowerTypeSO placedTowerTypeSO) {
         // create a Tower on the clicked position
         Transform placedTowerTransform =
             Instantiate(
@@ -22,7 +22,7 @@ public class PlacedTower : MonoBehaviour
         // get the instantiated/placed Tower
         PlacedTower placedTower = placedTowerTransform.GetComponent<PlacedTower>();
 
-        placedTower.placedTowerTypeSO = placedTowerTypeSO;
+        placedTower.towerTypeSO = placedTowerTypeSO;
         placedTower.origin = origin;
         // placedTower.dir = dir;
 

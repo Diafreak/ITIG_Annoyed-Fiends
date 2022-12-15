@@ -1,13 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GridBuildingSystem : MonoBehaviour
 {
     // List with all available towers
-    [SerializeField] private List<PlacedTowerTypeSO> placedTowerTypeSOList;
+    [SerializeField] private List<TowerTypeSO> towerTypeSOList;
     // current selected Tower-Type
-    private PlacedTowerTypeSO placedTowerTypeSO;
+    private TowerTypeSO towerTypeSO;
 
     // Collider Mask to check where the mouse has clicked on the grid
     [SerializeField] private LayerMask mouseColliderLayerMask;
@@ -26,7 +28,7 @@ public class GridBuildingSystem : MonoBehaviour
             (GridXZ<GridObject> gridObject, int x, int z) => new GridObject(gridObject, x, z));
 
         // Set Default for the currently selected Tower-Type
-        placedTowerTypeSO = placedTowerTypeSOList[0];
+        towerTypeSO = towerTypeSOList[0];
     }
 
 
@@ -74,7 +76,7 @@ public class GridBuildingSystem : MonoBehaviour
 
     private void Update() {
         // Build Tower
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) && !MouseIsOverUI()) {
             // Get coordinates of the clicked tile via mouse coordinates
             var coordinates = grid.GetXZ(GridUtils.GetMouseWorldPosition3d(mouseColliderLayerMask));
 
@@ -86,7 +88,7 @@ public class GridBuildingSystem : MonoBehaviour
                 // If tile is free, then build on it
                 Vector3 placedTowerWorldPosition = grid.GetWorldPosition(coordinates.x, coordinates.z);
                 // Create the Tower-Visual
-                PlacedTower placedTower = PlacedTower.Create(placedTowerWorldPosition, new Vector2(coordinates.x, coordinates.z), placedTowerTypeSO);
+                PlacedTower placedTower = PlacedTower.Create(placedTowerWorldPosition, new Vector2(coordinates.x, coordinates.z), towerTypeSO);
                 // Write created Tower in the Grid-Array
                 gridObject.SetPlacedTower(placedTower);
             } else {
@@ -106,11 +108,25 @@ public class GridBuildingSystem : MonoBehaviour
             }
         }
 
-
         // Cycle through building variants
-        if (Input.GetKeyDown(KeyCode.Alpha1)) { placedTowerTypeSO = placedTowerTypeSOList[0]; }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) { placedTowerTypeSO = placedTowerTypeSOList[1]; }
-        if (Input.GetKeyDown(KeyCode.Alpha3)) { placedTowerTypeSO = placedTowerTypeSOList[2]; }
+        //if (Input.GetKeyDown(KeyCode.Alpha1)) { towerTypeSO = towerTypeSOList[0]; }
+        //if (Input.GetKeyDown(KeyCode.Alpha2)) { towerTypeSO = towerTypeSOList[1]; }
+        //if (Input.GetKeyDown(KeyCode.Alpha3)) { towerTypeSO = towerTypeSOList[2]; }
+    }
+
+    // Gets called by the UI-Buttons and sets the current placable towerType
+    public void SetSelectedTower(String selectedTowerName) {
+        foreach(TowerTypeSO towerType in towerTypeSOList) {
+            if (towerType.name == selectedTowerName) {
+                towerTypeSO = towerType;
+                break;
+            };
+        }
+    }
+
+    // Check if the Mouse if over the UI to prevent clicking through it
+    private bool MouseIsOverUI() {
+        return EventSystem.current.IsPointerOverGameObject();
     }
 
 }

@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class GenerateTowerSelection : MonoBehaviour
 {
+
+    [SerializeField] private List<TowerTypeSO> towerTypeSOList;
+
     private static String BUTTON_TOWER     = "Button_Tower";
     private static String TEXT_TOWER_NAME  = "Text_TowerName";
     private static String PANEL_TOWER_NAME = "Panel_TowerName";
@@ -17,10 +20,13 @@ public class GenerateTowerSelection : MonoBehaviour
         GameObject towerSelectionTemplate = transform.Find(BUTTON_TOWER).gameObject;
         GameObject towerSelection;
 
-        for (int i = 0; i < 3; i++) {   // change 3 to getAllTowerSize() or whatever
+        foreach (TowerTypeSO towerType in towerTypeSOList) {
+            // Create Button
             towerSelection = Instantiate(towerSelectionTemplate, transform);
-            // Set Tower-Name
-            towerSelection.transform.Find(PANEL_TOWER_NAME).Find(TEXT_TOWER_NAME).GetComponent<TMP_Text>().text = "Test " + i; // give list of all towers
+            // Set Button Name
+            towerSelection.transform.Find(PANEL_TOWER_NAME).Find(TEXT_TOWER_NAME).GetComponent<TMP_Text>().text = towerType.towerName;
+            // Set Button Image
+            towerSelection.GetComponent<Button>().image.sprite = towerType.towerIcon;
         }
 
         // Destroy the Template so it doesn't show up on the UI
