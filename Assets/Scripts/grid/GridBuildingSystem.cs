@@ -4,71 +4,75 @@ using UnityEngine;
 
 public class GridBuildingSystem : MonoBehaviour
 {
+    // List with all available towers
     [SerializeField] private List<PlacedTowerTypeSO> placedTowerTypeSOList;
+    // current selected Tower-Type
     private PlacedTowerTypeSO placedTowerTypeSO;
 
+    // Collider Mask to check where the mouse has clicked on the grid
     [SerializeField] private LayerMask mouseColliderLayerMask;
+    // Grid that holds all objects on it
     private GridXZ<GridObject> grid;
 
+    // Default Grid-values
     public int gridWidth  = 10;
     public int gridHeight = 10;
     public float cellSize = 10f;
 
     private void Awake() {
-        grid = new GridXZ<GridObject>(gridWidth, gridHeight, cellSize, Vector3.zero, (GridXZ<GridObject> gridObject, int x, int z) => new GridObject(gridObject, x, z));
+        // Instantiate the Grid
+        grid = new GridXZ<GridObject>(gridWidth, gridHeight, cellSize, Vector3.zero,
+            // Constructor for each GridObject
+            (GridXZ<GridObject> gridObject, int x, int z) => new GridObject(gridObject, x, z));
 
+        // Set Default for the currently selected Tower-Type
         placedTowerTypeSO = placedTowerTypeSOList[0];
     }
 
 
+    // Object-definition of the object that is placed on the Grid
     public class GridObject {
 
+        // Reference to the grid | contains a GridObject on each grid-position
         private GridXZ<GridObject> grid;
         private int x;
         private int z;
-        private Transform transform;
+        private PlacedTower placedTower;
 
         // constructor
         public GridObject(GridXZ<GridObject> grid, int x, int z) {
             this.grid = grid;
             this.x = x;
             this.z = z;
-            this.transform = null;
         }
 
 
-        public void SetTransform(Transform transform) {
-            this.transform = transform;
+        public void SetPlacedTower(PlacedTower placedTower) {
+            this.placedTower = placedTower;
             grid.TriggerGridObjectChanged(x, z);
         }
 
-        public void ClearTransform() {
-            this.transform = null;
+        public void ClearPlacedTower() {
+            this.placedTower = null;
             grid.TriggerGridObjectChanged(x, z);
         }
 
-        public Transform GetPlacedTower() {
-            return this.transform;
+        public PlacedTower GetPlacedTower() {
+            return this.placedTower;
         }
 
         public bool CanBuild() {
-            return transform == null;
+            return placedTower == null;
         }
 
         public override string ToString()
         {
-            return x + ", " + z + "\n" + transform;
+            return x + ", " + z + "\n" + placedTower;
         }
-/*
-        public void DestroySelf() {
-            Destroy(transform);
-        }
-*/
     }
 
 
     private void Update() {
-
         // Build Tower
         if (Input.GetMouseButtonDown(0)) {
             // Get coordinates of the clicked tile via mouse coordinates
@@ -80,29 +84,28 @@ public class GridBuildingSystem : MonoBehaviour
             // Check if clicked tile is already occupied
             if (gridObject != null && gridObject.CanBuild()) {
                 // If tile is free, then build on it
-                Transform buildTransform = Instantiate(
-                    // Visual
-                    placedTowerTypeSO.prefab,
-                    // Position
-                    grid.GetWorldPosition(coordinates.x, coordinates.z),
-                    // Rotation
-                    Quaternion.Euler(0, 1, 0));
-                gridObject.SetTransform(buildTransform);
+                Vector3 placedTowerWorldPosition = grid.GetWorldPosition(coordinates.x, coordinates.z);
+                // Create the Tower-Visual
+                PlacedTower placedTower = PlacedTower.Create(placedTowerWorldPosition, new Vector2(coordinates.x, coordinates.z), placedTowerTypeSO);
+                // Write created Tower in the Grid-Array
+                gridObject.SetPlacedTower(placedTower);
             } else {
                 GridUtils.CreateWorldTextPopup("Cannot Build Here!", GridUtils.GetMouseWorldPosition3d(mouseColliderLayerMask));
             }
         }
 
-/*
-        // Destroy tower
+        // Destroy Tower
         if (Input.GetMouseButtonDown(1)) {
+            // Get clicked Grid-Tile
             GridObject gridObject = grid.GetGridObject(GridUtils.GetMouseWorldPosition3d(mouseColliderLayerMask));
-            Transform placedTower = gridObject.GetPlacedTower();
+            // Get the Tower on that Tile
+            PlacedTower placedTower = gridObject.GetPlacedTower();
             if (placedTower != null ) {
-                placedTower.D
+                placedTower.DestroySelf();
+                gridObject.ClearPlacedTower();
             }
         }
-*/
+
 
         // Cycle through building variants
         if (Input.GetKeyDown(KeyCode.Alpha1)) { placedTowerTypeSO = placedTowerTypeSOList[0]; }
