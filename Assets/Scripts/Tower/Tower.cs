@@ -37,6 +37,9 @@ public class Tower : MonoBehaviour
         {
             target = nearestEnemy.transform;
         }
+        else{
+            target = null;
+        }
     }
     
 
