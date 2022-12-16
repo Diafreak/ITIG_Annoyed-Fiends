@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlacedTowerTypeSO", menuName = "ScriptableObjects/PlacedTowerTypeSO")]
-public class PlacedTowerTypeSO : ScriptableObject {
+[CreateAssetMenu(fileName = "TowerTypeSO", menuName = "ScriptableObjects/TowerTypeSO")]
+public class TowerTypeSO : ScriptableObject {
 
     public string towerName;
     public Transform prefab;

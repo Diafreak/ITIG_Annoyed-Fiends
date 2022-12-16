@@ -5,9 +5,9 @@ using UnityEngine;
 public class GridBuildingSystem : MonoBehaviour
 {
     // List with all available towers
-    [SerializeField] private List<PlacedTowerTypeSO> placedTowerTypeSOList;
+    [SerializeField] private List<TowerTypeSO> towerTypeSOList;
     // current selected Tower-Type
-    private PlacedTowerTypeSO placedTowerTypeSO;
+    private TowerTypeSO towerTypeSO;
 
     // Collider Mask to check where the mouse has clicked on the grid
     [SerializeField] private LayerMask mouseColliderLayerMask;
@@ -28,9 +28,6 @@ public class GridBuildingSystem : MonoBehaviour
             (GridXZ<GridObject> gridObject, int x, int z) => new GridObject(gridObject, x, z));
 
         // Set Default for the currently selected Tower-Type
-<<<<<<< Updated upstream
-        placedTowerTypeSO = placedTowerTypeSOList[0];
-=======
         towerTypeSO = towerTypeSOList[0];
 
         // initialize a visual Grid-Tile for the hover-effect on every grid-tile
@@ -40,7 +37,6 @@ public class GridBuildingSystem : MonoBehaviour
                 GridTile.Create(worldPosition, gridTileSO);
             }
         }
->>>>>>> Stashed changes
     }
 
 
@@ -100,11 +96,7 @@ public class GridBuildingSystem : MonoBehaviour
                 // If tile is free, then build on it
                 Vector3 placedTowerWorldPosition = grid.GetWorldPosition(coordinates.x, coordinates.z);
                 // Create the Tower-Visual
-<<<<<<< Updated upstream
-                PlacedTower placedTower = PlacedTower.Create(placedTowerWorldPosition, new Vector2(coordinates.x, coordinates.z), placedTowerTypeSO);
-=======
                 PlacedTower placedTower = PlacedTower.Create(placedTowerWorldPosition, /*new Vector2(coordinates.x, coordinates.z),*/ towerTypeSO);
->>>>>>> Stashed changes
                 // Write created Tower in the Grid-Array
                 gridObject.SetPlacedTower(placedTower);
             } else {
@@ -126,9 +118,9 @@ public class GridBuildingSystem : MonoBehaviour
 
 
         // Cycle through building variants
-        if (Input.GetKeyDown(KeyCode.Alpha1)) { placedTowerTypeSO = placedTowerTypeSOList[0]; }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) { placedTowerTypeSO = placedTowerTypeSOList[1]; }
-        if (Input.GetKeyDown(KeyCode.Alpha3)) { placedTowerTypeSO = placedTowerTypeSOList[2]; }
+        if (Input.GetKeyDown(KeyCode.Alpha1)) { towerTypeSO = towerTypeSOList[0]; }
+        if (Input.GetKeyDown(KeyCode.Alpha2)) { towerTypeSO = towerTypeSOList[1]; }
+        if (Input.GetKeyDown(KeyCode.Alpha3)) { towerTypeSO = towerTypeSOList[2]; }
     }
 
 }
