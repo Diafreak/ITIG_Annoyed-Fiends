@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d8e8679bd183ca40b34a1b24763ad88, type: 3}
+  m_Name: GridTile
+  m_EditorClassIdentifier: 
+  visual: {fileID: 5312432566410980611, guid: 98d24ee5dc707344289398f207f6e1aa, type: 3}
+  defaultColor: {r: 0, g: 0, b: 0, a: 0.6313726}
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}

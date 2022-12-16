@@ -14,6 +14,8 @@ public class GridBuildingSystem : MonoBehaviour
     // Grid that holds all objects on it
     private GridXZ<GridObject> grid;
 
+    public GridTileSO gridTileSO;
+
     // Default Grid-values
     public int gridWidth  = 10;
     public int gridHeight = 10;
@@ -26,7 +28,19 @@ public class GridBuildingSystem : MonoBehaviour
             (GridXZ<GridObject> gridObject, int x, int z) => new GridObject(gridObject, x, z));
 
         // Set Default for the currently selected Tower-Type
+<<<<<<< Updated upstream
         placedTowerTypeSO = placedTowerTypeSOList[0];
+=======
+        towerTypeSO = towerTypeSOList[0];
+
+        // initialize a visual Grid-Tile for the hover-effect on every grid-tile
+        for (int x = 0; x < gridWidth; x++) {
+            for (int z = 0; z < gridHeight; z++) {
+                Vector3 worldPosition = grid.GetWorldPosition(x, z);
+                GridTile.Create(worldPosition, gridTileSO);
+            }
+        }
+>>>>>>> Stashed changes
     }
 
 
@@ -86,7 +100,11 @@ public class GridBuildingSystem : MonoBehaviour
                 // If tile is free, then build on it
                 Vector3 placedTowerWorldPosition = grid.GetWorldPosition(coordinates.x, coordinates.z);
                 // Create the Tower-Visual
+<<<<<<< Updated upstream
                 PlacedTower placedTower = PlacedTower.Create(placedTowerWorldPosition, new Vector2(coordinates.x, coordinates.z), placedTowerTypeSO);
+=======
+                PlacedTower placedTower = PlacedTower.Create(placedTowerWorldPosition, /*new Vector2(coordinates.x, coordinates.z),*/ towerTypeSO);
+>>>>>>> Stashed changes
                 // Write created Tower in the Grid-Array
                 gridObject.SetPlacedTower(placedTower);
             } else {
