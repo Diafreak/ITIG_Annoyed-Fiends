@@ -270,7 +270,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 206383523}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dd3b411d8af06b4e9a24c0f549dc22f, type: 3}
+  m_Script: {fileID: 11500000, guid: 7705606a0d93a9a48b11aae2fd97f296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   towerTypeSOList:
@@ -339,7 +339,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 369390652}
-  m_LocalRotation: {x: 0.5531469, y: 0.000000016026297, z: -0.000000010641061, w: 0.83308375}
+  m_LocalRotation: {x: 0.5531469, y: -0.000000016026295, z: 0.000000010641061, w: 0.83308375}
   m_LocalPosition: {x: 45, y: 95, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -425,7 +425,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370881014}
-  m_LocalRotation: {x: 0.5531469, y: 0.000000016026297, z: -0.000000010641061, w: 0.83308375}
+  m_LocalRotation: {x: 0.5531469, y: -0.000000016026295, z: 0.000000010641061, w: 0.83308375}
   m_LocalPosition: {x: 45, y: 95, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -761,6 +761,7 @@ MonoBehaviour:
   mouseColliderLayerMask:
     serializedVersion: 2
     m_Bits: 1024
+  gridTileSO: {fileID: 11400000, guid: fe12d01522dd2d444a33af20bf08d898, type: 2}
   gridWidth: 10
   gridHeight: 10
   cellSize: 10
@@ -1162,7 +1163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1773059320}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 500, y: 500, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
