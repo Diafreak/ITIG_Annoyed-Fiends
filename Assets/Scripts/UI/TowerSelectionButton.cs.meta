@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/ScriptableObjects/GridTileSO.cs.meta
-guid: 3d8e8679bd183ca40b34a1b24763ad88
-========
-guid: 32f2f71b727fadd44946418abe2f5969
->>>>>>>> UI:Assets/Scripts/grid/GridObject.cs.meta
+guid: 8fc5892aa35fca54a8ff5385db0066ab
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
