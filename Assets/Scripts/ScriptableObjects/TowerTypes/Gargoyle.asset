@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e5c07a66dc32d8408b0ef60fc71ada3, type: 3}
+  m_Script: {fileID: 11500000, guid: 0470c3df2316d4341ab1567291054547, type: 3}
   m_Name: Gargoyle
   m_EditorClassIdentifier: 
   towerName: Gargoyle

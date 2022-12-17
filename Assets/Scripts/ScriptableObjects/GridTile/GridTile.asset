@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d8e8679bd183ca40b34a1b24763ad88, type: 3}
   m_Name: GridTile
   m_EditorClassIdentifier: 
-  visual: {fileID: 5312432566410980611, guid: 98d24ee5dc707344289398f207f6e1aa, type: 3}
-  defaultColor: {r: 0, g: 0, b: 0, a: 0.6313726}
-  highlightColor: {r: 0, g: 0, b: 0, a: 0}
+  visual: {fileID: 8756764283356597940, guid: ed95f1e0b4d96324faafcb8ab63a93a2, type: 3}
+  defaultColor: {r: 0, g: 0.048205614, b: 1, a: 1}
+  highlightColor: {r: 1, g: 1, b: 1, a: 1}
