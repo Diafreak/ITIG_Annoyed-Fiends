@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/grid/GridTile.cs.meta
+guid: 9e7f626e78ca8534b97699a631420d4b
+========
+guid: 8dd3b411d8af06b4e9a24c0f549dc22f
+>>>>>>>> UI:Assets/Scripts/UI/GenerateTowerSelection.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
