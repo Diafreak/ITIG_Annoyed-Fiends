@@ -38,11 +38,11 @@ public class GridXZ<TGridObject> {
 
         bool showDebug = true;
         if (showDebug) {
-            TextMesh[,] debugTextArray = new TextMesh[width, height];
+            //TextMesh[,] debugTextArray = new TextMesh[width, height];
 
             for (int x = 0; x < gridArray.GetLength(0); x++) {
                 for (int z = 0; z < gridArray.GetLength(1); z++) {
-                    debugTextArray[x, z] = GridUtils.CreateWorldText(gridArray[x, z]?.ToString(), null, GetWorldPosition(x, z) + new Vector3(cellSize, cellSize) * 0.5f, 40, Color.white, TextAnchor.MiddleCenter);
+                    //debugTextArray[x, z] = GridUtils.CreateWorldText(gridArray[x, z]?.ToString(), null, GetWorldPosition(x, z) + new Vector3(cellSize, cellSize) * 0.5f, 40, Color.white, TextAnchor.MiddleCenter);
                     Debug.DrawLine(GetWorldPosition(x, z), GetWorldPosition(x, z + 1), Color.white, 100f);
                     Debug.DrawLine(GetWorldPosition(x, z), GetWorldPosition(x + 1, z), Color.white, 100f);
                 }
@@ -50,9 +50,9 @@ public class GridXZ<TGridObject> {
             Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width, height), Color.white, 100f);
             Debug.DrawLine(GetWorldPosition(width, 0),  GetWorldPosition(width, height), Color.white, 100f);
 
-            OnGridValueChanged += (object sender, OnGridValueChangedEventArgs eventArgs) => {
+            /*OnGridValueChanged += (object sender, OnGridValueChangedEventArgs eventArgs) => {
                 debugTextArray[eventArgs.x, eventArgs.z].text = gridArray[eventArgs.x, eventArgs.z]?.ToString();
-            };
+            };*/
         }
     }
 
