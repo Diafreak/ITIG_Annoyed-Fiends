@@ -9,7 +9,7 @@ public class GridBuildingSystem : MonoBehaviour
     // List with all available towers
     [SerializeField] private List<TowerTypeSO> towerTypeSOList;
     // current selected Tower-Type
-    private TowerTypeSO towerTypeSO;
+    private TowerTypeSO currentlySelectedTowerTypeSO;
 
     // Collider Mask to check where the mouse has clicked on the grid
     [SerializeField] private LayerMask mouseColliderLayerMask;
@@ -30,7 +30,7 @@ public class GridBuildingSystem : MonoBehaviour
             (GridXZ<GridObject> gridObject, int x, int z) => new GridObject(gridObject, x, z));
 
         // Set Default for the currently selected Tower-Type
-        towerTypeSO = towerTypeSOList[0];
+        currentlySelectedTowerTypeSO = towerTypeSOList[0];
 
         // initialize a visual Grid-Tile for the hover-effect on every grid-tile
         for (int x = 0; x < gridWidth; x++) {
@@ -57,8 +57,7 @@ public class GridBuildingSystem : MonoBehaviour
                 // If tile is free, then build on it
                 Vector3 placedTowerWorldPosition = grid.GetWorldPosition(coordinates.x, coordinates.z);
                 // Create the Tower-Visual
-                PlacedTower placedTower = PlacedTower.Create(placedTowerWorldPosition, /*new Vector2(coordinates.x, coordinates.z),*/ towerTypeSO);
-
+                PlacedTower placedTower = PlacedTower.Create(placedTowerWorldPosition, currentlySelectedTowerTypeSO);
                 // Write created Tower in the Grid-Array
                 gridObject.SetPlacedTower(placedTower);
             } else {
@@ -76,7 +75,9 @@ public class GridBuildingSystem : MonoBehaviour
                 PlacedTower placedTower = gridObject.GetPlacedTower();
 
                 if (placedTower != null ) {
+                    // Destroy tower-visual
                     placedTower.DestroySelf();
+                    // Clear Tower-Data from the Grid-Array
                     gridObject.ClearPlacedTower();
                 }
             }
@@ -92,7 +93,7 @@ public class GridBuildingSystem : MonoBehaviour
     public void SetSelectedTower(String selectedTowerName) {
         foreach(TowerTypeSO towerType in towerTypeSOList) {
             if (towerType.name == selectedTowerName) {
-                towerTypeSO = towerType;
+                currentlySelectedTowerTypeSO = towerType;
                 break;
             };
         }
