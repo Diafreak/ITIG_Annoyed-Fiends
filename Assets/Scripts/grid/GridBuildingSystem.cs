@@ -21,11 +21,16 @@ public class GridBuildingSystem : MonoBehaviour
     public MapSO map1SO;
     public GameObject map1FromMap;
     //public Transform enemyPrefab;
+    public GameObject path;
 
     // Default Grid-values
     public int gridWidth  = 10;
     public int gridHeight = 10;
     private float cellSize = 10f;
+
+
+    int[,] pathGridCoordinatesArray;
+
 
     private void Awake() {
         // Instantiate the Grid
@@ -36,11 +41,34 @@ public class GridBuildingSystem : MonoBehaviour
         // Set Default for the currently selected Tower-Type
         currentlySelectedTowerTypeSO = towerTypeSOList[0];
 
+
+        // Grid
+        // 0,2 1,2 2,2
+        // 0,1 1,1 2,1
+        // 0,0 1,0 2,0
+        //Array: [Zeile, Spalte]
+        path.SetActive(true);
+        GameObject[] pathGameObjectArray = GameObject.FindGameObjectsWithTag("Path");
+        path.SetActive(false);
+        if (pathGameObjectArray != null) {
+            pathGridCoordinatesArray = new int[pathGameObjectArray.Length, 2];
+            int index = 0;
+
+            foreach (GameObject pathObject in pathGameObjectArray) {
+                var coordinates = grid.GetXZ(pathObject.transform.position);
+                pathGridCoordinatesArray[index, 0] = coordinates.x;
+                pathGridCoordinatesArray[index, 1] = coordinates.z;
+                index++;
+            }
+        }
+
         // initialize a visual Grid-Tile for the hover-effect on every grid-tile
         for (int x = 0; x < gridWidth; x++) {
             for (int z = 0; z < gridHeight; z++) {
-                Vector3 worldPosition = grid.GetWorldPosition(x, z);
-                GridTile.Create(worldPosition, gridTileSO);
+                if (!IsPath(x, z)) {
+                    Vector3 worldPosition = grid.GetWorldPosition(x, z);
+                    GridTile.Create(worldPosition, gridTileSO);
+                }
             }
         }
 
@@ -61,15 +89,15 @@ public class GridBuildingSystem : MonoBehaviour
         // Build Tower
         if (Input.GetMouseButtonDown(0) && !MouseIsOverUI()) {
             // Get coordinates of the clicked tile via mouse coordinates
-            var coordinates = grid.GetXZ(GridUtils.GetMouseWorldPosition3d(mouseColliderLayerMask));
+            var gridCoordinates = grid.GetXZ(GridUtils.GetMouseWorldPosition3d(mouseColliderLayerMask));
 
             // Get the object on that clicked tile
-            GridObject gridObject = grid.GetGridObject(coordinates.x, coordinates.z);
+            GridObject gridObject = grid.GetGridObject(gridCoordinates.x, gridCoordinates.z);
 
             // Check if clicked tile is already occupied
-            if (gridObject != null && gridObject.CanBuild()) {
+            if (gridObject != null && gridObject.CanBuild() && !IsPath(gridCoordinates.x, gridCoordinates.z)) {
                 // If tile is free, then build on it
-                Vector3 placedTowerWorldPosition = grid.GetWorldPosition(coordinates.x, coordinates.z);
+                Vector3 placedTowerWorldPosition = grid.GetWorldPosition(gridCoordinates.x, gridCoordinates.z);
                 // Create the Tower-Visual
                 PlacedTower placedTower = PlacedTower.Create(placedTowerWorldPosition, currentlySelectedTowerTypeSO);
                 // Write created Tower in the Grid-Array
@@ -107,6 +135,17 @@ public class GridBuildingSystem : MonoBehaviour
             };
         }
     }
+
+    private bool IsPath(int x, int z) {
+        for (int i = 0; i < pathGridCoordinatesArray.Length/2; i++) {
+            if (pathGridCoordinatesArray[i, 0] == x && pathGridCoordinatesArray[i, 1] == z) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 
     // Check if the Mouse if over the UI to prevent clicking through it
     private bool MouseIsOverUI() {
