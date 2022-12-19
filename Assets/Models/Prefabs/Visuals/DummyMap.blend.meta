@@ -1,9 +1,44 @@
 fileFormatVersion: 2
-guid: f38821cd19191d74d862aafe32735e57
+guid: c217ada222b2dbc4ca2cfa9d9331c143
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Arteries
+    second: {fileID: 2100000, guid: 65f68eaae9a3a18488cc984a3b9cce1c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Floor
+    second: {fileID: 2100000, guid: 0a6a092b6ed9cd64cab9327e55c483be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lava
+    second: {fileID: 2100000, guid: 0280b1acc7f865d42b090322f3950845, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pathway
+    second: {fileID: 2100000, guid: 8d8937e7c6f0dcd46a1bf8193fcd1e9c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Podium
+    second: {fileID: 2100000, guid: 3142b3d40e8e8c84cabe14fd22229483, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RockSocket
+    second: {fileID: 2100000, guid: 4651ac21efb3a044ca1bf76095ebcc2b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rockwall
+    second: {fileID: 2100000, guid: 76f052d31134c154a834002f9f04400e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
