@@ -18,10 +18,12 @@ public class GridBuildingSystem : MonoBehaviour
 
     public GridTileSO gridTileSO;
 
+    public MapSO map1SO;
+
     // Default Grid-values
     public int gridWidth  = 10;
     public int gridHeight = 10;
-    public float cellSize = 10f;
+    private float cellSize = 10f;
 
     private void Awake() {
         // Instantiate the Grid
@@ -39,6 +41,11 @@ public class GridBuildingSystem : MonoBehaviour
                 GridTile.Create(worldPosition, gridTileSO);
             }
         }
+
+        // Instatiate the Map
+        Transform map1Transform = Instantiate(map1SO.prefab, new Vector3(0, 0, 0), Quaternion.identity);
+        map1Transform.transform.localScale = new Vector3(map1SO.scaleX, map1SO.scaleY, map1SO.scaleZ);
+        map1Transform.transform.position = new Vector3(map1SO.positionX, map1SO.positionY, map1SO.positionZ);
     }
 
 
@@ -82,11 +89,6 @@ public class GridBuildingSystem : MonoBehaviour
                 }
             }
         }
-
-        // Cycle through building variants
-        //if (Input.GetKeyDown(KeyCode.Alpha1)) { towerTypeSO = towerTypeSOList[0]; }
-        //if (Input.GetKeyDown(KeyCode.Alpha2)) { towerTypeSO = towerTypeSOList[1]; }
-        //if (Input.GetKeyDown(KeyCode.Alpha3)) { towerTypeSO = towerTypeSOList[2]; }
     }
 
     // Gets called by the UI-Buttons and sets the current placable towerType
