@@ -12,7 +12,11 @@ public class TowerTypeSO : ScriptableObject {
     public Transform visual;
     public Sprite towerIcon;
 
-    public float rotation;
-    public float damage;
-    public int level;
+    public float range;
+    public float fireRate;
+    public string enemyTag;
+
+    public float turnSpeed;
+
+    public GameObject projectilePrefab;
 }

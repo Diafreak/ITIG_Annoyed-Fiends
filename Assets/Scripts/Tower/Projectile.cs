@@ -9,16 +9,13 @@ public class Projectile : MonoBehaviour
     public float speed = 70f;
 
     // seeking the current target
-    public void Seek(Transform _target)
-    {
+    public void Seek(Transform _target) {
         target = _target;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if(target == null)
-        {
+    void Update() {
+        if (target == null) {
             Destroy(gameObject);
             return;
         }
@@ -27,8 +24,7 @@ public class Projectile : MonoBehaviour
         Vector3 direction = target.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
 
-        if(direction.magnitude <= distanceThisFrame)
-        {
+        if (direction.magnitude <= distanceThisFrame) {
             HitTarget();
             return;
         }
@@ -36,10 +32,8 @@ public class Projectile : MonoBehaviour
         transform.Translate(direction.normalized * distanceThisFrame, Space.World); 
     }
 
-    void HitTarget()
-    {
+    void HitTarget() {
         Debug.Log("We Hit Something"); 
         Destroy(gameObject);
-        
     }
 }

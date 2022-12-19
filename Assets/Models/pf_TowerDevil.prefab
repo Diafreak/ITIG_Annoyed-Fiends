@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df139e562204d11438a905291db27e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  partToRotate: {fileID: 1934432735670527421}
+  firePoint: {fileID: 834236166933631368}
 --- !u!1001 &6828338570692145359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -102,6 +104,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef08cc26ccaaf724894b56bced29d6b4, type: 3}
+--- !u!4 &834236166933631368 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6147673659892359495, guid: ef08cc26ccaaf724894b56bced29d6b4, type: 3}
+  m_PrefabInstance: {fileID: 6828338570692145359}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1934432735670527421 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4907619102538028402, guid: ef08cc26ccaaf724894b56bced29d6b4, type: 3}
+  m_PrefabInstance: {fileID: 6828338570692145359}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8552036175437488821 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2913211410375365242, guid: ef08cc26ccaaf724894b56bced29d6b4, type: 3}

@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df139e562204d11438a905291db27e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  partToRotate: {fileID: 4583074512462705509}
+  firePoint: {fileID: 1094925479913415002}
 --- !u!1001 &3655433870288628785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -96,14 +98,56 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4434710073817648491, guid: f79fab7308e2a0347b72da9b1dbac4d1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434710073817648491, guid: f79fab7308e2a0347b72da9b1dbac4d1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434710073817648491, guid: f79fab7308e2a0347b72da9b1dbac4d1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434710073817648491, guid: f79fab7308e2a0347b72da9b1dbac4d1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434710073817648491, guid: f79fab7308e2a0347b72da9b1dbac4d1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434710073817648491, guid: f79fab7308e2a0347b72da9b1dbac4d1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434710073817648491, guid: f79fab7308e2a0347b72da9b1dbac4d1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434710073817648491, guid: f79fab7308e2a0347b72da9b1dbac4d1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7545134446210578559, guid: f79fab7308e2a0347b72da9b1dbac4d1, type: 3}
       propertyPath: m_Name
       value: TowerArcher_Test
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f79fab7308e2a0347b72da9b1dbac4d1, type: 3}
+--- !u!4 &1094925479913415002 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4434710073817648491, guid: f79fab7308e2a0347b72da9b1dbac4d1, type: 3}
+  m_PrefabInstance: {fileID: 3655433870288628785}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4283664417282603302 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 704839367631312151, guid: f79fab7308e2a0347b72da9b1dbac4d1, type: 3}
+  m_PrefabInstance: {fileID: 3655433870288628785}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4583074512462705509 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 946015683450265428, guid: f79fab7308e2a0347b72da9b1dbac4d1, type: 3}
   m_PrefabInstance: {fileID: 3655433870288628785}
   m_PrefabAsset: {fileID: 0}

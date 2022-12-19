@@ -10,7 +10,7 @@ public class Tower : MonoBehaviour
     [Header("Attributes")]
 
     public float range = 15f;
-     public float fireRate = 1.0f;
+    public float fireRate = 1.0f;
     private float fireCountdown = 0f;
 
     [Header("Unity Setup Fields")]
