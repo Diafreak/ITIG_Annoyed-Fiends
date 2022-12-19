@@ -19,6 +19,8 @@ public class GridBuildingSystem : MonoBehaviour
     public GridTileSO gridTileSO;
 
     public MapSO map1SO;
+    public GameObject map1FromMap;
+    //public Transform enemyPrefab;
 
     // Default Grid-values
     public int gridWidth  = 10;
@@ -46,6 +48,11 @@ public class GridBuildingSystem : MonoBehaviour
         Transform map1Transform = Instantiate(map1SO.prefab, new Vector3(0, 0, 0), Quaternion.identity);
         map1Transform.transform.localScale = new Vector3(map1SO.scaleX, map1SO.scaleY, map1SO.scaleZ);
         map1Transform.transform.position = new Vector3(map1SO.positionX, map1SO.positionY, map1SO.positionZ);
+
+        map1FromMap.SetActive(false);
+
+        //Transform enemyTransform = Instantiate(enemyPrefab, new Vector3(142, -5, 30), Quaternion.identity);
+        //enemyTransform.transform.localScale = new Vector3(3, 3, 3);
     }
 
 

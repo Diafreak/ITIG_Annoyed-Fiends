@@ -16,10 +16,8 @@ MonoBehaviour:
   prefab: {fileID: 429035047871832740, guid: a904641e12da386479e0e2439ef5e0df, type: 3}
   visual: {fileID: 1195209683216745505, guid: 940ae067e48b2094a8d6f701b5b7d969, type: 3}
   towerIcon: {fileID: 21300000, guid: a02963aa374231743b2108a89c3d9aaa, type: 3}
-  range: 15
+  range: 20
   fireRate: 1
   enemyTag: Enemy
-  partToRotate: {fileID: 1195209683216745505, guid: 940ae067e48b2094a8d6f701b5b7d969, type: 3}
   turnSpeed: 10
   projectilePrefab: {fileID: 3620083769026161391, guid: 096ba171d18f0c144949d6351be1a3c4, type: 3}
-  firePoint: {fileID: 429035047871832740, guid: a904641e12da386479e0e2439ef5e0df, type: 3}
