@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c217ada222b2dbc4ca2cfa9d9331c143
+guid: ca03be67562d0434bb8ee35921faf410
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -8,37 +8,37 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Arteries
-    second: {fileID: 2100000, guid: 65f68eaae9a3a18488cc984a3b9cce1c, type: 2}
+    second: {fileID: 2100000, guid: e7cf91c776885454083922cf8573f41d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Floor
-    second: {fileID: 2100000, guid: 0a6a092b6ed9cd64cab9327e55c483be, type: 2}
+    second: {fileID: 2100000, guid: b08505c826695ea4aa8f2a6409d940f9, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Lava
-    second: {fileID: 2100000, guid: 0280b1acc7f865d42b090322f3950845, type: 2}
+    second: {fileID: 2100000, guid: 302a41012324eb04e820ddac8630b37f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Pathway
-    second: {fileID: 2100000, guid: 8d8937e7c6f0dcd46a1bf8193fcd1e9c, type: 2}
+    second: {fileID: 2100000, guid: e859158f5ffc3d1489417eef8bd53a09, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Podium
-    second: {fileID: 2100000, guid: 3142b3d40e8e8c84cabe14fd22229483, type: 2}
+    second: {fileID: 2100000, guid: ac6e9842c24a29042915b814bd0df1b4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: RockSocket
-    second: {fileID: 2100000, guid: 4651ac21efb3a044ca1bf76095ebcc2b, type: 2}
+    second: {fileID: 2100000, guid: 2974faec18d39e5498d83f7d9f16429b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Rockwall
-    second: {fileID: 2100000, guid: 76f052d31134c154a834002f9f04400e, type: 2}
+    second: {fileID: 2100000, guid: f26e112c28201fa449f7b5eba73f3bf3, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
