@@ -20,4 +20,4 @@ MonoBehaviour:
   fireRate: 1
   enemyTag: Enemy
   turnSpeed: 10
-  projectilePrefab: {fileID: 3620083769026161391, guid: 096ba171d18f0c144949d6351be1a3c4, type: 3}
+  projectilePrefab: {fileID: 3620083769026161391, guid: b57f84a252ecfdc43947b2ebe6f051ef, type: 3}
