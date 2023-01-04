@@ -9,7 +9,7 @@ public class GridTile : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     //private GridTileSO gridTileSO;
 
-    public static void Create(Vector3 worldPosition, GridTileSO givenGridTileSO) {
+    public static void Create(Vector3 worldPosition, GridTileSO givenGridTileSO, Transform parent) {
 
         Transform gridTileTransform =
             Instantiate(
@@ -18,7 +18,9 @@ public class GridTile : MonoBehaviour
                 // Position
                 worldPosition,
                 // Rotation
-                Quaternion.identity
+                Quaternion.identity,
+                // Parent
+                parent
             );
 
         //GridTile gridTile = gridTileTransform.GetComponent<GridTile>();
