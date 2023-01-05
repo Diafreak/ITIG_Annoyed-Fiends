@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Path
+  - Placeable
+  - Unusable
   layers:
   - Default
   - TransparentFX

@@ -44,20 +44,19 @@ public class PlacedTower : MonoBehaviour
     // the current target of the tower
     private Transform target;
 
-    [Header("Attributes")]
-    /*public[SerializeField]*/ private float range; // = 15f;
-    /*public[SerializeField]*/ private float fireRate; // = 1f;
+    // Attributes
+    private float range;
+    private float fireRate;
     private float fireCountdown = 0f;
 
-    [Header("Unity Setup Fields")]
     // the tag to find the enemies
-    /*public[SerializeField]*/ private string enemyTag; // = "Enemy";
+    private string enemyTag;
     // variables for rotation
-    /*public*/[SerializeField] private Transform partToRotate;
-    /*public[SerializeField]*/ private float turnSpeed; // = 10f;
+    [SerializeField] private Transform partToRotate;
+    private float turnSpeed;
 
-    /*public[SerializeField]*/ private GameObject projectilePrefab;
-    /*public*/[SerializeField] private Transform firePoint;
+    private GameObject projectilePrefab;
+    [SerializeField] private Transform firePoint;
 
     // Start is called before the first frame update
     void Start() {

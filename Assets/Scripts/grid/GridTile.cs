@@ -7,9 +7,8 @@ public class GridTile : MonoBehaviour
     [SerializeField] private Color defaultColor, highlightColor;
     [SerializeField] private GameObject highlight;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    //private GridTileSO gridTileSO;
 
-    public static void Create(Vector3 worldPosition, GridTileSO givenGridTileSO) {
+    public static void Create(Vector3 worldPosition, GridTileSO givenGridTileSO, Transform parent) {
 
         Transform gridTileTransform =
             Instantiate(
@@ -18,14 +17,10 @@ public class GridTile : MonoBehaviour
                 // Position
                 worldPosition,
                 // Rotation
-                Quaternion.identity
+                Quaternion.identity,
+                // Parent
+                parent
             );
-
-        //GridTile gridTile = gridTileTransform.GetComponent<GridTile>();
-
-        //gridTile.gridTileSO = givenGridTileSO;
-        //gridTile.spriteRenderer.color = gridTile.defaultColor;
-        //gridTile.highlight.GetComponent<SpriteRenderer>().color = gridTile.highlightColor;
     }
 
 
@@ -36,6 +31,12 @@ public class GridTile : MonoBehaviour
 
     private void OnMouseExit() {
         spriteRenderer.color = defaultColor;
+        highlight.SetActive(false);
+    }
+
+    private void OnDisable() {
+        // because they get disabled when placing a tower while the mouse is still
+        // over the tile the highlight would stay active until the mouse moves over it again
         highlight.SetActive(false);
     }
 }
