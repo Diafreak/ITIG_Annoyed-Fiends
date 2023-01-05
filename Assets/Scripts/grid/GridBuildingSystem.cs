@@ -18,18 +18,20 @@ public class GridBuildingSystem : MonoBehaviour
 
     public GridTileSO gridTileSO;
 
-    public MapSO map1SO;
-    public GameObject map1FromMap;
+    //public MapSO map1SO;
+    //public GameObject map1FromMap;
+
+    // References to the tile-layout of the map
     public GameObject pathTilesLayout;
     public GameObject placeableTilesLayout;
     public GameObject unusableTilesLayout;
 
-    // Default Grid-values
-    public int gridWidth  = 10;
-    public int gridHeight = 10;
+    // Grid-values
+    public int gridWidth;
+    public int gridHeight;
     private float cellSize = 10f;
 
-
+    // Arrays that hold the grd-coordinates of each tile type to check tower placement
     private int[,] pathTilesGridCoordinatesArray;
     private int[,] placeableTilesGridCoordinatesArray;
     private int[,] unusableTilesGridCoordinatesArray;
@@ -38,6 +40,8 @@ public class GridBuildingSystem : MonoBehaviour
     private GameObject pathTiles;
     private GameObject placeableTiles;
     private GameObject unusableTiles;
+
+    public TowerUI towerUI;
 
 
     private void Awake() {
@@ -54,38 +58,27 @@ public class GridBuildingSystem : MonoBehaviour
         currentlySelectedTowerTypeSO = null;
 
         InitializeTileArrays();
-
-        // Instatiate the Map
-        //Transform map1Transform = Instantiate(map1SO.prefab, new Vector3(0, 0, 0), Quaternion.identity);
-        //map1Transform.transform.localScale = new Vector3(map1SO.scaleX, map1SO.scaleY, map1SO.scaleZ);
-        //map1Transform.transform.position = new Vector3(map1SO.positionX, map1SO.positionY, map1SO.positionZ);
-
-        //map1FromMap.SetActive(false);
     }
-
 
 
     private void Update() {
         // Build Tower
-        if (Input.GetMouseButtonDown(0) && MouseIsNotOverUI() && currentlySelectedTowerTypeSO != null) {
-            // Get coordinates of the clicked tile via mouse coordinates
+        if (Input.GetMouseButtonDown(0) && MouseIsNotOverUI()) {
+            // convert Mouse-Coordinates from Click into Grid-Coordinates
             var gridCoordinates = grid.GetXZ(GridUtils.GetMouseWorldPosition3d(mouseColliderLayerMask));
 
-            // Get the object on that clicked tile
+            // get the Object on that clicked Tile
             GridObject gridObject = grid.GetGridObject(gridCoordinates.x, gridCoordinates.z);
 
-            // Check if clicked tile is already occupied
-            if ( TileCanBeBuildOn(gridObject) && TowerIsOnValidTile(gridCoordinates.x, gridCoordinates.z) ) {
-                // If tile is free, then build on it
-                Vector3 placedTowerWorldPosition = grid.GetWorldPosition(gridCoordinates.x, gridCoordinates.z);
-                // Create the Tower-Visual
-                PlacedTower placedTower = PlacedTower.Create(placedTowerWorldPosition, currentlySelectedTowerTypeSO);
-                // Write created Tower in the Grid-Array
-                gridObject.SetPlacedTower(placedTower);
+            // check if clicked Tile is already occupied
+            if (currentlySelectedTowerTypeSO != null && TileCanBeBuildOn(gridObject) && TowerIsOnValidTile(gridCoordinates.x, gridCoordinates.z)) {
+                BuildTower(gridObject, gridCoordinates.x, gridCoordinates.z);
 
+            // if Tile already has a tower -> show Upgrade/Sell-Menu
+            } else if (gridObject != null && gridObject.GetPlacedTower() != null && IsPlacable(gridCoordinates.x, gridCoordinates.z)) {
+                towerUI.SetTarget(grid.GetWorldPosition(gridCoordinates.x, gridCoordinates.z));
+                // clear left-click
                 currentlySelectedTowerTypeSO = null;
-            } else {
-                GridUtils.CreateWorldTextPopup("Cannot Build Here!", GridUtils.GetMouseWorldPosition3d(mouseColliderLayerMask));
             }
 
             pathTiles.SetActive(false);
@@ -110,15 +103,16 @@ public class GridBuildingSystem : MonoBehaviour
                 }
             }
         }
-
     }
+
 
     // Gets called by the UI-Buttons and sets the current placable towerType
     public void SetSelectedTower(String selectedTowerName) {
-
         foreach(TowerTypeSO towerTypeSO in towerTypeSOList) {
             if (towerTypeSO.name == selectedTowerName) {
                 currentlySelectedTowerTypeSO = towerTypeSO;
+                // Hide Upgrade/Sell-Menu
+                towerUI.Hide();
 
                 if (currentlySelectedTowerTypeSO.name == "Gargoyle") {
                     pathTiles.SetActive(true);
@@ -131,6 +125,19 @@ public class GridBuildingSystem : MonoBehaviour
             };
         }
     }
+
+
+    private void BuildTower(GridObject gridObject, int gridCoordinateX, int gridCoordinateZ) {
+        // if tile is free, then build on it
+        Vector3 placedTowerWorldPosition = grid.GetWorldPosition(gridCoordinateX, gridCoordinateZ);
+        // create the Tower-Visual
+        PlacedTower placedTower = PlacedTower.Create(placedTowerWorldPosition, currentlySelectedTowerTypeSO);
+        // write created Tower in the Grid-Array
+        gridObject.SetPlacedTower(placedTower);
+        // clear left-click
+        currentlySelectedTowerTypeSO = null;
+    }
+
 
 
     // Convert the world coordinates of the LayoutTiles in Grid-Coordinates and save them in separate arrays
