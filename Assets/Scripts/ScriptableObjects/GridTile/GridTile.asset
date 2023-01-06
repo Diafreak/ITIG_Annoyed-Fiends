@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: GridTile
   m_EditorClassIdentifier: 
   visual: {fileID: 8756764283356597940, guid: ed95f1e0b4d96324faafcb8ab63a93a2, type: 3}
-  defaultColor: {r: 0, g: 0.048205614, b: 1, a: 1}
-  highlightColor: {r: 1, g: 1, b: 1, a: 1}
+  defaultColor: {r: 0.11764706, g: 0.78431374, b: 0, a: 0.039215688}
+  highlightColor: {r: 1, g: 1, b: 1, a: 0.39215687}
+  insufficientMoneyColor: {r: 1, g: 0, b: 0, a: 0.078431375}

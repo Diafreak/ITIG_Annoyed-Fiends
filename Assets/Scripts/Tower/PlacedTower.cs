@@ -16,7 +16,7 @@ public class PlacedTower : MonoBehaviour
                 // Position
                 worldPosition,
                 // Rotation
-                Quaternion.Euler(0, 0, 0)
+                Quaternion.identity
             );
         // get the instantiated/placed Tower
         PlacedTower placedTower = placedTowerTransform.GetComponent<PlacedTower>();

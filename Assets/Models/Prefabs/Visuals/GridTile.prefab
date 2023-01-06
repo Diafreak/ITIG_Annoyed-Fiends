@@ -99,8 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e7f626e78ca8534b97699a631420d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 0.11764707, g: 0.78431374, b: 0, a: 0.05882353}
-  highlightColor: {r: 1, g: 1, b: 1, a: 0.43529412}
   highlight: {fileID: 3072707037193062366}
   spriteRenderer: {fileID: 1979996810932883687}
 --- !u!65 &823420245725309118

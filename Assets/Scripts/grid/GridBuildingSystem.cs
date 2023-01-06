@@ -238,7 +238,7 @@ public class GridBuildingSystem : MonoBehaviour {
         return gridObject != null && gridObject.GetPlacedTower() != null;
     }
 
-    private bool PlayerHasEnoughMoney() {
+    public bool PlayerHasEnoughMoney() {
         if (PlayerStats.money < currentlySelectedTowerTypeSO.price) {
             Debug.Log("Not enough money!");
             return false;
