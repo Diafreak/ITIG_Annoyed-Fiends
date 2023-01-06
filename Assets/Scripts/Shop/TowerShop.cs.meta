@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/grid/GridTile.cs.meta
-guid: 7705606a0d93a9a48b11aae2fd97f296
-========
-guid: 8dd3b411d8af06b4e9a24c0f549dc22f
->>>>>>>> UI:Assets/Scripts/UI/GenerateTowerSelection.cs.meta
+guid: dd173e10ea53f2549ba0de44f180471a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

@@ -15,9 +15,10 @@ MonoBehaviour:
   towerName: Archer
   prefab: {fileID: 429035047871832740, guid: 2c2f5e311c21e7a4da15a536d98be512, type: 3}
   visual: {fileID: 704839367631312151, guid: f79fab7308e2a0347b72da9b1dbac4d1, type: 3}
-  towerIcon: {fileID: 21300000, guid: dd1c7644d74706b44a866cadbdfafd08, type: 3}
   range: 45
   fireRate: 1
   enemyTag: Enemy
   turnSpeed: 10
   projectilePrefab: {fileID: 3620083769026161391, guid: 096ba171d18f0c144949d6351be1a3c4, type: 3}
+  price: 100
+  level: 1

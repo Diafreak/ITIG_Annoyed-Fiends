@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridTile : MonoBehaviour
-{
+public class GridTile : MonoBehaviour {
+
     [SerializeField] private Color defaultColor, highlightColor;
     [SerializeField] private GameObject highlight;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     public static void Create(Vector3 worldPosition, GridTileSO givenGridTileSO, Transform parent) {
 
-        Transform gridTileTransform =
+        //Transform gridTileTransform =
             Instantiate(
                 // Visual
                 givenGridTileSO.visual,
