@@ -10,7 +10,6 @@ public class TowerTypeSO : ScriptableObject {
 
     public Transform prefab;
     public Transform visual;
-    public Sprite towerIcon;
 
     public float range;
     public float fireRate;
@@ -19,4 +18,7 @@ public class TowerTypeSO : ScriptableObject {
     public float turnSpeed;
 
     public GameObject projectilePrefab;
+
+    public int price;
+    public int level;
 }

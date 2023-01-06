@@ -37,6 +37,10 @@ public class GridObject
         return placedTower == null;
     }
 
+    public (int x, int z) GetPosition() {
+        return (x, z);
+    }
+
     public override string ToString()
     {
         return x + ", " + z + "\n" + placedTower;
