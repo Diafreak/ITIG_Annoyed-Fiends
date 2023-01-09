@@ -11,13 +11,13 @@ public class PlacedTower : MonoBehaviour {
     private float fireRate;
     private float fireCountdown = 0f;
 
+    // tag to find the enemies
+    private string enemyTag;
+
     // Upgrading
     private int level;
     private int upgradeCost;
     private int sellingPrice;
-
-    // tag to find the enemies
-    private string enemyTag;
 
     // variables for rotation
     [SerializeField] private Transform partToRotate;
@@ -63,14 +63,20 @@ public class PlacedTower : MonoBehaviour {
         placedTower.turnSpeed        = towerTypeSO.turnSpeed;
         placedTower.projectilePrefab = towerTypeSO.projectilePrefab;
 
-
         return placedTower;
     }
 
 
-    // Destroy the tower-visual
-    public void DestroySelf() {
-        Destroy(gameObject);
+    public int GetUpgradeCost() {
+        return upgradeCost;
+    }
+
+    public int GetLevel() {
+        return level;
+    }
+
+    public int GetSellingPrice() {
+        return sellingPrice;
     }
 
 
@@ -115,16 +121,18 @@ public class PlacedTower : MonoBehaviour {
     }
 
 
-    public int GetUpgradeCost() {
-        return upgradeCost;
+    // ------------------------------
+    // Selling
+    // ------------------------------
+
+    public void SellTower() {
+        PlayerStats.money += sellingPrice;
+        DestroySelf();
     }
 
-    public int GetLevel() {
-        return level;
-    }
-
-    public int GetSellingPrice() {
-        return sellingPrice;
+    // Destroy the tower-visual
+    private void DestroySelf() {
+        Destroy(gameObject);
     }
 
 

@@ -4701,7 +4701,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 369390652}
-  m_LocalRotation: {x: 0.5531469, y: 0.000001056536, z: -0.00000070151367, w: 0.83308375}
+  m_LocalRotation: {x: 0.5531469, y: 0.0000010885885, z: -0.00000072279573, w: 0.83308375}
   m_LocalPosition: {x: 61.499897, y: 95, z: 13.999893}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4787,7 +4787,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370881014}
-  m_LocalRotation: {x: 0.5531469, y: 0.000001056536, z: -0.00000070151367, w: 0.83308375}
+  m_LocalRotation: {x: 0.5531469, y: 0.0000010885885, z: -0.00000072279573, w: 0.83308375}
   m_LocalPosition: {x: 61.499897, y: 95, z: 13.999893}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11475,7 +11475,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 919752834}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1048251059}
+        m_TargetAssemblyTypeName: TowerUI, Assembly-CSharp
+        m_MethodName: Sell
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &919752834
 MonoBehaviour:
   m_ObjectHideFlags: 0

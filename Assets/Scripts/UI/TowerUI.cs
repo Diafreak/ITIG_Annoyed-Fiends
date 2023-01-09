@@ -44,15 +44,20 @@ public class TowerUI : MonoBehaviour {
     }
 
     public void Hide() {
+        targetedGridObject = null;
         ui.SetActive(false);
     }
 
     public void Upgrade() {
         targetedGridObject.GetTower().UpgradeTower();
-        upgradeText.text = targetedGridObject.GetTower().GetUpgradeCost().ToString() + "€";
+        upgradeText.text = targetedGridObject.GetTower().GetUpgradeCost().ToString()  + "€";
+        sellText.text    = targetedGridObject.GetTower().GetSellingPrice().ToString() + "€";
     }
 
     public void Sell() {
-        sellText.text = targetedGridObject.GetTower().GetSellingPrice().ToString() + "€";
+        targetedGridObject.GetTower().SellTower();
+        // clear Tower from the Grid-Array
+        targetedGridObject.ClearPlacedTower();
+        Hide();
     }
 }

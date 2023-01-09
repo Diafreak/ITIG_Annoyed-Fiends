@@ -9,7 +9,7 @@ public class GridBuildingSystem : MonoBehaviour {
     // Collider Mask to check where the Mouse has clicked on the Grid
     [SerializeField] private LayerMask mouseColliderLayerMask;
 
-    // Grid that holds all objects on it
+    // Grid that holds all Objects on it
     private GridXZ<GridObject> grid;
 
     // Grid-values
@@ -17,7 +17,6 @@ public class GridBuildingSystem : MonoBehaviour {
     public int gridWidth;
     public int gridHeight;
     private float cellSize = 10f;
-
 
     // for visual hovering-effect
     public GridTileSO gridTileSO;
@@ -39,14 +38,13 @@ public class GridBuildingSystem : MonoBehaviour {
     private GameObject placeableTiles;
     private GameObject unusableTiles;
 
-
     // UI for Upgrading/Selling a Tower
     [Header("Tower UI")]
     public TowerUI towerUI;
 
-
     // Singleton
     public static GridBuildingSystem instance;
+
 
 
     private void Awake() {
@@ -123,6 +121,11 @@ public class GridBuildingSystem : MonoBehaviour {
     }
 
 
+
+    // ------------------------------
+    // Building
+    // ------------------------------
+
     // gets called by the UI-Buttons and sets the current placable Tower-Type
     public void SetSelectedTower(TowerTypeSO towerTypeSO) {
 
@@ -168,6 +171,10 @@ public class GridBuildingSystem : MonoBehaviour {
     }
 
 
+
+    // ------------------------------
+    // Tiles
+    // ------------------------------
 
     // Convert the world coordinates of the LayoutTiles in Grid-Coordinates and save them in separate arrays
     // so they only have to be calculated once at the start and are then available during runtime
