@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class PlacedTower : MonoBehaviour {
 
-    // Reference to the Tower-SO
-    //private TowerTypeSO towerTypeSO;
-
     // current target of the tower
     private Transform target;
 
@@ -56,8 +53,6 @@ public class PlacedTower : MonoBehaviour {
         // get the instantiated/placed Tower
         PlacedTower placedTower = placedTowerTransform.GetComponent<PlacedTower>();
 
-        //placedTower.towerTypeSO = placedTowerTypeSO;
-
         // set all variables from the template to the placed Tower
         placedTower.range            = towerTypeSO.range;
         placedTower.fireRate         = towerTypeSO.fireRate;
@@ -84,6 +79,7 @@ public class PlacedTower : MonoBehaviour {
     // ------------------------------
 
     public void UpgradeTower() {
+
         if (PlayerStats.money < upgradeCost) {
             Debug.Log("Not enough money to upgrade!");
             return;
@@ -116,6 +112,19 @@ public class PlacedTower : MonoBehaviour {
 
     private void IncreaseSellingPrice(int increase) {
         sellingPrice += increase;
+    }
+
+
+    public int GetUpgradeCost() {
+        return upgradeCost;
+    }
+
+    public int GetLevel() {
+        return level;
+    }
+
+    public int GetSellingPrice() {
+        return sellingPrice;
     }
 
 

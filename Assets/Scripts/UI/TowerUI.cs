@@ -1,31 +1,44 @@
 using UnityEngine;
-
+using TMPro;
+using UnityEngine.UI;
 
 public class TowerUI : MonoBehaviour {
 
     public GameObject ui;
 
-    private GridObject gridObject;
+    [Header("Texts")]
+    public TMP_Text upgradeText;
+    public TMP_Text sellText;
 
-    GridBuildingSystem gridBuildingSystem;
+    [Header("Buttons")]
+    public Button upgradeButton;
+    public Button sellButton;
+
+    private GridObject targetedGridObject;
 
 
-    /*private void Awake() {
-        gridBuildingSystem = GridBuildingSystem.instance;
-    }*/
+    private void Update() {
+        // disable or enable the Upgrade-Button depending if Player has enough Money
+        if (ui.activeSelf && targetedGridObject != null) {
+            if (PlayerStats.money < targetedGridObject.GetTower().GetUpgradeCost()) {
+                upgradeButton.interactable = false;
+            } else {
+                upgradeButton.interactable = true;
+            }
+        }
+    }
 
-
-    public void SetTarget(GridObject givenGridObject) {
+    public void SetTarget(GridObject gridObject) {
         // if the same tile is clicked again, hide the Upgrade/Sell-Menu
-        Vector3 gridPosition = givenGridObject.GetWorldPosition();
-
-        if (gridObject == givenGridObject && ui.activeSelf) {
-            ui.SetActive(false); Debug.Log("active false");
+        if (targetedGridObject == gridObject && ui.activeSelf) {
+            ui.SetActive(false);
 
         // show & move the Upgrade/Sell-Menu over the selected Tower
         } else {
-            transform.position = gridPosition;
-            gridObject = givenGridObject;
+            targetedGridObject = gridObject;
+            transform.position = gridObject.GetWorldPosition();
+            upgradeText.text = targetedGridObject.GetTower().GetUpgradeCost().ToString()  + "€";
+            sellText.text    = targetedGridObject.GetTower().GetSellingPrice().ToString() + "€";
             ui.SetActive(true);
         }
     }
@@ -35,6 +48,11 @@ public class TowerUI : MonoBehaviour {
     }
 
     public void Upgrade() {
-        gridObject.GetPlacedTower().UpgradeTower();
+        targetedGridObject.GetTower().UpgradeTower();
+        upgradeText.text = targetedGridObject.GetTower().GetUpgradeCost().ToString() + "€";
+    }
+
+    public void Sell() {
+        sellText.text = targetedGridObject.GetTower().GetSellingPrice().ToString() + "€";
     }
 }

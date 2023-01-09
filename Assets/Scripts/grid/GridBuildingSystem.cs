@@ -40,7 +40,7 @@ public class GridBuildingSystem : MonoBehaviour {
     private GameObject unusableTiles;
 
 
-    // UI for Upgradeing/Selling a Tower
+    // UI for Upgrading/Selling a Tower
     [Header("Tower UI")]
     public TowerUI towerUI;
 
@@ -100,6 +100,9 @@ public class GridBuildingSystem : MonoBehaviour {
         }
 
 
+        if (Input.GetMouseButtonDown(1)) {
+            PlayerStats.money += 100;
+        }
         // Destroy Tower
         /*if (Input.GetMouseButtonDown(1)) {
             // get clicked Grid-Tile
@@ -143,7 +146,7 @@ public class GridBuildingSystem : MonoBehaviour {
 
         if (gridObject != null) {
             // get Tower on selected Tile
-            return gridObject.GetPlacedTower();
+            return gridObject.GetTower();
         }
         return null;
     }
@@ -245,7 +248,7 @@ public class GridBuildingSystem : MonoBehaviour {
     }
 
     private bool TileHasTower(GridObject gridObject) {
-        return gridObject != null && gridObject.GetPlacedTower() != null;
+        return gridObject != null && gridObject.GetTower() != null;
     }
 
     public bool PlayerHasEnoughMoney() {

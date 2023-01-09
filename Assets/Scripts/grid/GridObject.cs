@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 // Object-definition of the object that is placed on the Grid
@@ -29,7 +27,7 @@ public class GridObject {
         grid.TriggerGridObjectChanged(x, z);
     }
 
-    public PlacedTower GetPlacedTower() {
+    public PlacedTower GetTower() {
         return this.placedTower;
     }
 
@@ -43,10 +41,5 @@ public class GridObject {
 
     public Vector3 GetWorldPosition() {
         return grid.GetWorldPosition(x, z);
-    }
-
-    public override string ToString()
-    {
-        return x + ", " + z + "\n" + placedTower;
     }
 }
