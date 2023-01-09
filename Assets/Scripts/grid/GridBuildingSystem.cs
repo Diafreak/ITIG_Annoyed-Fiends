@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -16,6 +13,7 @@ public class GridBuildingSystem : MonoBehaviour {
     private GridXZ<GridObject> grid;
 
     // Grid-values
+    [Header("Grid Values")]
     public int gridWidth;
     public int gridHeight;
     private float cellSize = 10f;
@@ -25,6 +23,7 @@ public class GridBuildingSystem : MonoBehaviour {
     public GridTileSO gridTileSO;
 
     // References to the tile-layout of the map
+    [Header("Path Tiles")]
     public GameObject pathTilesLayout;
     public GameObject placeableTilesLayout;
     public GameObject unusableTilesLayout;
@@ -42,6 +41,7 @@ public class GridBuildingSystem : MonoBehaviour {
 
 
     // UI for Upgradeing/Selling a Tower
+    [Header("Tower UI")]
     public TowerUI towerUI;
 
 
@@ -90,7 +90,7 @@ public class GridBuildingSystem : MonoBehaviour {
 
                 // if Tile already has a Tower -> show Upgrade/Sell-Menu
                 } else if (TileHasTower(gridObject) && IsPlacable(gridCoordinates.x, gridCoordinates.z)) {
-                    towerUI.SetTarget(grid.GetWorldPosition(gridCoordinates.x, gridCoordinates.z));
+                    towerUI.SetTarget(gridObject);
                     // clear Left-Click
                     currentlySelectedTowerTypeSO = null;
                 }
@@ -101,7 +101,7 @@ public class GridBuildingSystem : MonoBehaviour {
 
 
         // Destroy Tower
-        if (Input.GetMouseButtonDown(1)) {
+        /*if (Input.GetMouseButtonDown(1)) {
             // get clicked Grid-Tile
             GridObject gridObject = grid.GetGridObject(GridUtils.GetMouseWorldPosition3d(mouseColliderLayerMask));
 
@@ -116,7 +116,7 @@ public class GridBuildingSystem : MonoBehaviour {
                     gridObject.ClearPlacedTower();
                 }
             }
-        }
+        }*/
     }
 
 
@@ -138,17 +138,27 @@ public class GridBuildingSystem : MonoBehaviour {
     }
 
 
+    public PlacedTower GetSelectedTower() {
+        GridObject gridObject = grid.GetGridObject(GridUtils.GetMouseWorldPosition3d(mouseColliderLayerMask));
+
+        if (gridObject != null) {
+            // get Tower on selected Tile
+            return gridObject.GetPlacedTower();
+        }
+        return null;
+    }
+
+
     private void BuildTower(GridObject gridObject) {
         // get World-Coordinates to build on from Grid-Coordinates
-        Vector3 placedTowerWorldPosition = grid.GetWorldPosition(gridObject.GetPosition().x, gridObject.GetPosition().z);
+        Vector3 placedTowerWorldPosition = grid.GetWorldPosition(gridObject.GetGridPosition().x, gridObject.GetGridPosition().z);
         // create Tower-Visual
         PlacedTower placedTower = PlacedTower.Create(placedTowerWorldPosition, currentlySelectedTowerTypeSO);
         // write created Tower in the Grid-Array
         gridObject.SetPlacedTower(placedTower);
 
-        // remove Tower-costs from Player-Money
+        // subtract Tower-costs from Player-Money
         PlayerStats.money -= currentlySelectedTowerTypeSO.price;
-        Debug.Log("Money left: " + PlayerStats.money);
 
         // clear left-click
         currentlySelectedTowerTypeSO = null;
@@ -226,7 +236,7 @@ public class GridBuildingSystem : MonoBehaviour {
         return  currentlySelectedTowerTypeSO != null
                 && gridObject != null
                 && gridObject.CanBuild()
-                && TowerIsOnValidTile(gridObject.GetPosition().x, gridObject.GetPosition().z);
+                && TowerIsOnValidTile(gridObject.GetGridPosition().x, gridObject.GetGridPosition().z);
     }
 
     private bool TowerIsOnValidTile(int x, int z) {
@@ -272,6 +282,11 @@ public class GridBuildingSystem : MonoBehaviour {
             }
         }
         return false;
+    }
+
+
+    public float GetBuildOffset() {
+        return cellSize / 2;
     }
 
 
