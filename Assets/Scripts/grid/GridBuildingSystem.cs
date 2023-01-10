@@ -25,18 +25,15 @@ public class GridBuildingSystem : MonoBehaviour {
     [Header("Path Tiles")]
     public GameObject pathTilesLayout;
     public GameObject placeableTilesLayout;
-    public GameObject unusableTilesLayout;
 
     // Arrays that hold the grid-coordinates of each tile type to check tower placement
     private int[,] pathTilesGridCoordinatesArray;
     private int[,] placeableTilesGridCoordinatesArray;
-    private int[,] unusableTilesGridCoordinatesArray;
 
     // Parents that have all the specific tiles as their children
     // used to toggle the visual representation of placeable tiles for a tower
     private GameObject pathTiles;
     private GameObject placeableTiles;
-    private GameObject unusableTiles;
 
     // UI for Upgrading/Selling a Tower
     [Header("Tower UI")]
@@ -56,7 +53,6 @@ public class GridBuildingSystem : MonoBehaviour {
 
         pathTiles      = new GameObject("Path Tiles");
         placeableTiles = new GameObject("Placeable Tiles");
-        unusableTiles  = new GameObject("Unusable Tiles");
 
         // Instantiate the Grid
         grid = new GridXZ<GridObject>(gridWidth, gridHeight, cellSize, Vector3.zero,
@@ -89,10 +85,10 @@ public class GridBuildingSystem : MonoBehaviour {
                 // if Tile already has a Tower -> show Upgrade/Sell-Menu
                 } else if (TileHasTower(gridObject) && IsPlacable(gridCoordinates.x, gridCoordinates.z)) {
                     towerUI.SetTarget(gridObject);
-                    // clear Left-Click
-                    currentlySelectedTowerTypeSO = null;
                 }
 
+            // clear left-click
+            currentlySelectedTowerTypeSO = null;
             pathTiles.SetActive(false);
             placeableTiles.SetActive(false);
         }
@@ -101,23 +97,6 @@ public class GridBuildingSystem : MonoBehaviour {
         if (Input.GetMouseButtonDown(1)) {
             PlayerStats.money += 100;
         }
-        // Destroy Tower
-        /*if (Input.GetMouseButtonDown(1)) {
-            // get clicked Grid-Tile
-            GridObject gridObject = grid.GetGridObject(GridUtils.GetMouseWorldPosition3d(mouseColliderLayerMask));
-
-            if (gridObject != null) {
-                // get the Tower on that Tile
-                PlacedTower placedTower = gridObject.GetPlacedTower();
-
-                if (placedTower != null ) {
-                    // destroy Tower-Visual
-                    placedTower.DestroySelf();
-                    // clear Tower-Data from the Grid-Array
-                    gridObject.ClearPlacedTower();
-                }
-            }
-        }*/
     }
 
 
@@ -165,9 +144,6 @@ public class GridBuildingSystem : MonoBehaviour {
 
         // subtract Tower-costs from Player-Money
         PlayerStats.money -= currentlySelectedTowerTypeSO.price;
-
-        // clear left-click
-        currentlySelectedTowerTypeSO = null;
     }
 
 
@@ -219,26 +195,6 @@ public class GridBuildingSystem : MonoBehaviour {
             }
             placeableTiles.SetActive(false);
         }
-
-        // Unusable Tiles
-        unusableTilesLayout.SetActive(true);
-        GameObject[] unusableTilesFromLayoutArray = GameObject.FindGameObjectsWithTag("Unusable");
-        unusableTilesLayout.SetActive(false);
-
-        if (unusableTilesFromLayoutArray != null) {
-            unusableTilesGridCoordinatesArray = new int[unusableTilesFromLayoutArray.Length, 2];
-
-            int index = 0;
-            foreach (GameObject unusableTile in unusableTilesFromLayoutArray) {
-                var coordinates = grid.GetXZ(unusableTile.transform.position);
-                unusableTilesGridCoordinatesArray[index, 0] = coordinates.x;
-                unusableTilesGridCoordinatesArray[index, 1] = coordinates.z;
-
-                GridTile.Create(grid.GetWorldPosition(coordinates.x, coordinates.z), gridTileSO, unusableTiles.transform);
-                index++;
-            }
-            unusableTiles.SetActive(false);
-        }
     }
 
 
@@ -279,15 +235,6 @@ public class GridBuildingSystem : MonoBehaviour {
     private bool IsPlacable(int x, int z) {
         for (int i = 0; i < placeableTilesGridCoordinatesArray.Length/2; i++) {
             if (placeableTilesGridCoordinatesArray[i, 0] == x && placeableTilesGridCoordinatesArray[i, 1] == z) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private bool IsUnusable(int x, int z) {
-        for (int i = 0; i < unusableTilesGridCoordinatesArray.Length/2; i++) {
-            if (unusableTilesGridCoordinatesArray[i, 0] == x && unusableTilesGridCoordinatesArray[i, 1] == z) {
                 return true;
             }
         }
