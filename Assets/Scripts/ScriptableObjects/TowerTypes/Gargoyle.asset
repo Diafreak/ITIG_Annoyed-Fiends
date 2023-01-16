@@ -15,12 +15,12 @@ MonoBehaviour:
   towerName: Gargoyle
   prefab: {fileID: 429035047871832740, guid: a904641e12da386479e0e2439ef5e0df, type: 3}
   visual: {fileID: 1195209683216745505, guid: 940ae067e48b2094a8d6f701b5b7d969, type: 3}
-  projectilePrefab: {fileID: 3620083769026161391, guid: 096ba171d18f0c144949d6351be1a3c4, type: 3}
+  projectilePrefab: {fileID: 3620083769026161391, guid: b57f84a252ecfdc43947b2ebe6f051ef, type: 3}
   range: 20
   fireRate: 1
   turnSpeed: 10
   enemyTag: Enemy
-  price: 300
+  price: 350
   upgradeCost: 0
   sellingPrice: 0
   level: 1

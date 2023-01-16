@@ -15,8 +15,8 @@ MonoBehaviour:
   towerName: Devil
   prefab: {fileID: 429035047871832740, guid: 4f77189d4a4e15a449c3a5989a70b86a, type: 3}
   visual: {fileID: 2913211410375365242, guid: ef08cc26ccaaf724894b56bced29d6b4, type: 3}
-  projectilePrefab: {fileID: 3620083769026161391, guid: 096ba171d18f0c144949d6351be1a3c4, type: 3}
-  range: 20
+  projectilePrefab: {fileID: 3620083769026161391, guid: b57f84a252ecfdc43947b2ebe6f051ef, type: 3}
+  range: 30
   fireRate: 1
   turnSpeed: 10
   enemyTag: Enemy

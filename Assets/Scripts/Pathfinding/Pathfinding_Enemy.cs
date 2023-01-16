@@ -4,6 +4,10 @@ public class Pathfinding_Enemy : MonoBehaviour
 {
     public float speed = 10f;
 
+    public int hp = 100;
+
+    public int killValue = 100;
+
     private Transform target;
 
     //the Waypoint that is currently targeted
@@ -25,13 +29,36 @@ public class Pathfinding_Enemy : MonoBehaviour
 
     void GetNextWaypoint() {
         //temporarily destroys enemy when reaches last waypoint
-        if (wayPointIndex >= Waypoints.waypoints.Length - 1) {
-            Destroy(gameObject);
+        if (wayPointIndex >= Waypoints.waypoints.Length - 1) 
+        {
+            FinishedPath();
             return;
         }
 
         wayPointIndex++;
         target = Waypoints.waypoints[wayPointIndex];
+    }
+
+    void FinishedPath()
+    {
+        Destroy(gameObject);
+        PlayerStats.lives -= 1;
+    }
+
+    public void TakeDamage(int amount)
+    {
+        hp -= amount;
+        
+        if(hp <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        PlayerStats.money += killValue;
+        Destroy(gameObject);
     }
 }
 
