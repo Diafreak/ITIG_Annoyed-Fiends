@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Map_1
   m_EditorClassIdentifier: 
   prefab: {fileID: 9010439077066627615, guid: 7e6fd13b4f015a04a9f0a28200e36fc8, type: 3}
-  scaleX: 14.8
-  scaleY: 14.8
-  scaleZ: 14.85
+  scaleX: 15.8
+  scaleY: 15.8
+  scaleZ: 15.85
   positionX: 0.5
-  positionY: -7.7
+  positionY: -8
   positionZ: 0.6
