@@ -7,6 +7,8 @@ public class Projectile : MonoBehaviour
     private Transform target;
 
     public float speed = 70f;
+
+    public int damage = 50;
     public float damageRadius = 0f;
 
     // seeking the current target
@@ -65,7 +67,13 @@ public class Projectile : MonoBehaviour
 
     void Damage(Transform enemy)
     {
-        Destroy(enemy.gameObject);
+        Pathfinding_Enemy e = enemy.GetComponent<Pathfinding_Enemy>();
+
+        if(e != null)
+        {
+             e.TakeDamage(damage);
+        }
+
     }
 
     void OnDrawGizmosSelected()
