@@ -19,7 +19,7 @@ public class townerSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(enemiesAlive < 0)
+        if(enemiesAlive > 0)
         {
             return;
         }
