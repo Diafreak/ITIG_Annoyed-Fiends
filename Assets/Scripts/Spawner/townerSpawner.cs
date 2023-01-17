@@ -5,27 +5,44 @@ using UnityEngine;
 public class townerSpawner : MonoBehaviour
 {
     //enemytypes to spawn
-    public GameObject bauer;
-    public GameObject dorfschranze;
-    public GameObject boss;
+    public Transform bauer;
+    public Transform dorfschranze;
+    public Transform boss;
 
     public float spawnRate = 0.5f;
-    float timePast = 0.0f;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    public float timeBetweenWaves = 5f;
+    public float waveSpawnRate = 0.5f;
+    float countdown = 2f;
+    int waveNumber = 0;
 
     // Update is called once per frame
     void Update()
     {
-        timePast += Time.deltaTime;
 
-        if(spawnRate < timePast){
-            timePast = 0.0f;
-            Instantiate(bauer, transform.position, transform.rotation);
+        if(countdown <= 0f)
+        {
+            StartCoroutine(SpawnWave());
+            countdown = timeBetweenWaves;
         }
+
+        countdown -=Time.deltaTime;
+    }
+
+    IEnumerator SpawnWave ()
+    {
+        Debug.Log("Wave Spawned");
+        waveNumber++;
+        for (int i = 0; i < waveNumber; i++)
+        {
+            SpawnEnemy();
+            yield return new WaitForSeconds(waveSpawnRate);
+        }
+
+        
+    }
+
+    void SpawnEnemy()
+    {
+        Instantiate(bauer, transform.position, transform.rotation);
     }
 }
