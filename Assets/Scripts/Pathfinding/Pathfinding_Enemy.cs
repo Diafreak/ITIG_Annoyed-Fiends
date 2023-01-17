@@ -42,7 +42,11 @@ public class Pathfinding_Enemy : MonoBehaviour
     void FinishedPath()
     {
         Destroy(gameObject);
-        PlayerStats.lives -= 1;
+
+        if (PlayerStats.lives != 0) 
+        {
+            PlayerStats.lives -= 1;
+        }
         townerSpawner.enemiesAlive--;
     }
 
