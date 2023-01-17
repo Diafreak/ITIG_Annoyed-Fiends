@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1361,10 +1361,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7f3827cc725cf40947c91ca9e33c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bauer: {fileID: 8981170466004061855, guid: 7d29b3453e3303c4b947dea07794d126, type: 3}
+  towner: {fileID: 4033222630682075389, guid: 7d29b3453e3303c4b947dea07794d126, type: 3}
   dorfschranze: {fileID: 0}
   boss: {fileID: 0}
   spawnRate: 0.8
+  timeBetweenWaves: 5
+  waveSpawnRate: 0.5
 --- !u!4 &121926882 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8688932392210849890, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
