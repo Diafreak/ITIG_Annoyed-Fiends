@@ -27,10 +27,9 @@ public class Pathfinding_Enemy : MonoBehaviour
         }
     }
 
+
     void GetNextWaypoint() {
-        //temporarily destroys enemy when reaches last waypoint
-        if (wayPointIndex >= Waypoints.waypoints.Length - 1) 
-        {
+        if (wayPointIndex >= Waypoints.waypoints.Length - 1) {
             FinishedPath();
             return;
         }
@@ -39,24 +38,24 @@ public class Pathfinding_Enemy : MonoBehaviour
         target = Waypoints.waypoints[wayPointIndex];
     }
 
-    void FinishedPath()
-    {
+    void FinishedPath() {
         Destroy(gameObject);
-        PlayerStats.lives -= 1;
+
+        if (PlayerStats.lives != 0) {
+            PlayerStats.lives -= 1;
+        }
     }
 
-    public void TakeDamage(int amount)
-    {
+
+    public void TakeDamage(int amount) {
         hp -= amount;
-        
-        if(hp <= 0)
-        {
+
+        if(hp <= 0) {
             Die();
         }
     }
 
-    void Die()
-    {
+    void Die() {
         PlayerStats.money += killValue;
         Destroy(gameObject);
     }
