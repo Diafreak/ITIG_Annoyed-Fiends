@@ -8,20 +8,26 @@ public class GameManager : MonoBehaviour {
     public string nextLevelName = "Level2";
     public int    nextLevel     = 2;
 
-    void Update()
-    {
-        if(gameOver)
-        {
-            return;
-        }
+    public GameObject GameOverUI;
 
-        if(PlayerStats.lives <= 0)
-        {
-            LostLevel();
+
+    private void Start() {
+        if (GameOverUI.activeSelf) {
+            GameOverUI.SetActive(false);
         }
     }
 
-    // Game Over ...
+
+    void Update() {
+
+        if (gameOver) {
+            return;
+        }
+
+        if(PlayerStats.lives <= 0) {
+            LostLevel();
+        }
+    }
 
 
     public void WinLevel() {
@@ -30,10 +36,8 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(nextLevelName);
     }
 
-    void LostLevel()
-    {
+    void LostLevel() {
         gameOver = true;
-        Debug.Log("Game Over!");
-
+        GameOverUI.SetActive(true);
     }
 }
