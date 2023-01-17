@@ -11,6 +11,13 @@ public class GameManager : MonoBehaviour {
     public GameObject GameOverUI;
 
 
+    private void Start() {
+        if (GameOverUI.activeSelf) {
+            GameOverUI.SetActive(false);
+        }
+    }
+
+
     void Update() {
 
         if (gameOver) {
