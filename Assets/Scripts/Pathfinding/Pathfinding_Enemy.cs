@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
- 
+
 public class Pathfinding_Enemy : MonoBehaviour
 {
     public float speed = 10f;
@@ -49,7 +49,7 @@ public class Pathfinding_Enemy : MonoBehaviour
         {
             PlayerStats.lives -= 1;
         }
-        townerSpawner.enemiesAlive--;
+        TownerSpawner.enemiesAlive--;
     }
 
     public void TakeDamage(float amount)
@@ -65,7 +65,7 @@ public class Pathfinding_Enemy : MonoBehaviour
 
     void Die() {
         PlayerStats.money += killValue;
-        townerSpawner.enemiesAlive--;
+        TownerSpawner.enemiesAlive--;
         Destroy(gameObject);
     }
 }
