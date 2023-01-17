@@ -5,8 +5,8 @@ public class Pathfinding_Enemy : MonoBehaviour
 {
     public float speed = 10f;
 
-    public int startHp = 100;
-    int hp;
+    public float startHp = 100;
+    float hp;
 
     public int killValue = 100;
 
@@ -49,7 +49,7 @@ public class Pathfinding_Enemy : MonoBehaviour
         PlayerStats.lives -= 1;
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         hp -= amount;
         healthBar.fillAmount = hp / startHp;
