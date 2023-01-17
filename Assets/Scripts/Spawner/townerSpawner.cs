@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class townerSpawner : MonoBehaviour
 {
+    public static int enemiesAlive = 0;
     //enemytypes to spawn
-    public Transform bauer;
+    public Transform towner;
     public Transform dorfschranze;
     public Transform boss;
 
@@ -18,11 +19,16 @@ public class townerSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(enemiesAlive < 0)
+        {
+            return;
+        }
 
         if(countdown <= 0f)
         {
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
+            return;
         }
 
         countdown -=Time.deltaTime;
@@ -43,6 +49,7 @@ public class townerSpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        Instantiate(bauer, transform.position, transform.rotation);
+        Instantiate(towner, transform.position, transform.rotation);
+        enemiesAlive++;
     }
 }

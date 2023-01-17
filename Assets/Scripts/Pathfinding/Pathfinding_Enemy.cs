@@ -43,6 +43,7 @@ public class Pathfinding_Enemy : MonoBehaviour
     {
         Destroy(gameObject);
         PlayerStats.lives -= 1;
+        townerSpawner.enemiesAlive--;
     }
 
     public void TakeDamage(int amount)
@@ -58,6 +59,7 @@ public class Pathfinding_Enemy : MonoBehaviour
     void Die()
     {
         PlayerStats.money += killValue;
+        townerSpawner.enemiesAlive--;
         Destroy(gameObject);
     }
 }
