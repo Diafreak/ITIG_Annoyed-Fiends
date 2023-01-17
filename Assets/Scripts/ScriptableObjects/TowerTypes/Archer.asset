@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0470c3df2316d4341ab1567291054547, type: 3}
+  m_Name: Archer
+  m_EditorClassIdentifier: 
+  towerName: Archer
+  prefab: {fileID: 429035047871832740, guid: 2c2f5e311c21e7a4da15a536d98be512, type: 3}
+  visual: {fileID: 704839367631312151, guid: f79fab7308e2a0347b72da9b1dbac4d1, type: 3}
+  projectilePrefab: {fileID: 3620083769026161391, guid: 096ba171d18f0c144949d6351be1a3c4, type: 3}
+  range: 30
+  fireRate: 1
+  turnSpeed: 10
+  enemyTag: Enemy
+  price: 100
+  upgradeCost: 120
+  sellingPrice: 50
+  level: 1

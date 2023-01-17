@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0470c3df2316d4341ab1567291054547, type: 3}
+  m_Name: Devil
+  m_EditorClassIdentifier: 
+  towerName: Devil
+  prefab: {fileID: 429035047871832740, guid: 4f77189d4a4e15a449c3a5989a70b86a, type: 3}
+  visual: {fileID: 2913211410375365242, guid: ef08cc26ccaaf724894b56bced29d6b4, type: 3}
+  projectilePrefab: {fileID: 3620083769026161391, guid: b57f84a252ecfdc43947b2ebe6f051ef, type: 3}
+  range: 30
+  fireRate: 1
+  turnSpeed: 10
+  enemyTag: Enemy
+  price: 150
+  upgradeCost: 180
+  sellingPrice: 75
+  level: 1

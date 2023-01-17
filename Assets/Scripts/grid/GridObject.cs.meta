@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/ScriptableObjects/GridTileSO.cs.meta
+guid: bba2316f31c1d564e9de97e8150fa499
+========
+guid: 32f2f71b727fadd44946418abe2f5969
+>>>>>>>> UI:Assets/Scripts/grid/GridObject.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

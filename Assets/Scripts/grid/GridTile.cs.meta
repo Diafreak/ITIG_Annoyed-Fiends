@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9e7f626e78ca8534b97699a631420d4b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - highlight: {instanceID: 0}
+  - spriteRenderer: {instanceID: 0}
+  - gridTileSO: {fileID: 11400000, guid: fe12d01522dd2d444a33af20bf08d898, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
