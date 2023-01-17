@@ -38,6 +38,7 @@ public class townerSpawner : MonoBehaviour
     {
         Debug.Log("Wave Spawned");
         waveNumber++;
+        enemiesAlive = waveNumber;
         for (int i = 0; i < waveNumber; i++)
         {
             SpawnEnemy();
@@ -50,6 +51,5 @@ public class townerSpawner : MonoBehaviour
     void SpawnEnemy()
     {
         Instantiate(towner, transform.position, transform.rotation);
-        enemiesAlive++;
     }
 }
