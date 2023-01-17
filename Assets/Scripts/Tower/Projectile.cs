@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
 
     public float speed = 70f;
 
-    public int damage = 50;
+    public float damage = 50;
     public float damageRadius = 0f;
 
     // seeking the current target

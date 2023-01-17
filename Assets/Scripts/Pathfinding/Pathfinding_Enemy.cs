@@ -1,21 +1,25 @@
 using UnityEngine;
-
+using UnityEngine.UI;
+ 
 public class Pathfinding_Enemy : MonoBehaviour
 {
     public float speed = 10f;
 
-    public int hp = 100;
+    public float startHp = 100;
+    float hp;
 
     public int killValue = 100;
+
+    public Image healthBar;
 
     private Transform target;
 
     //the Waypoint that is currently targeted
     private int wayPointIndex = 0;
 
-
     void Start() {
         target = Waypoints.waypoints[0];
+        hp = startHp;
     }
 
     void Update () {
@@ -46,11 +50,13 @@ public class Pathfinding_Enemy : MonoBehaviour
         }
     }
 
-
-    public void TakeDamage(int amount) {
+    public void TakeDamage(float amount)
+    {
         hp -= amount;
-
-        if(hp <= 0) {
+        healthBar.fillAmount = hp / startHp;
+        
+        if(hp <= 0)
+        {
             Die();
         }
     }
