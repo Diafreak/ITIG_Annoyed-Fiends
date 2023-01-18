@@ -10,7 +10,18 @@ public class GameManager : MonoBehaviour {
 
     public GameObject gameOverUI;
     public PauseMenuUI pauseMenuUI;
+    public GameObject levelWonUI;
 
+    // Singleton
+    public static GameManager instance;
+
+
+    private void Awake() {
+        // Singleton
+        if (instance == null) {
+            instance = this;
+        }
+    }
 
     private void Start() {
         if (gameOverUI.activeSelf) {
@@ -36,12 +47,11 @@ public class GameManager : MonoBehaviour {
 
 
     public void WinLevel() {
-        Debug.Log("Level Won!");
+        levelWonUI.SetActive(true);
         PlayerPrefs.SetInt("levelsUnlocked", nextLevel);
-        SceneManager.LoadScene(nextLevelName);
     }
 
-    void LostLevel() {
+    public void LostLevel() {
         gameOver = true;
         gameOverUI.SetActive(true);
     }
