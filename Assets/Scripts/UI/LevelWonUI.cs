@@ -2,23 +2,24 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class GameOverUI : MonoBehaviour {
+public class LevelWonUI : MonoBehaviour {
 
     public string menuSceneName = "MainMenu";
+    public string nextLevelName;
 
-    public GameObject gameOverUI;
+    public GameObject levelWonUI;
 
 
     private void Start() {
-        if (gameOverUI.activeSelf) {
+        if (levelWonUI.activeSelf) {
             ToggleVisible();
         }
     }
 
 
-    public void Retry() {
+    public void NextLevel() {
         TownerSpawner.enemiesAlive = 0;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(nextLevelName);
     }
 
     public void Menu() {
@@ -28,6 +29,6 @@ public class GameOverUI : MonoBehaviour {
 
 
     public void ToggleVisible() {
-        gameOverUI.SetActive(!gameOverUI.activeSelf);
+        levelWonUI.SetActive(!levelWonUI.activeSelf);
     }
 }
