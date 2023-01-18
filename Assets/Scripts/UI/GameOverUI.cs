@@ -8,11 +8,13 @@ public class GameOverUI : MonoBehaviour {
 
 
     public void Retry() {
+        TownerSpawner.enemiesAlive = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 
     public void Menu() {
+        TownerSpawner.enemiesAlive = 0;
         SceneManager.LoadScene(menuSceneName);
     }
 

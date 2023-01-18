@@ -15,7 +15,7 @@ public class TownerSpawner : MonoBehaviour {
     [Header("Attributes")]
     public float timeBetweenWaves = 5f;
     public float waveSpawnRate = 1f;
-    float countdown = 2f;
+    public float countdown = 2f;
     public int waveNumber = 0;
 
     [Header("UI Text Fields")]

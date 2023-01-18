@@ -8,12 +8,13 @@ public class GameManager : MonoBehaviour {
     public string nextLevelName = "Level2";
     public int    nextLevel     = 2;
 
-    public GameObject GameOverUI;
+    public GameObject gameOverUI;
+    public PauseMenuUI pauseMenuUI;
 
 
     private void Start() {
-        if (GameOverUI.activeSelf) {
-            GameOverUI.SetActive(false);
+        if (gameOverUI.activeSelf) {
+            gameOverUI.SetActive(false);
         }
     }
 
@@ -24,8 +25,12 @@ public class GameManager : MonoBehaviour {
             return;
         }
 
-        if(PlayerStats.lives <= 0) {
+        if (PlayerStats.lives <= 0) {
             LostLevel();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            pauseMenuUI.ToggleVisible();
         }
     }
 
@@ -38,6 +43,6 @@ public class GameManager : MonoBehaviour {
 
     void LostLevel() {
         gameOver = true;
-        GameOverUI.SetActive(true);
+        gameOverUI.SetActive(true);
     }
 }

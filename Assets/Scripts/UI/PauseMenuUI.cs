@@ -16,13 +16,6 @@ public class PauseMenuUI : MonoBehaviour {
     }
 
 
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            ToggleVisible();
-        }
-    }
-
-
     public void ToggleVisible() {
         PauseUI.SetActive(!PauseUI.activeSelf);
 
@@ -39,11 +32,15 @@ public class PauseMenuUI : MonoBehaviour {
     }
 
     public void Retry() {
+        TownerSpawner.enemiesAlive = 0;
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 
     public void Menu() {
+        TownerSpawner.enemiesAlive = 0;
+        Time.timeScale = 1f;
         SceneManager.LoadScene(menuSceneName);
     }
 }
