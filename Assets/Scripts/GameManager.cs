@@ -3,17 +3,22 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    private bool gameOver = false;
-    private int currentWaveNumber = 0;
+    [Header("Win Condition")]
+    public int maxWaveNumber = 5;
 
     [Header("Next Level Attributes")]
-    public string nextLevelName = "Level2";
-    public int    nextLevel     = 2;
+    public string nextLevelName;
+    public int nextLevel;
 
     [Header("UI Elements")]
     public GameObject gameOverUI;
     public GameObject levelWonUI;
     public PauseMenuUI pauseMenuUI;
+
+
+    private bool gameOver = false;
+    private int currentWaveNumber = 0;
+
 
     // Singleton
     public static GameManager instance;
@@ -47,10 +52,8 @@ public class GameManager : MonoBehaviour {
 
 
     public void WinLevel() {
-        if (!gameOver) {
-            levelWonUI.SetActive(true);
-            PlayerPrefs.SetInt("levelsUnlocked", nextLevel);
-        }
+        levelWonUI.SetActive(true);
+        PlayerPrefs.SetInt("levelsUnlocked", nextLevel);
     }
 
     public void LostLevel() {

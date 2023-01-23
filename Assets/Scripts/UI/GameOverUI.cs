@@ -9,11 +9,8 @@ public class GameOverUI : MonoBehaviour {
     private GameManager gameManager;
 
 
-    private void Start() {
-        gameManager = GameManager.instance;
-    }
-
     private void OnEnable() {
+        gameManager = GameManager.instance;
         waveReachedText.text = "Wave Reached: " + gameManager.GetCurrentWaveNumber();
     }
 }
