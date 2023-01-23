@@ -29,6 +29,8 @@ public class EnemySpawner : MonoBehaviour {
     private void Start() {
         gameManager = GameManager.instance;
         waveNumberText.text = string.Format("Wave {0}/{1}", waveNumber, maxWaveNumber);
+        enemiesAlive = 0;
+        waveNumber = 0;
     }
 
 
@@ -57,9 +59,9 @@ public class EnemySpawner : MonoBehaviour {
 
 
     IEnumerator SpawnWave () {
-        Debug.Log("Wave Spawned");
         waveNumber++;
         enemiesAlive = waveNumber+5;
+        gameManager.SetCurrentWaveNumber(waveNumber);
 
         waveNumberText.text = string.Format("Wave {0}/{1}", waveNumber, maxWaveNumber);
 

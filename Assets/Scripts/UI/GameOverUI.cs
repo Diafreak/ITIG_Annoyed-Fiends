@@ -1,33 +1,19 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using TMPro;
 
 
 public class GameOverUI : MonoBehaviour {
 
-    public string menuSceneName = "MainMenu";
+    public TMP_Text waveReachedText;
 
-    public GameObject gameOverUI;
+    private GameManager gameManager;
 
 
     private void Start() {
-        if (gameOverUI.activeSelf) {
-            ToggleVisible();
-        }
+        gameManager = GameManager.instance;
     }
 
-
-    public void Retry() {
-        EnemySpawner.enemiesAlive = 0;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void Menu() {
-        EnemySpawner.enemiesAlive = 0;
-        SceneManager.LoadScene(menuSceneName);
-    }
-
-
-    public void ToggleVisible() {
-        gameOverUI.SetActive(!gameOverUI.activeSelf);
+    private void OnEnable() {
+        waveReachedText.text = "Wave Reached: " + gameManager.GetCurrentWaveNumber();
     }
 }

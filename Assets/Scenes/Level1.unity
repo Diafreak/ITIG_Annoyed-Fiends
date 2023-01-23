@@ -886,6 +886,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pf_Waypoint (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1511433248066122332, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8688932392210849890, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1368,7 +1372,7 @@ MonoBehaviour:
   waveSpawnRate: 1
   countdown: 2
   waveNumber: 0
-  maxWaveNumber: 5
+  maxWaveNumber: 1
   waveNumberText: {fileID: 1191549020}
   nextWaveCountdownText: {fileID: 1164622923}
 --- !u!4 &121926882 stripped
@@ -2124,7 +2128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMoney: 1000
-  startLives: 20
+  startLives: 1
 --- !u!114 &192301745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2140,8 +2144,8 @@ MonoBehaviour:
   nextLevelName: Level2
   nextLevel: 2
   gameOverUI: {fileID: 530066630}
-  pauseMenuUI: {fileID: 1976977493}
   levelWonUI: {fileID: 220643123}
+  pauseMenuUI: {fileID: 1976977493}
 --- !u!1 &194087172
 GameObject:
   m_ObjectHideFlags: 0
@@ -2394,6 +2398,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pf_Waypoint (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 1511433248066122332, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8688932392210849890, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -2492,9 +2500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cce1586d40355bc449611c135b49abbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuSceneName: MainMenu
   nextLevelName: Level2
-  levelWonUI: {fileID: 220643123}
 --- !u!1 &227650951
 GameObject:
   m_ObjectHideFlags: 0
@@ -2828,8 +2834,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 530066632}
-        m_TargetAssemblyTypeName: GameOverUI, Assembly-CSharp
+      - m_Target: {fileID: 660291936}
+        m_TargetAssemblyTypeName: MenuAndRetryButtons, Assembly-CSharp
         m_MethodName: Menu
         m_Mode: 1
         m_Arguments:
@@ -3045,8 +3051,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 220643126}
-        m_TargetAssemblyTypeName: LevelWonUI, Assembly-CSharp
+      - m_Target: {fileID: 660291936}
+        m_TargetAssemblyTypeName: MenuAndRetryButtons, Assembly-CSharp
         m_MethodName: Menu
         m_Mode: 1
         m_Arguments:
@@ -3862,8 +3868,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1976977493}
-        m_TargetAssemblyTypeName: PauseMenuUI, Assembly-CSharp
+      - m_Target: {fileID: 660291936}
+        m_TargetAssemblyTypeName: MenuAndRetryButtons, Assembly-CSharp
         m_MethodName: Retry
         m_Mode: 1
         m_Arguments:
@@ -5287,6 +5293,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pf_Waypoint (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1511433248066122332, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8688932392210849890, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -5469,8 +5479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68aad132ec01c4f8570fdb78142b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuSceneName: MainMenu
-  gameOverUI: {fileID: 530066630}
+  waveReachedText: {fileID: 658472658}
 --- !u!1 &534662781
 GameObject:
   m_ObjectHideFlags: 0
@@ -5683,8 +5692,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 530066632}
-        m_TargetAssemblyTypeName: GameOverUI, Assembly-CSharp
+      - m_Target: {fileID: 660291936}
+        m_TargetAssemblyTypeName: MenuAndRetryButtons, Assembly-CSharp
         m_MethodName: Retry
         m_Mode: 1
         m_Arguments:
@@ -6332,7 +6341,7 @@ GameObject:
   - component: {fileID: 658472659}
   - component: {fileID: 658472658}
   m_Layer: 0
-  m_Name: Rounds
+  m_Name: WaveReached
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6378,7 +6387,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Rounds Survived: XXX'
+  m_text: 'Wave Reached: XXX'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6405,7 +6414,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 73.45
+  m_fontSize: 79.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6550,6 +6559,7 @@ GameObject:
   - component: {fileID: 660291935}
   - component: {fileID: 660291934}
   - component: {fileID: 660291933}
+  - component: {fileID: 660291936}
   m_Layer: 0
   m_Name: PlayerUI
   m_TagString: Untagged
@@ -6646,6 +6656,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &660291936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660291931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7085b98a74bd4e94f81074f5ad83b630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuSceneName: MainMenu
 --- !u!1 &661734464
 GameObject:
   m_ObjectHideFlags: 0
@@ -7707,6 +7730,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pf_Waypoint (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1511433248066122332, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8688932392210849890, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -7763,6 +7790,10 @@ PrefabInstance:
     - target: {fileID: 1511433248066122332, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
       propertyPath: m_Name
       value: pf_Waypoint (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1511433248066122332, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8688932392210849890, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
       propertyPath: m_RootOrder
@@ -9230,6 +9261,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pf_Waypoint (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1511433248066122332, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8688932392210849890, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -9421,6 +9456,10 @@ PrefabInstance:
     - target: {fileID: 1511433248066122332, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
       propertyPath: m_Name
       value: pf_Waypoint (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1511433248066122332, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8688932392210849890, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
       propertyPath: m_RootOrder
@@ -10272,8 +10311,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1976977493}
-        m_TargetAssemblyTypeName: PauseMenuUI, Assembly-CSharp
+      - m_Target: {fileID: 660291936}
+        m_TargetAssemblyTypeName: MenuAndRetryButtons, Assembly-CSharp
         m_MethodName: Menu
         m_Mode: 1
         m_Arguments:
@@ -13470,6 +13509,10 @@ PrefabInstance:
     - target: {fileID: 1511433248066122332, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
       propertyPath: m_Name
       value: pf_Waypoint (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1511433248066122332, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8688932392210849890, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
       propertyPath: m_RootOrder
@@ -16969,6 +17012,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pf_Waypoint (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1511433248066122332, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8688932392210849890, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -17601,6 +17648,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pf_Waypoint (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 1511433248066122332, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8688932392210849890, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -18115,7 +18166,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseUI: {fileID: 1976977491}
-  menuSceneName: MainMenu
 --- !u!1 &1978488805
 GameObject:
   m_ObjectHideFlags: 0
