@@ -95,7 +95,7 @@ public class GridBuildingSystem : MonoBehaviour {
 
 
         if (Input.GetMouseButtonDown(1)) {
-            PlayerStats.money += 100;
+            PlayerStats.AddMoney(100);
         }
     }
 
@@ -143,7 +143,7 @@ public class GridBuildingSystem : MonoBehaviour {
         gridObject.SetPlacedTower(placedTower);
 
         // subtract Tower-costs from Player-Money
-        PlayerStats.money -= currentlySelectedTowerTypeSO.price;
+        PlayerStats.SubtractMoney(currentlySelectedTowerTypeSO.price);
     }
 
 
@@ -215,7 +215,7 @@ public class GridBuildingSystem : MonoBehaviour {
     }
 
     public bool PlayerHasEnoughMoney() {
-        if (PlayerStats.money < currentlySelectedTowerTypeSO.price) {
+        if (PlayerStats.GetMoney() < currentlySelectedTowerTypeSO.price) {
             Debug.Log("Not enough money!");
             return false;
         }

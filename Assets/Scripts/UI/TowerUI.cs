@@ -20,7 +20,7 @@ public class TowerUI : MonoBehaviour {
     private void Update() {
         // disable or enable the Upgrade-Button depending if Player has enough Money
         if (ui.activeSelf && targetedGridObject != null) {
-            if (PlayerStats.money < targetedGridObject.GetTower().GetUpgradeCost()) {
+            if (PlayerStats.GetMoney() < targetedGridObject.GetTower().GetUpgradeCost()) {
                 upgradeButton.interactable = false;
             } else {
                 upgradeButton.interactable = true;
