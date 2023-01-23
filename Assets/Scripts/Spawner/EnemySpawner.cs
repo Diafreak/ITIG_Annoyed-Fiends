@@ -3,7 +3,7 @@ using UnityEngine;
 using TMPro;
 
 
-public class TownerSpawner : MonoBehaviour {
+public class EnemySpawner : MonoBehaviour {
 
     public static int enemiesAlive = 0;
 
@@ -17,17 +17,22 @@ public class TownerSpawner : MonoBehaviour {
     public float waveSpawnRate = 1f;
     public float countdown = 2f;
     public int waveNumber = 0;
-    public int maxWaveNumber = 5;
 
     [Header("UI Text Fields")]
     public TMP_Text waveNumberText;
     public TMP_Text nextWaveCountdownText;
 
     private GameManager gameManager;
+    private int maxWaveNumber;
 
 
     private void Start() {
+        enemiesAlive = 0;
+        waveNumber = 0;
+
         gameManager = GameManager.instance;
+        maxWaveNumber = gameManager.maxWaveNumber;
+
         waveNumberText.text = string.Format("Wave {0}/{1}", waveNumber, maxWaveNumber);
     }
 
@@ -57,9 +62,9 @@ public class TownerSpawner : MonoBehaviour {
 
 
     IEnumerator SpawnWave () {
-        Debug.Log("Wave Spawned");
         waveNumber++;
         enemiesAlive = waveNumber+5;
+        gameManager.SetCurrentWaveNumber(waveNumber);
 
         waveNumberText.text = string.Format("Wave {0}/{1}", waveNumber, maxWaveNumber);
 

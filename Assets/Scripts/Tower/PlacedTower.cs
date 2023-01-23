@@ -86,12 +86,12 @@ public class PlacedTower : MonoBehaviour {
 
     public void UpgradeTower() {
 
-        if (PlayerStats.money < upgradeCost) {
+        if (PlayerStats.GetMoney() < upgradeCost) {
             Debug.Log("Not enough money to upgrade!");
             return;
         }
 
-        PlayerStats.money -= upgradeCost;
+        PlayerStats.SubtractMoney(upgradeCost);
         IncreaseLevel(1);
         IncreaseUpgradeCost(20);
         IncreaseFireRate(0.5f);
@@ -126,7 +126,7 @@ public class PlacedTower : MonoBehaviour {
     // ------------------------------
 
     public void SellTower() {
-        PlayerStats.money += sellingPrice;
+        PlayerStats.AddMoney(sellingPrice);
         DestroySelf();
     }
 

@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 [CreateAssetMenu(fileName = "MapSO", menuName = "ScriptableObjects/MapSO")]
 public class MapSO : ScriptableObject {

@@ -1,16 +1,24 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour {
 
-    private bool gameOver = false;
-    public string nextLevelName = "Level2";
-    public int    nextLevel     = 2;
+    [Header("Win Condition")]
+    public int maxWaveNumber = 5;
 
+    [Header("Next Level Attributes")]
+    public string nextLevelName;
+    public int nextLevel;
+
+    [Header("UI Elements")]
     public GameObject gameOverUI;
-    public PauseMenuUI pauseMenuUI;
     public GameObject levelWonUI;
+    public PauseMenuUI pauseMenuUI;
+
+
+    private bool gameOver = false;
+    private int currentWaveNumber = 0;
+
 
     // Singleton
     public static GameManager instance;
@@ -21,12 +29,9 @@ public class GameManager : MonoBehaviour {
         if (instance == null) {
             instance = this;
         }
-    }
 
-    private void Start() {
-        if (gameOverUI.activeSelf) {
-            gameOverUI.SetActive(false);
-        }
+        gameOverUI.SetActive(false);
+        levelWonUI.SetActive(false);
     }
 
 
@@ -52,7 +57,18 @@ public class GameManager : MonoBehaviour {
     }
 
     public void LostLevel() {
+        Debug.Log("Game Over");
         gameOver = true;
         gameOverUI.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+
+    public void SetCurrentWaveNumber(int waveNumber) {
+        currentWaveNumber = waveNumber;
+    }
+
+    public int GetCurrentWaveNumber() {
+        return currentWaveNumber;
     }
 }
