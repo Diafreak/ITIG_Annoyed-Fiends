@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f16d70d55176c42a630161aa0030b2, type: 3}
+  m_Name: "Holzf\xE4ller"
+  m_EditorClassIdentifier: 
+  enemyName: "Holzf\xE4ller"
+  prefab: {fileID: 0}
+  visual: {fileID: 0}
+  startHp: 1000
+  killValue: 250
+  speed: 5
