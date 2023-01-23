@@ -1358,7 +1358,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 115058452}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7f3827cc725cf40947c91ca9e33c99, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a50f8b48b78e824e812f995b9b1a302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   towner: {fileID: 4033222630682075389, guid: 7d29b3453e3303c4b947dea07794d126, type: 3}
@@ -1368,7 +1368,7 @@ MonoBehaviour:
   waveSpawnRate: 1
   countdown: 2
   waveNumber: 0
-  maxWaveNumber: 2
+  maxWaveNumber: 5
   waveNumberText: {fileID: 1191549020}
   nextWaveCountdownText: {fileID: 1164622923}
 --- !u!4 &121926882 stripped
@@ -4140,7 +4140,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 369390652}
-  m_LocalRotation: {x: 0.6178288, y: 0.0000009329652, z: -0.0000007330579, w: 0.7863127}
+  m_LocalRotation: {x: 0.6178288, y: 0.0000010420443, z: -0.0000008187646, w: 0.7863127}
   m_LocalPosition: {x: 61.49994, y: 99.8, z: 42.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4226,7 +4226,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370881014}
-  m_LocalRotation: {x: 0.6178288, y: 0.0000009329652, z: -0.0000007330579, w: 0.7863127}
+  m_LocalRotation: {x: 0.6178288, y: 0.0000010420443, z: -0.0000008187646, w: 0.7863127}
   m_LocalPosition: {x: 61.49994, y: 99.8, z: 42.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

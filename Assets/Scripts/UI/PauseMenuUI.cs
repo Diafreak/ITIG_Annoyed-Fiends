@@ -32,14 +32,14 @@ public class PauseMenuUI : MonoBehaviour {
     }
 
     public void Retry() {
-        TownerSpawner.enemiesAlive = 0;
+        EnemySpawner.enemiesAlive = 0;
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 
     public void Menu() {
-        TownerSpawner.enemiesAlive = 0;
+        EnemySpawner.enemiesAlive = 0;
         Time.timeScale = 1f;
         SceneManager.LoadScene(menuSceneName);
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 using TMPro;
 
 
-public class TownerSpawner : MonoBehaviour {
+public class EnemySpawner : MonoBehaviour {
 
     public static int enemiesAlive = 0;
 

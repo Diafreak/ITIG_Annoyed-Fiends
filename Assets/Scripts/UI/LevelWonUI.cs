@@ -18,12 +18,12 @@ public class LevelWonUI : MonoBehaviour {
 
 
     public void NextLevel() {
-        TownerSpawner.enemiesAlive = 0;
+        EnemySpawner.enemiesAlive = 0;
         SceneManager.LoadScene(nextLevelName);
     }
 
     public void Menu() {
-        TownerSpawner.enemiesAlive = 0;
+        EnemySpawner.enemiesAlive = 0;
         SceneManager.LoadScene(menuSceneName);
     }
 
