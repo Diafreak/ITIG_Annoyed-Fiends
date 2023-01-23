@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 public class GridTile : MonoBehaviour {
 
@@ -8,9 +7,9 @@ public class GridTile : MonoBehaviour {
     [SerializeField] private GameObject highlight;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    GridBuildingSystem gridBuildingSystem;
-
     private GridTileSO gridTileSO;
+
+    private GridBuildingSystem gridBuildingSystem;
 
 
     private void Start() {
@@ -38,6 +37,18 @@ public class GridTile : MonoBehaviour {
     }
 
 
+    private void Update() {
+        if (gameObject.activeSelf && gridBuildingSystem != null) {
+            if (gridBuildingSystem.PlayerHasEnoughMoney()) {
+                color = gridTileSO.defaultColor;
+            } else {
+                color = gridTileSO.insufficientMoneyColor;
+            }
+        }
+        spriteRenderer.color = color;
+    }
+
+
     private void OnMouseEnter() {
         highlight.SetActive(true);
         highlight.GetComponent<SpriteRenderer>().color = gridTileSO.highlightColor;
@@ -56,7 +67,6 @@ public class GridTile : MonoBehaviour {
                 color = gridTileSO.insufficientMoneyColor;
             }
         }
-
         spriteRenderer.color = color;
     }
 
