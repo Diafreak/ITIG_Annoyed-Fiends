@@ -10,18 +10,22 @@ public class Pathfinding : MonoBehaviour {
     //the Waypoint that is currently targeted
     private int wayPointIndex = 0;
 
+    private bool isBlocked;
 
     void Start() {
         target = Waypoints.waypoints[0];
         speed = gameObject.GetComponent<Enemy>().speed;
+        isBlocked = false;
     }
 
     void Update () {
-        Vector3 direction = target.position - transform.position;
-        transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+        if (!isBlocked) {
+            Vector3 direction = target.position - transform.position;
+            transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
 
-        if (Vector3.Distance(transform.position, target.position) <= 0.2f) {
-            GetNextWaypoint();
+            if (Vector3.Distance(transform.position, target.position) <= 0.2f) {
+                GetNextWaypoint();
+            }
         }
     }
 
@@ -46,6 +50,19 @@ public class Pathfinding : MonoBehaviour {
 
         EnemySpawner.enemiesAlive--;
     }
+
+
+    private void OnTriggerEnter(Collider other) {
+        //Debug.Log("Collided with Tower");
+        //other.gameObject.GetComponent<PlacedTower>().SelfDestruct();
+        //isBlocked = true;
+    }
+
+    public void BlockEnemy() {
+        isBlocked = true;
+    }
+
+    public void UnblockEnemy() {
+        isBlocked = false;
+    }
 }
-
-
