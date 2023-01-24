@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour {
 
     private float hp;
 
+    public bool isBlocked = false;
+
 
     private void Start() {
         hp = startHp;
@@ -34,5 +36,4 @@ public class Enemy : MonoBehaviour {
         EnemySpawner.enemiesAlive--;
         Destroy(gameObject);
     }
-
 }

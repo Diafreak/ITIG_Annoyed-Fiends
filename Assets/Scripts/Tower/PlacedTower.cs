@@ -7,6 +7,7 @@ public class PlacedTower : MonoBehaviour {
     private Transform target;
 
     // Attributes
+    private string towerName;
     private float range;
     private float fireRate;
     private float fireCountdown = 0f;
@@ -27,7 +28,10 @@ public class PlacedTower : MonoBehaviour {
     private GameObject projectilePrefab;
     [SerializeField] private Transform firePoint;
 
-    GridBuildingSystem gridBuildingSystem;
+    // Blocked Enemy List from Gargoyle
+    private Collider[] blockedEnemies;
+
+    private GridBuildingSystem gridBuildingSystem;
 
 
     private void Start() {
@@ -54,6 +58,7 @@ public class PlacedTower : MonoBehaviour {
         PlacedTower placedTower = placedTowerTransform.GetComponent<PlacedTower>();
 
         // set all variables from the template to the placed Tower
+        placedTower.towerName        = towerTypeSO.name;
         placedTower.range            = towerTypeSO.range;
         placedTower.fireRate         = towerTypeSO.fireRate;
         placedTower.enemyTag         = towerTypeSO.enemyTag;
@@ -135,12 +140,37 @@ public class PlacedTower : MonoBehaviour {
         Destroy(gameObject);
     }
 
+    public void SelfDestruct() {
+        Destroy(gameObject, 5);
+    }
+
+    private void OnDestroy() {
+        if (towerName == "Gargoyle") {
+            foreach (Collider enemy in blockedEnemies) {
+                if (enemy.tag == enemyTag)
+                enemy.gameObject.GetComponent<Pathfinding>().UnblockEnemy();
+            }
+        }
+    }
+
 
     // ------------------------------
     // Shooting
     // ------------------------------
 
     private void Update() {
+
+        if (towerName == "Gargoyle") {
+            blockedEnemies = Physics.OverlapSphere(transform.position + new Vector3(gridBuildingSystem.GetBuildOffset(), 0, gridBuildingSystem.GetBuildOffset()), 5);
+            foreach (Collider enemy in blockedEnemies) {
+                if (enemy.tag == enemyTag) {
+                    enemy.transform.GetComponent<Pathfinding>().BlockEnemy();
+                }
+            }
+            SelfDestruct();
+            return;
+        }
+
         if (target == null) {
             return;
         }
