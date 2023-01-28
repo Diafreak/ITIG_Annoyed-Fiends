@@ -138,7 +138,7 @@ public class PlacedTower : MonoBehaviour {
 
 
     // ------------------------------
-    // Selling
+    // Selling / Destroying
     // ------------------------------
 
     public void SellTower() {
@@ -146,16 +146,12 @@ public class PlacedTower : MonoBehaviour {
         DestroySelf();
     }
 
+
     // Destroy the tower-visual
     private void DestroySelf() {
         Destroy(gameObject, despawnTime);
     }
 
-
-
-    // ------------------------------
-    // Gargoyle
-    // ------------------------------
 
     private void OnDestroy() {
         if (towerName == "Gargoyle") {
@@ -164,9 +160,9 @@ public class PlacedTower : MonoBehaviour {
                     enemy.gameObject.GetComponent<Pathfinding>().UnblockEnemy();
                 }
             }
+            GridObject gargoyle = gridBuildingSystem.GetGridXZ().GetGridObject(transform.position);
+            gridBuildingSystem.ReactivateGridTile(gargoyle.GetGridPosition().x, gargoyle.GetGridPosition().z);
         }
-        GridObject gargoyle = gridBuildingSystem.GetGridXZ().GetGridObject(transform.position);
-        gridBuildingSystem.ReactivateGridTile(gargoyle.GetGridPosition().x, gargoyle.GetGridPosition().z);
     }
 
 

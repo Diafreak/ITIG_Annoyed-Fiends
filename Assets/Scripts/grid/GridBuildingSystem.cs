@@ -17,12 +17,13 @@ public class GridBuildingSystem : MonoBehaviour {
     public int gridHeight;
     private float cellSize = 10f;
 
-    [Header("Path Tiles")]
+    [Header("Grid Tiles")]
     // Tower-placement visuals & hovering-effect
     public GridTileSO gridTileSO;
     // References to the tile-layout of the map
-    public GameObject pathTilesLayout;
     public GameObject placeableTilesLayout;
+    public GameObject pathTilesLayout;
+    public float pathTileYOffset = 0f;
 
     // Array that holds all Tile-types at the corresponding grid-coordinates to check tower placement
     private GridTile[,] gridTiles;
@@ -71,7 +72,7 @@ public class GridBuildingSystem : MonoBehaviour {
         if (Input.GetMouseButtonDown(0) && MouseIsNotOverUI()) {
 
             // convert Mouse-Coordinates into Grid-Coordinates
-            var gridCoordinates = grid.GetXZ(GetMouseWorldPosition3d());
+            var gridCoordinates = grid.GetXZ(GetClickedTile());
 
             // get Object on clicked Tile
             GridObject gridObject = grid.GetGridObject(gridCoordinates.x, gridCoordinates.z);
@@ -121,7 +122,7 @@ public class GridBuildingSystem : MonoBehaviour {
 
 
     public PlacedTower GetSelectedTower() {
-        return grid.GetGridObject(GetMouseWorldPosition3d()).GetTower();
+        return grid.GetGridObject(GetClickedTile()).GetTower();
     }
 
 
@@ -170,12 +171,12 @@ public class GridBuildingSystem : MonoBehaviour {
         GameObject[] pathTilesFromLayout = GameObject.FindGameObjectsWithTag("Path");
         pathTilesLayout.SetActive(false);
 
-        InitializeGridTileArray(placeableTilesFromLayout, GridTile.TileType.placeable, placeableTiles);
-        InitializeGridTileArray(pathTilesFromLayout,      GridTile.TileType.path,      pathTiles);
+        InitializeGridTileArray(placeableTilesFromLayout, GridTile.TileType.Placeable, placeableTiles);
+        InitializeGridTileArray(pathTilesFromLayout,      GridTile.TileType.Path,      pathTiles, pathTileYOffset);
     }
 
 
-    private void InitializeGridTileArray(GameObject[] tileArray, GridTile.TileType type, GameObject tileParent) {
+    private void InitializeGridTileArray(GameObject[] tileArray, GridTile.TileType type, GameObject tileParent, float yOffset = 0) {
         if (tileArray == null) {
             return;
         }
@@ -184,6 +185,7 @@ public class GridBuildingSystem : MonoBehaviour {
             var coordinates = grid.GetXZ(tile.transform.position);
             gridTiles[coordinates.x, coordinates.z] = GridTile.Create(grid.GetWorldPosition(coordinates.x, coordinates.z), gridTileSO, tileParent.transform, type);
         }
+        tileParent.transform.position += new Vector3(0, yOffset, 0);
         tileParent.SetActive(false);
     }
 
@@ -208,12 +210,12 @@ public class GridBuildingSystem : MonoBehaviour {
 
 
     private bool IsPath(int x, int z) {
-        return gridTiles[x, z] != null && gridTiles[x, z].GetTileType() == GridTile.TileType.path;
+        return gridTiles[x, z] != null && gridTiles[x, z].GetTileType() == GridTile.TileType.Path;
     }
 
 
     private bool IsPlaceable(int x, int z) {
-        return gridTiles[x, z] != null && gridTiles[x, z].GetTileType() == GridTile.TileType.placeable;
+        return gridTiles[x, z] != null && gridTiles[x, z].GetTileType() == GridTile.TileType.Placeable;
     }
 
 
@@ -236,6 +238,15 @@ public class GridBuildingSystem : MonoBehaviour {
         return !EventSystem.current.IsPointerOverGameObject();
     }
 
+    private Vector3 GetClickedTile() {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out RaycastHit raycastHit)) {
+            //if (raycastHit.transform.gameObject.CompareTag("Path"))
+                return raycastHit.point;
+        }
+        return new Vector3(-1, -1, -1);
+    }
 
     // Mouse-Position in 3D-Space
     private Vector3 GetMouseWorldPosition3d() {
@@ -246,6 +257,7 @@ public class GridBuildingSystem : MonoBehaviour {
         }
         return Vector3.zero;
     }
+
 
 
     public GridXZ<GridObject> GetGridXZ() {

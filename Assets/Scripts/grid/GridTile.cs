@@ -4,8 +4,8 @@ using UnityEngine;
 public class GridTile : MonoBehaviour {
 
     public enum TileType {
-        placeable,
-        path
+        Placeable,
+        Path
     }
 
     private TileType type;
@@ -45,6 +45,7 @@ public class GridTile : MonoBehaviour {
         gridTile.color = givenGridTileSO.defaultColor;
         gridTile.highlight = gridTileTransform.GetChild(0).GetChild(0).gameObject;
         gridTile.type = _type;
+        gridTile.gameObject.tag = _type.ToString();
 
         return gridTile;
     }

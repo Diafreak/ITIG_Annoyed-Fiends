@@ -3,7 +3,67 @@ guid: 9619bdb89c8c0b84eaf7498639736bd2
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Arteries
+    second: {fileID: 2100000, guid: e3a713b1cdbb3aa4187f96fd3bd6e980, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lava
+    second: {fileID: 2100000, guid: d8cfa7f463a9fd64487ea0da032452ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal chain
+    second: {fileID: 2100000, guid: 6f07a4ffabc7fa346a44cdd6240967cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Paper
+    second: {fileID: 2100000, guid: c8f3cba46763cda42a574095372e356d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pathway
+    second: {fileID: 2100000, guid: c48a4b49150f70d4a927a02c6891c71f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pillar
+    second: {fileID: 2100000, guid: 5913e93743bbfe940aa75231d56e8d8e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Podium
+    second: {fileID: 2100000, guid: 60633773ce8a8db4ca13360a18b639d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RockSocket
+    second: {fileID: 2100000, guid: f8be827a41828f54e934909994a6ea3c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rockwall
+    second: {fileID: 2100000, guid: c6c9432d5f6f2cb498ad33f90fd97db1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stalaknite
+    second: {fileID: 2100000, guid: b1973e2167b2ac94c8362716ff4c253d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ThroneWall
+    second: {fileID: 2100000, guid: 29838f2fa8a8cdb48852d1c03896b946, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood
+    second: {fileID: 2100000, guid: 0f9bbd8979d11f34f9c2cdb8bf3e50a6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
