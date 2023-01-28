@@ -3,9 +3,17 @@ using UnityEngine;
 
 public class GridTile : MonoBehaviour {
 
+    public enum TileType {
+        placeable,
+        path
+    }
+
+    private TileType type;
+
     private Color color;
-    [SerializeField] private GameObject highlight;
+    private GameObject highlight;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    private Renderer tileRenderer;
 
     private GridTileSO gridTileSO;
 
@@ -14,10 +22,11 @@ public class GridTile : MonoBehaviour {
 
     private void Start() {
         gridBuildingSystem = GridBuildingSystem.instance;
+        tileRenderer = gameObject.GetComponent<Renderer>();
     }
 
 
-    public static void Create(Vector3 worldPosition, GridTileSO givenGridTileSO, Transform parent) {
+    public static GridTile Create(Vector3 worldPosition, GridTileSO givenGridTileSO, Transform parent, TileType _type) {
 
         Transform gridTileTransform =
             Instantiate(
@@ -34,45 +43,40 @@ public class GridTile : MonoBehaviour {
         GridTile gridTile = gridTileTransform.GetChild(0).GetComponent<GridTile>();
         gridTile.gridTileSO = givenGridTileSO;
         gridTile.color = givenGridTileSO.defaultColor;
+        gridTile.highlight = gridTileTransform.GetChild(0).GetChild(0).gameObject;
+        gridTile.type = _type;
+
+        return gridTileTransform.GetComponent<GridTile>();
     }
 
 
     private void Update() {
-        if (gameObject.activeSelf && gridBuildingSystem != null) {
-            if (gridBuildingSystem.PlayerHasEnoughMoney()) {
-                color = gridTileSO.defaultColor;
-            } else {
-                color = gridTileSO.insufficientMoneyColor;
-            }
-        }
-        spriteRenderer.color = color;
+        CheckIfPlayerHasEnoughMoney();
     }
-
 
     private void OnMouseEnter() {
         highlight.SetActive(true);
-        highlight.GetComponent<SpriteRenderer>().color = gridTileSO.highlightColor;
     }
 
     private void OnMouseExit() {
-        spriteRenderer.color = color;
         highlight.SetActive(false);
-    }
-
-    private void OnEnable() {
-        if (gridBuildingSystem != null) {
-            if (gridBuildingSystem.PlayerHasEnoughMoney()) {
-                color = gridTileSO.defaultColor;
-            } else {
-                color = gridTileSO.insufficientMoneyColor;
-            }
-        }
-        spriteRenderer.color = color;
     }
 
     private void OnDisable() {
-        // because they get disabled when placing a tower while the mouse is still
-        // over the tile the highlight would stay active until the mouse moves over it again
+        // Tiles get disabled when placing a tower while the mouse is still over one,
+        // so the highlight would stay active on next activation
         highlight.SetActive(false);
+    }
+
+
+    private void CheckIfPlayerHasEnoughMoney() {
+
+        color = gridTileSO.defaultColor;
+
+        if (!gridBuildingSystem.PlayerHasEnoughMoney()) {
+            color = gridTileSO.insufficientMoneyColor;
+        }
+
+        tileRenderer.material.SetColor("_Color", color);
     }
 }
