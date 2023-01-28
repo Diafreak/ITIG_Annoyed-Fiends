@@ -25,4 +25,7 @@ public class TowerTypeSO : ScriptableObject {
 
     [Header("Tower Level")]
     public int level;
+
+    [Header("Gargoyle")]
+    public float despawnTime = 0;
 }

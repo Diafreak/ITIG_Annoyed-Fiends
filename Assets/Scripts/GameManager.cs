@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+    public enum GameState {
+        beforeNewRound,
+        play,
+        speed2,
+        speed3
+    }
+
     [Header("Win Condition")]
     public int maxWaveNumber = 5;
 
@@ -13,11 +20,13 @@ public class GameManager : MonoBehaviour {
     [Header("UI Elements")]
     public GameObject gameOverUI;
     public GameObject levelWonUI;
-    public PauseMenuUI pauseMenuUI;
+    public GameObject pauseUI;
 
 
     private bool gameOver = false;
     private int currentWaveNumber = 0;
+
+    private float previousGameSpeed;
 
 
     // Singleton
@@ -32,6 +41,7 @@ public class GameManager : MonoBehaviour {
 
         gameOverUI.SetActive(false);
         levelWonUI.SetActive(false);
+        pauseUI.SetActive(false);
     }
 
 
@@ -46,7 +56,7 @@ public class GameManager : MonoBehaviour {
         }
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            pauseMenuUI.ToggleVisible();
+            TogglePauseMenuVisibility();
         }
     }
 
@@ -64,11 +74,27 @@ public class GameManager : MonoBehaviour {
     }
 
 
+    public void TogglePauseMenuVisibility() {
+        pauseUI.SetActive(!pauseUI.activeSelf);
+
+        if (pauseUI.activeSelf) {
+            previousGameSpeed = Time.timeScale;
+            Time.timeScale = 0f;
+        } else {
+            Time.timeScale = previousGameSpeed;
+        }
+    }
+
+
     public void SetCurrentWaveNumber(int waveNumber) {
         currentWaveNumber = waveNumber;
     }
 
     public int GetCurrentWaveNumber() {
         return currentWaveNumber;
+    }
+
+    public int GetMaxWaveNumber() {
+        return maxWaveNumber;
     }
 }

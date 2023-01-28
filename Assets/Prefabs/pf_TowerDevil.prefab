@@ -54,9 +54,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 429035047871832740}
     m_Modifications:
+    - target: {fileID: 79398364040429564, guid: ef08cc26ccaaf724894b56bced29d6b4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 395618518599775868, guid: ef08cc26ccaaf724894b56bced29d6b4, type: 3}
       propertyPath: m_Name
       value: TowerDevil_Test
+      objectReference: {fileID: 0}
+    - target: {fileID: 2181953617627933066, guid: ef08cc26ccaaf724894b56bced29d6b4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668273223327452583, guid: ef08cc26ccaaf724894b56bced29d6b4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2913211410375365242, guid: ef08cc26ccaaf724894b56bced29d6b4, type: 3}
       propertyPath: m_RootOrder
@@ -100,6 +112,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2913211410375365242, guid: ef08cc26ccaaf724894b56bced29d6b4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201000814617761184, guid: ef08cc26ccaaf724894b56bced29d6b4, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
