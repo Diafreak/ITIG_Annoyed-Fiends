@@ -19,31 +19,30 @@ public class EnemySpawner : MonoBehaviour {
     public int waveNumber = 0;
 
     [Header("UI Text Fields")]
-    public TMP_Text waveNumberText;
-    public TMP_Text nextWaveCountdownText;
+    private StartAndSpeedupButton startAndSpeedupButton;
 
     private GameManager gameManager;
     private int maxWaveNumber;
-
-    public StartAndSpeedupButton startAndSpeedupButton;
 
     // Singleton
     public static EnemySpawner instance;
 
 
-    private void Start() {
+    private void Awake() {
         // Singleton
         if (instance == null) {
             instance = this;
         }
+    }
 
+
+    private void Start() {
         enemiesAlive = 0;
         waveNumber = 0;
 
         gameManager = GameManager.instance;
-        maxWaveNumber = gameManager.maxWaveNumber;
-
-        waveNumberText.text = string.Format("Wave {0}/{1}", waveNumber, maxWaveNumber);
+        startAndSpeedupButton = StartAndSpeedupButton.instance;
+        maxWaveNumber = gameManager.GetMaxWaveNumber();
     }
 
 
@@ -67,8 +66,6 @@ public class EnemySpawner : MonoBehaviour {
         enemiesAlive = waveNumber+5;
         gameManager.SetCurrentWaveNumber(waveNumber);
 
-        waveNumberText.text = string.Format("Wave {0}/{1}", waveNumber, maxWaveNumber);
-
         for (int i = 0; i < waveNumber+5; i++) {
             SpawnEnemy();
             yield return new WaitForSeconds(waveSpawnRate);
@@ -77,5 +74,9 @@ public class EnemySpawner : MonoBehaviour {
 
     private void SpawnEnemy() {
         Instantiate(towner, transform.position, transform.rotation);
+    }
+
+    public int GetCurrentWaveNumber() {
+        return waveNumber;
     }
 }

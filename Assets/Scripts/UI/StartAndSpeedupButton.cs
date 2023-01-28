@@ -4,18 +4,11 @@ using TMPro;
 
 public class StartAndSpeedupButton : MonoBehaviour {
 
-    public enum GameState {
-        beforeNewRound,
-        play,
-        speed2,
-        speed3
-    }
-
-    public EnemySpawner enemySpawner;
-
     public TMP_Text buttonText;
 
-    private static GameState state = GameState.beforeNewRound;
+    private static GameManager.GameState state;
+
+    private EnemySpawner enemySpawner;
 
     // Singleton
     public static StartAndSpeedupButton instance;
@@ -28,32 +21,37 @@ public class StartAndSpeedupButton : MonoBehaviour {
         }
     }
 
+    private void Start() {
+        enemySpawner = EnemySpawner.instance;
+        state = GameManager.GameState.beforeNewRound;
+    }
+
 
     public void ChangeGameState() {
 
         switch (state) {
-            case (GameState.beforeNewRound):
+            case (GameManager.GameState.beforeNewRound):
                 Time.timeScale = 1f;
-                state = GameState.play;
+                state = GameManager.GameState.play;
                 StartCoroutine(enemySpawner.SpawnWave());
                 buttonText.text = "1x Speed";
                 break;
 
-            case (GameState.play):
+            case (GameManager.GameState.play):
                 Time.timeScale = 2f;
-                state = GameState.speed2;
+                state = GameManager.GameState.speed2;
                 buttonText.text = "x2 Speed";
                 break;
 
-            case (GameState.speed2):
+            case (GameManager.GameState.speed2):
                 Time.timeScale = 3f;
-                state = GameState.speed3;
+                state = GameManager.GameState.speed3;
                 buttonText.text = "x3 Speed";
                 break;
 
-            case (GameState.speed3):
+            case (GameManager.GameState.speed3):
                 Time.timeScale = 1f;
-                state = GameState.play;
+                state = GameManager.GameState.play;
                 buttonText.text = "1x Speed";
                 break;
         }
@@ -61,7 +59,7 @@ public class StartAndSpeedupButton : MonoBehaviour {
 
 
     public void SetGameStateToBeforeNewRound() {
-        state = GameState.beforeNewRound;
+        state = GameManager.GameState.beforeNewRound;
         buttonText.text = "Start Round";
     }
 }
