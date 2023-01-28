@@ -20,10 +20,10 @@ public class TowerUI : MonoBehaviour {
     private void Update() {
         // disable or enable the Upgrade-Button depending if Player has enough Money
         if (ui.activeSelf && targetedGridObject != null) {
-            if (PlayerStats.GetMoney() < targetedGridObject.GetTower().GetUpgradeCost()) {
-                upgradeButton.interactable = false;
-            } else {
+            if (PlayerHasEnoughMoney()) {
                 upgradeButton.interactable = true;
+            } else {
+                upgradeButton.interactable = false;
             }
         }
     }
@@ -59,5 +59,9 @@ public class TowerUI : MonoBehaviour {
         // clear Tower from the Grid-Array
         targetedGridObject.ClearPlacedTower();
         Hide();
+    }
+
+    private bool PlayerHasEnoughMoney() {
+        return PlayerStats.GetMoney() >= targetedGridObject.GetTower().GetUpgradeCost();
     }
 }

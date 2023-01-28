@@ -12,25 +12,24 @@ public class GridBuildingSystem : MonoBehaviour {
     // Grid that holds all Objects on it
     private GridXZ<GridObject> grid;
 
-    // Grid-values
     [Header("Grid Values")]
     public int gridWidth;
     public int gridHeight;
     private float cellSize = 10f;
 
-    // for visual hovering-effect
-    public GridTileSO gridTileSO;
-
-    // References to the tile-layout of the map
     [Header("Path Tiles")]
+    // Tower-placement visuals & hovering-effect
+    public GridTileSO gridTileSO;
+    // References to the tile-layout of the map
     public GameObject pathTilesLayout;
     public GameObject placeableTilesLayout;
 
-    // Arrays that hold the grid-coordinates of each tile type to check tower placement
-    private int[,] pathTilesGridCoordinatesArray;
-    private int[,] placeableTilesGridCoordinatesArray;
+    // Array that holds all Tile-types at the corresponding grid-coordinates to check tower placement
+    private GridTile[,] gridTiles;
+    // private int[,] placeableTilesGridCoordinatesArray;
+    // private int[,] pathTilesGridCoordinatesArray;
 
-    // Parents that have all the specific tiles as their children
+    // Parents that have all their specific tiles as their children
     // used to toggle the visual representation of placeable tiles for a tower
     private GameObject pathTiles;
     private GameObject placeableTiles;
@@ -54,15 +53,17 @@ public class GridBuildingSystem : MonoBehaviour {
         pathTiles      = new GameObject("Path Tiles");
         placeableTiles = new GameObject("Placeable Tiles");
 
+        gridTiles = new GridTile[gridWidth, gridHeight];
+
         // Instantiate the Grid
         grid = new GridXZ<GridObject>(gridWidth, gridHeight, cellSize, Vector3.zero,
             // Constructor for each GridObject
             (GridXZ<GridObject> gridObject, int x, int z) => new GridObject(gridObject, x, z));
 
-        // Set Default for the currently selected Tower-Type
+        // set Default for the currently selected Tower-Type
         currentlySelectedTowerTypeSO = null;
 
-        InitializeTileArrays();
+        InitializeGridTiles();
     }
 
 
@@ -71,28 +72,26 @@ public class GridBuildingSystem : MonoBehaviour {
         // Build Tower on Left-Click
         if (Input.GetMouseButtonDown(0) && MouseIsNotOverUI()) {
 
-                // convert Mouse-Coordinates from Click into Grid-Coordinates
-                var gridCoordinates = grid.GetXZ(GridUtils.GetMouseWorldPosition3d(mouseColliderLayerMask));
+            // convert Mouse-Coordinates into Grid-Coordinates
+            var gridCoordinates = grid.GetXZ(GetMouseWorldPosition3d());
 
-                // get the Object on that clicked Tile
-                GridObject gridObject = grid.GetGridObject(gridCoordinates.x, gridCoordinates.z);
+            // get Object on clicked Tile
+            GridObject gridObject = grid.GetGridObject(gridCoordinates.x, gridCoordinates.z);
 
-                // check if clicked Tile is already occupied
-                if (TileCanBeBuildOn(gridObject) && PlayerHasEnoughMoney()) {
-                    // if tile is free, build on it
-                    BuildTower(gridObject);
+            // check if clicked Tile is occupied
+            if (TileCanBeBuildOn(gridObject) && PlayerHasEnoughMoney()) {
+                // if tile is free, build on it
+                BuildTower(gridObject);
 
+            } else if (TileHasTower(gridObject) && IsPlaceable(gridCoordinates.x, gridCoordinates.z)) {
                 // if Tile already has a Tower -> show Upgrade/Sell-Menu
-                } else if (TileHasTower(gridObject) && IsPlacable(gridCoordinates.x, gridCoordinates.z)) {
-                    towerUI.SetTarget(gridObject);
-                }
+                towerUI.SetTarget(gridObject);
+            }
 
-            // clear left-click
             currentlySelectedTowerTypeSO = null;
             pathTiles.SetActive(false);
             placeableTiles.SetActive(false);
         }
-
 
         if (Input.GetMouseButtonDown(1)) {
             PlayerStats.AddMoney(100);
@@ -124,13 +123,7 @@ public class GridBuildingSystem : MonoBehaviour {
 
 
     public PlacedTower GetSelectedTower() {
-        GridObject gridObject = grid.GetGridObject(GridUtils.GetMouseWorldPosition3d(mouseColliderLayerMask));
-
-        if (gridObject != null) {
-            // get Tower on selected Tile
-            return gridObject.GetTower();
-        }
-        return null;
+        return grid.GetGridObject(GetMouseWorldPosition3d()).GetTower();
     }
 
 
@@ -147,6 +140,17 @@ public class GridBuildingSystem : MonoBehaviour {
     }
 
 
+    public bool PlayerHasEnoughMoney() {
+        return PlayerStats.GetMoney() >= currentlySelectedTowerTypeSO.price;
+    }
+
+
+    // Offset to get the middle of the Grid-Cell because the GridCoordinates start in lower left corner
+    public Vector3 GetBuildOffset() {
+        return new Vector3(cellSize/2, 0, cellSize/2);
+    }
+
+
 
     // ------------------------------
     // Tiles
@@ -154,47 +158,32 @@ public class GridBuildingSystem : MonoBehaviour {
 
     // Convert the world coordinates of the LayoutTiles in Grid-Coordinates and save them in separate arrays
     // so they only have to be calculated once at the start and are then available during runtime
-    private void InitializeTileArrays() {
+    private void InitializeGridTiles() {
 
-        // Path Tiles
-        pathTilesLayout.SetActive(true);
-        GameObject[] pathTilesFromLayoutArray = GameObject.FindGameObjectsWithTag("Path");
-        pathTilesLayout.SetActive(false);
-
-        if (pathTilesFromLayoutArray != null) {
-            pathTilesGridCoordinatesArray = new int[pathTilesFromLayoutArray.Length, 2];
-
-            int index = 0;
-            foreach (GameObject pathTile in pathTilesFromLayoutArray) {
-                var coordinates = grid.GetXZ(pathTile.transform.position);
-                pathTilesGridCoordinatesArray[index, 0] = coordinates.x;
-                pathTilesGridCoordinatesArray[index, 1] = coordinates.z;
-
-                GridTile.Create(grid.GetWorldPosition(coordinates.x, coordinates.z), gridTileSO, pathTiles.transform);
-                index++;
-            }
-            pathTiles.SetActive(false);
-        }
-
-        // Placeable Tiles
+        // load Tile-Layout from Map into array
         placeableTilesLayout.SetActive(true);
-        GameObject[] placeableTilesFromLayoutArray = GameObject.FindGameObjectsWithTag("Placeable");
+        GameObject[] placeableTilesFromLayout = GameObject.FindGameObjectsWithTag("Placeable");
         placeableTilesLayout.SetActive(false);
 
-        if (placeableTilesFromLayoutArray != null) {
-            placeableTilesGridCoordinatesArray = new int[placeableTilesFromLayoutArray.Length, 2];
+        pathTilesLayout.SetActive(true);
+        GameObject[] pathTilesFromLayout = GameObject.FindGameObjectsWithTag("Path");
+        pathTilesLayout.SetActive(false);
 
-            int index = 0;
-            foreach (GameObject placeableTile in placeableTilesFromLayoutArray) {
-                var coordinates = grid.GetXZ(placeableTile.transform.position);
-                placeableTilesGridCoordinatesArray[index, 0] = coordinates.x;
-                placeableTilesGridCoordinatesArray[index, 1] = coordinates.z;
+        InitializeGridTileArray(placeableTilesFromLayout, GridTile.TileType.placeable, placeableTiles);
+        InitializeGridTileArray(pathTilesFromLayout,      GridTile.TileType.path,      pathTiles);
+    }
 
-                GridTile.Create(grid.GetWorldPosition(coordinates.x, coordinates.z), gridTileSO, placeableTiles.transform);
-                index++;
-            }
-            placeableTiles.SetActive(false);
+
+    private void InitializeGridTileArray(GameObject[] tileArray, GridTile.TileType type, GameObject tileParent) {
+        if (tileArray == null) {
+            return;
         }
+
+        foreach (GameObject tile in tileArray) {
+            var coordinates = grid.GetXZ(tile.transform.position);
+            gridTiles[coordinates.x, coordinates.z] = GridTile.Create(grid.GetWorldPosition(coordinates.x, coordinates.z), gridTileSO, tileParent.transform, type);
+        }
+        tileParent.SetActive(false);
     }
 
 
@@ -207,49 +196,41 @@ public class GridBuildingSystem : MonoBehaviour {
 
     private bool TowerIsOnValidTile(int x, int z) {
         return     ( currentlySelectedTowerTypeSO.name == "Gargoyle" && IsPath(x, z) )
-                || ( currentlySelectedTowerTypeSO.name != "Gargoyle" && IsPlacable(x, z) );
+                || ( currentlySelectedTowerTypeSO.name != "Gargoyle" && IsPlaceable(x, z) );
     }
 
     private bool TileHasTower(GridObject gridObject) {
         return gridObject != null && gridObject.GetTower() != null;
     }
 
-    public bool PlayerHasEnoughMoney() {
-        if (PlayerStats.GetMoney() < currentlySelectedTowerTypeSO.price) {
-            Debug.Log("Not enough money!");
-            return false;
-        }
-        return true;
-    }
-
 
     private bool IsPath(int x, int z) {
-        for (int i = 0; i < pathTilesGridCoordinatesArray.Length/2; i++) {
-            if (pathTilesGridCoordinatesArray[i, 0] == x && pathTilesGridCoordinatesArray[i, 1] == z) {
-                return true;
-            }
-        }
-        return false;
+        return gridTiles[x, z] != null && gridTiles[x, z].GetTileType() == GridTile.TileType.path;
     }
 
-    private bool IsPlacable(int x, int z) {
-        for (int i = 0; i < placeableTilesGridCoordinatesArray.Length/2; i++) {
-            if (placeableTilesGridCoordinatesArray[i, 0] == x && placeableTilesGridCoordinatesArray[i, 1] == z) {
-                return true;
-            }
-        }
-        return false;
+    private bool IsPlaceable(int x, int z) {
+        return gridTiles[x, z] != null && gridTiles[x, z].GetTileType() == GridTile.TileType.placeable;
     }
 
 
-    public float GetBuildOffset() {
-        return cellSize / 2;
-    }
-
+    // ------------------------------
+    // Helper
+    // ------------------------------
 
     // Check if the Mouse if over the UI to prevent clicking through it
     private bool MouseIsNotOverUI() {
         return !EventSystem.current.IsPointerOverGameObject();
+    }
+
+
+    // mouse-position in 3d space
+    private Vector3 GetMouseWorldPosition3d() {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, mouseColliderLayerMask)) {
+            return raycastHit.point;
+        } else {
+            return Vector3.zero;
+        }
     }
 
 }

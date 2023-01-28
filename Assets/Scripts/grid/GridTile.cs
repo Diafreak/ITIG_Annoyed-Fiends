@@ -46,7 +46,7 @@ public class GridTile : MonoBehaviour {
         gridTile.highlight = gridTileTransform.GetChild(0).GetChild(0).gameObject;
         gridTile.type = _type;
 
-        return gridTileTransform.GetComponent<GridTile>();
+        return gridTile;
     }
 
 
@@ -78,5 +78,9 @@ public class GridTile : MonoBehaviour {
         }
 
         tileRenderer.material.SetColor("_Color", color);
+    }
+
+    public TileType GetTileType() {
+        return type;
     }
 }
