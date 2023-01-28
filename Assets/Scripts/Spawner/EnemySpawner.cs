@@ -25,8 +25,18 @@ public class EnemySpawner : MonoBehaviour {
     private GameManager gameManager;
     private int maxWaveNumber;
 
+    public StartAndSpeedupButton startAndSpeedupButton;
+
+    // Singleton
+    public static EnemySpawner instance;
+
 
     private void Start() {
+        // Singleton
+        if (instance == null) {
+            instance = this;
+        }
+
         enemiesAlive = 0;
         waveNumber = 0;
 
@@ -48,20 +58,11 @@ public class EnemySpawner : MonoBehaviour {
             return;
         }
 
-        if (countdown <= 0f) {
-            StartCoroutine(SpawnWave());
-            countdown = timeBetweenWaves;
-            return;
-        }
-
-        countdown -=Time.deltaTime;
-        // make sure the countdown doesn't go into negative values
-        countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
-        nextWaveCountdownText.text = "Next Wave in: " + string.Format("{0:00.0}", countdown).Replace(",", ".");
+        startAndSpeedupButton.SetGameStateToBeforeNewRound();
     }
 
 
-    IEnumerator SpawnWave () {
+    public IEnumerator SpawnWave () {
         waveNumber++;
         enemiesAlive = waveNumber+5;
         gameManager.SetCurrentWaveNumber(waveNumber);

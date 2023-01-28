@@ -1374,6 +1374,7 @@ MonoBehaviour:
   waveNumber: 0
   waveNumberText: {fileID: 1191549020}
   nextWaveCountdownText: {fileID: 1164622923}
+  startAndSpeedupButton: {fileID: 1387443082}
 --- !u!4 &121926882 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8688932392210849890, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
@@ -1391,7 +1392,7 @@ GameObject:
   - component: {fileID: 123985340}
   - component: {fileID: 123985339}
   m_Layer: 0
-  m_Name: WinLevelText
+  m_Name: StartAndSpeedupText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1437,7 +1438,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Win
+  m_text: Start Round
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4501,7 +4502,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 369390652}
-  m_LocalRotation: {x: 0.6178288, y: 0.0000010420443, z: -0.0000008187646, w: 0.7863127}
+  m_LocalRotation: {x: 0.6178288, y: 0.0000009329652, z: -0.0000007330579, w: 0.7863127}
   m_LocalPosition: {x: 61.49994, y: 99.8, z: 42.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4587,7 +4588,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370881014}
-  m_LocalRotation: {x: 0.6178288, y: 0.0000010420443, z: -0.0000008187646, w: 0.7863127}
+  m_LocalRotation: {x: 0.6178288, y: 0.0000009329652, z: -0.0000007330579, w: 0.7863127}
   m_LocalPosition: {x: 61.49994, y: 99.8, z: 42.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14317,8 +14318,9 @@ GameObject:
   - component: {fileID: 1387443081}
   - component: {fileID: 1387443080}
   - component: {fileID: 1387443079}
+  - component: {fileID: 1387443082}
   m_Layer: 0
-  m_Name: WinLevelButton
+  m_Name: StartAndSpeedupButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14389,9 +14391,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 192301745}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: WinLevel
+      - m_Target: {fileID: 1387443082}
+        m_TargetAssemblyTypeName: StartAndSpeedupButton, Assembly-CSharp
+        m_MethodName: ChangeGameState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14439,6 +14441,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1387443077}
   m_CullTransparentMesh: 1
+--- !u!114 &1387443082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387443077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62d311f236cb0f74e93a6ece6a5a0afe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySpawner: {fileID: 115058454}
+  buttonText: {fileID: 123985339}
 --- !u!1 &1393877168
 GameObject:
   m_ObjectHideFlags: 0
