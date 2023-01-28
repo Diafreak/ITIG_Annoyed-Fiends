@@ -28,6 +28,9 @@ public class PlacedTower : MonoBehaviour {
     private GameObject projectilePrefab;
     [SerializeField] private Transform firePoint;
 
+    // Gargoyle
+    private float despawnTime;
+
     // Blocked Enemy List from Gargoyle
     private Collider[] blockedEnemies;
 
@@ -67,6 +70,7 @@ public class PlacedTower : MonoBehaviour {
         placedTower.sellingPrice     = towerTypeSO.sellingPrice;
         placedTower.turnSpeed        = towerTypeSO.turnSpeed;
         placedTower.projectilePrefab = towerTypeSO.projectilePrefab;
+        placedTower.despawnTime      = towerTypeSO.despawnTime;
 
         return placedTower;
     }
@@ -85,13 +89,14 @@ public class PlacedTower : MonoBehaviour {
     }
 
 
+
     // ------------------------------
     // Upgrade
     // ------------------------------
 
     public void UpgradeTower() {
 
-        if (PlayerStats.GetMoney() < upgradeCost) {
+        if (!PlayerHasEnoughMoney()) {
             Debug.Log("Not enough money to upgrade!");
             return;
         }
@@ -104,6 +109,7 @@ public class PlacedTower : MonoBehaviour {
         IncreaseSellingPrice(10);
         Debug.Log("Upgraded!");
     }
+
 
     private void IncreaseLevel(int increase) {
         level += increase;
@@ -125,6 +131,11 @@ public class PlacedTower : MonoBehaviour {
         sellingPrice += increase;
     }
 
+    private bool PlayerHasEnoughMoney() {
+        return PlayerStats.GetMoney() >= upgradeCost;
+    }
+
+
 
     // ------------------------------
     // Selling
@@ -137,21 +148,27 @@ public class PlacedTower : MonoBehaviour {
 
     // Destroy the tower-visual
     private void DestroySelf() {
-        Destroy(gameObject);
+        Destroy(gameObject, despawnTime);
     }
 
-    public void SelfDestruct() {
-        Destroy(gameObject, 5);
-    }
+
+
+    // ------------------------------
+    // Gargoyle
+    // ------------------------------
 
     private void OnDestroy() {
         if (towerName == "Gargoyle") {
             foreach (Collider enemy in blockedEnemies) {
-                if (enemy.tag == enemyTag)
-                enemy.gameObject.GetComponent<Pathfinding>().UnblockEnemy();
+                if (enemy.tag == enemyTag) {
+                    enemy.gameObject.GetComponent<Pathfinding>().UnblockEnemy();
+                }
             }
         }
+        GridObject gargoyle = gridBuildingSystem.GetGridXZ().GetGridObject(transform.position);
+        gridBuildingSystem.ReactivateGridTile(gargoyle.GetGridPosition().x, gargoyle.GetGridPosition().z);
     }
+
 
 
     // ------------------------------
@@ -167,7 +184,7 @@ public class PlacedTower : MonoBehaviour {
                     enemy.transform.GetComponent<Pathfinding>().BlockEnemy();
                 }
             }
-            SelfDestruct();
+            DestroySelf();
             return;
         }
 
@@ -188,7 +205,6 @@ public class PlacedTower : MonoBehaviour {
 
         fireCountdown -= Time.deltaTime;
     }
-
 
     // finding the closest enemy in range
     private void UpdateTarget() {

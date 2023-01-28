@@ -26,8 +26,6 @@ public class GridBuildingSystem : MonoBehaviour {
 
     // Array that holds all Tile-types at the corresponding grid-coordinates to check tower placement
     private GridTile[,] gridTiles;
-    // private int[,] placeableTilesGridCoordinatesArray;
-    // private int[,] pathTilesGridCoordinatesArray;
 
     // Parents that have all their specific tiles as their children
     // used to toggle the visual representation of placeable tiles for a tower
@@ -106,10 +104,10 @@ public class GridBuildingSystem : MonoBehaviour {
 
     // gets called by the UI-Buttons and sets the current placable Tower-Type
     public void SetSelectedTower(TowerTypeSO towerTypeSO) {
-
-        currentlySelectedTowerTypeSO = towerTypeSO;
         // hide Upgrade/Sell-Menu
         towerUI.Hide();
+
+        currentlySelectedTowerTypeSO = towerTypeSO;
 
         // toggle visual Tiles where a Tower can be placed
         if (currentlySelectedTowerTypeSO.name == "Gargoyle") {
@@ -137,6 +135,9 @@ public class GridBuildingSystem : MonoBehaviour {
 
         // subtract Tower-costs from Player-Money
         PlayerStats.SubtractMoney(currentlySelectedTowerTypeSO.price);
+
+        // Hide placement-tile on the Tower-position
+        gridTiles[gridObject.GetGridPosition().x, gridObject.GetGridPosition().z].gameObject.SetActive(false);
     }
 
 
@@ -145,7 +146,7 @@ public class GridBuildingSystem : MonoBehaviour {
     }
 
 
-    // Offset to get the middle of the Grid-Cell because the GridCoordinates start in lower left corner
+    // Offset to get the middle of a Grid-Cell because the GridCoordinates-Origin is in the lower left corner
     public Vector3 GetBuildOffset() {
         return new Vector3(cellSize/2, 0, cellSize/2);
     }
@@ -194,10 +195,12 @@ public class GridBuildingSystem : MonoBehaviour {
                 && TowerIsOnValidTile(gridObject.GetGridPosition().x, gridObject.GetGridPosition().z);
     }
 
+
     private bool TowerIsOnValidTile(int x, int z) {
         return     ( currentlySelectedTowerTypeSO.name == "Gargoyle" && IsPath(x, z) )
                 || ( currentlySelectedTowerTypeSO.name != "Gargoyle" && IsPlaceable(x, z) );
     }
+
 
     private bool TileHasTower(GridObject gridObject) {
         return gridObject != null && gridObject.GetTower() != null;
@@ -208,9 +211,20 @@ public class GridBuildingSystem : MonoBehaviour {
         return gridTiles[x, z] != null && gridTiles[x, z].GetTileType() == GridTile.TileType.path;
     }
 
+
     private bool IsPlaceable(int x, int z) {
         return gridTiles[x, z] != null && gridTiles[x, z].GetTileType() == GridTile.TileType.placeable;
     }
+
+
+    public GridTile GetGridTile(int x, int z) {
+        return gridTiles[x, z];
+    }
+
+    public void ReactivateGridTile(int x, int z) {
+        gridTiles[x, z].gameObject.SetActive(true);
+    }
+
 
 
     // ------------------------------
@@ -223,14 +237,19 @@ public class GridBuildingSystem : MonoBehaviour {
     }
 
 
-    // mouse-position in 3d space
+    // Mouse-Position in 3D-Space
     private Vector3 GetMouseWorldPosition3d() {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
         if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, mouseColliderLayerMask)) {
             return raycastHit.point;
-        } else {
-            return Vector3.zero;
         }
+        return Vector3.zero;
+    }
+
+
+    public GridXZ<GridObject> GetGridXZ() {
+        return grid;
     }
 
 }

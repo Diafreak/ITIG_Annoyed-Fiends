@@ -24,3 +24,4 @@ MonoBehaviour:
   upgradeCost: 0
   sellingPrice: 0
   level: 1
+  despawnTime: 4

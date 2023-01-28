@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class TowerUI : MonoBehaviour {
 
+    [Header("UI")]
     public GameObject ui;
 
     [Header("Texts")]
@@ -15,6 +16,13 @@ public class TowerUI : MonoBehaviour {
     public Button sellButton;
 
     private GridObject targetedGridObject;
+
+    private GridBuildingSystem gridBuildingSystem;
+
+
+    private void Start() {
+        gridBuildingSystem = GridBuildingSystem.instance;
+    }
 
 
     private void Update() {
@@ -58,6 +66,8 @@ public class TowerUI : MonoBehaviour {
         targetedGridObject.GetTower().SellTower();
         // clear Tower from the Grid-Array
         targetedGridObject.ClearPlacedTower();
+        // reactivate the placement-tile at the sold towers position
+        gridBuildingSystem.ReactivateGridTile(targetedGridObject.GetGridPosition().x, targetedGridObject.GetGridPosition().z);
         Hide();
     }
 
