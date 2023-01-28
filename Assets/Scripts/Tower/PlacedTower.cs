@@ -161,7 +161,7 @@ public class PlacedTower : MonoBehaviour {
     private void Update() {
 
         if (towerName == "Gargoyle") {
-            blockedEnemies = Physics.OverlapSphere(transform.position + new Vector3(gridBuildingSystem.GetBuildOffset(), 0, gridBuildingSystem.GetBuildOffset()), 5);
+            blockedEnemies = Physics.OverlapSphere(transform.position + gridBuildingSystem.GetBuildOffset(), 5);
             foreach (Collider enemy in blockedEnemies) {
                 if (enemy.tag == enemyTag) {
                     enemy.transform.GetComponent<Pathfinding>().BlockEnemy();
@@ -197,7 +197,7 @@ public class PlacedTower : MonoBehaviour {
         GameObject nearestEnemy = null;
 
         foreach(GameObject enemy in enemies) {
-            float distanceToEnemy = Vector3.Distance(transform.position + new Vector3(gridBuildingSystem.GetBuildOffset(), 0, gridBuildingSystem.GetBuildOffset()), enemy.transform.position);
+            float distanceToEnemy = Vector3.Distance(transform.position + gridBuildingSystem.GetBuildOffset(), enemy.transform.position);
             if (distanceToEnemy < shortestDistance) {
                 shortestDistance = distanceToEnemy;
                 nearestEnemy = enemy;
@@ -228,6 +228,6 @@ public class PlacedTower : MonoBehaviour {
     // drawing a red gizmo around the selected tower that indicates the towers range
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + new Vector3(gridBuildingSystem.GetBuildOffset(), 0, gridBuildingSystem.GetBuildOffset()), range);
+        Gizmos.DrawWireSphere(transform.position + gridBuildingSystem.GetBuildOffset(), range);
     }
 }
