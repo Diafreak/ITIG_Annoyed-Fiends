@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour {
     public GameObject gameOverUI;
     public GameObject levelWonUI;
     public GameObject pauseUI;
+    public GameObject crosshairUI;
 
 
     private bool gameOver = false;
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour {
 
     private float previousGameSpeed;
 
+    private SwitchGameMode switchGameMode;
 
     // Singleton
     public static GameManager instance;
@@ -42,6 +44,11 @@ public class GameManager : MonoBehaviour {
         gameOverUI.SetActive(false);
         levelWonUI.SetActive(false);
         pauseUI.SetActive(false);
+    }
+
+
+    private void Start() {
+        switchGameMode = SwitchGameMode.instance;
     }
 
 
@@ -61,8 +68,14 @@ public class GameManager : MonoBehaviour {
     }
 
 
+
+    // ------------------------------
+    // Winning & Losing
+    // ------------------------------
+
     public void WinLevel() {
         levelWonUI.SetActive(true);
+        UnlockMouse();
         PlayerPrefs.SetInt("levelsUnlocked", nextLevel);
     }
 
@@ -70,9 +83,15 @@ public class GameManager : MonoBehaviour {
         Debug.Log("Game Over");
         gameOver = true;
         gameOverUI.SetActive(true);
+        UnlockMouse();
         Time.timeScale = 0f;
     }
 
+
+
+    // ------------------------------
+    // Pause Menu
+    // ------------------------------
 
     public void TogglePauseMenuVisibility() {
         pauseUI.SetActive(!pauseUI.activeSelf);
@@ -80,11 +99,40 @@ public class GameManager : MonoBehaviour {
         if (pauseUI.activeSelf) {
             previousGameSpeed = Time.timeScale;
             Time.timeScale = 0f;
+            UnlockMouse();
         } else {
             Time.timeScale = previousGameSpeed;
+            if (switchGameMode.IsEyeOfDoomActive()) {
+                LockMouse();
+            }
         }
     }
 
+
+
+    // ------------------------------
+    // Mouse for Eye of Doom
+    // ------------------------------
+
+    private void UnlockMouse() {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        crosshairUI.SetActive(false);
+        switchGameMode.DisableRay();
+    }
+
+    private void LockMouse() {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        crosshairUI.SetActive(true);
+        switchGameMode.EnableRay();
+    }
+
+
+
+    // ------------------------------
+    // Getter & Setter
+    // ------------------------------
 
     public void SetCurrentWaveNumber(int waveNumber) {
         currentWaveNumber = waveNumber;
