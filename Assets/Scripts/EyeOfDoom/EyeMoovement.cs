@@ -6,6 +6,7 @@ public class EyeMoovement : MonoBehaviour {
 
     public float sensitivityX;
     public float sensitivityY;
+    public bool mouselock = false;
 
     public Transform orientation;
 
@@ -13,12 +14,25 @@ public class EyeMoovement : MonoBehaviour {
     private float rotationY;
 
 
-    private void Start() {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+    private void Start() {    
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;  
     }
 
     private void Update() {
+
+        if(Input.GetKeyDown("space")){
+            mouselock = !mouselock;
+        }
+
+        if (mouselock = false){
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        } else {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
         //reads mouse input
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensitivityX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensitivityY;

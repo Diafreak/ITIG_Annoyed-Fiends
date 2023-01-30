@@ -5,19 +5,16 @@ public class SwitchGameMode : MonoBehaviour {
 
     [SerializeField] private GameObject crosshairs;
 
-    private EyeMoovement gamemode;
     private DoomRay ray;
 
 
-    void Start() {
-        gamemode = gameObject.GetComponent<EyeMoovement>();
+    private void Start() {
         ray = gameObject.GetComponent<DoomRay>();
     }
 
 
-    void Update() {
+    private void Update() {
         if(Input.GetKeyDown("space")){
-            gamemode.enabled = !gamemode.enabled;
             ray.enabled = !ray.enabled;
             crosshairs.SetActive(true);
         }

@@ -9541,13 +9541,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901875571}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1b4494096ea55d4c93496afcfab356b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivityX: 400
   sensitivityY: 400
+  mouselock: 0
   orientation: {fileID: 715066136}
 --- !u!114 &901875575
 MonoBehaviour:
