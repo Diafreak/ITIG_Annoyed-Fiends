@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2294644659586520452}
   - component: {fileID: 3206020977864054977}
   - component: {fileID: 483747278570824241}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HP_Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 5066499434080217014}
   - component: {fileID: 5200200239991903548}
   - component: {fileID: 4141758708601603863}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HP_Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 5699850276995394937}
   - component: {fileID: 4089143896888865045}
   - component: {fileID: 99336934925376538}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,6 +331,7 @@ MonoBehaviour:
   killValue: 100
   speed: 10
   healthBar: {fileID: 4141758708601603863}
+  isBlocked: 0
 --- !u!1001 &2108922556856147895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -341,6 +342,10 @@ PrefabInstance:
     - target: {fileID: 4143036551834042353, guid: 127dbe533e0b8ac48ad667bb57544374, type: 3}
       propertyPath: m_Name
       value: TestEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4143036551834042353, guid: 127dbe533e0b8ac48ad667bb57544374, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4896193064690510291, guid: 127dbe533e0b8ac48ad667bb57544374, type: 3}
       propertyPath: m_RootOrder

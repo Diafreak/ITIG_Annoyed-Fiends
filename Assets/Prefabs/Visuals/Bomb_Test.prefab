@@ -111,4 +111,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 70
-  damageRadius: 30
+  damage: 15
+  damageRadius: 20

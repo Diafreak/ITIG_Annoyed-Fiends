@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class TowerUI : MonoBehaviour {
 
+    [Header("UI")]
     public GameObject ui;
 
     [Header("Texts")]
@@ -16,14 +17,21 @@ public class TowerUI : MonoBehaviour {
 
     private GridObject targetedGridObject;
 
+    private GridBuildingSystem gridBuildingSystem;
+
+
+    private void Start() {
+        gridBuildingSystem = GridBuildingSystem.instance;
+    }
+
 
     private void Update() {
         // disable or enable the Upgrade-Button depending if Player has enough Money
         if (ui.activeSelf && targetedGridObject != null) {
-            if (PlayerStats.GetMoney() < targetedGridObject.GetTower().GetUpgradeCost()) {
-                upgradeButton.interactable = false;
-            } else {
+            if (PlayerHasEnoughMoney()) {
                 upgradeButton.interactable = true;
+            } else {
+                upgradeButton.interactable = false;
             }
         }
     }
@@ -58,6 +66,12 @@ public class TowerUI : MonoBehaviour {
         targetedGridObject.GetTower().SellTower();
         // clear Tower from the Grid-Array
         targetedGridObject.ClearPlacedTower();
+        // reactivate the placement-tile at the sold towers position
+        gridBuildingSystem.ReactivateGridTile(targetedGridObject.GetGridPosition().x, targetedGridObject.GetGridPosition().z);
         Hide();
+    }
+
+    private bool PlayerHasEnoughMoney() {
+        return PlayerStats.GetMoney() >= targetedGridObject.GetTower().GetUpgradeCost();
     }
 }

@@ -28,6 +28,9 @@ public class PlacedTower : MonoBehaviour {
     private GameObject projectilePrefab;
     [SerializeField] private Transform firePoint;
 
+    // Gargoyle
+    private float despawnTime;
+
     // Blocked Enemy List from Gargoyle
     private Collider[] blockedEnemies;
 
@@ -67,6 +70,7 @@ public class PlacedTower : MonoBehaviour {
         placedTower.sellingPrice     = towerTypeSO.sellingPrice;
         placedTower.turnSpeed        = towerTypeSO.turnSpeed;
         placedTower.projectilePrefab = towerTypeSO.projectilePrefab;
+        placedTower.despawnTime      = towerTypeSO.despawnTime;
 
         return placedTower;
     }
@@ -85,13 +89,14 @@ public class PlacedTower : MonoBehaviour {
     }
 
 
+
     // ------------------------------
     // Upgrade
     // ------------------------------
 
     public void UpgradeTower() {
 
-        if (PlayerStats.GetMoney() < upgradeCost) {
+        if (!PlayerHasEnoughMoney()) {
             Debug.Log("Not enough money to upgrade!");
             return;
         }
@@ -104,6 +109,7 @@ public class PlacedTower : MonoBehaviour {
         IncreaseSellingPrice(10);
         Debug.Log("Upgraded!");
     }
+
 
     private void IncreaseLevel(int increase) {
         level += increase;
@@ -125,9 +131,14 @@ public class PlacedTower : MonoBehaviour {
         sellingPrice += increase;
     }
 
+    private bool PlayerHasEnoughMoney() {
+        return PlayerStats.GetMoney() >= upgradeCost;
+    }
+
+
 
     // ------------------------------
-    // Selling
+    // Selling / Destroying
     // ------------------------------
 
     public void SellTower() {
@@ -135,23 +146,25 @@ public class PlacedTower : MonoBehaviour {
         DestroySelf();
     }
 
+
     // Destroy the tower-visual
     private void DestroySelf() {
-        Destroy(gameObject);
+        Destroy(gameObject, despawnTime);
     }
 
-    public void SelfDestruct() {
-        Destroy(gameObject, 5);
-    }
 
     private void OnDestroy() {
         if (towerName == "Gargoyle") {
             foreach (Collider enemy in blockedEnemies) {
-                if (enemy.tag == enemyTag)
-                enemy.gameObject.GetComponent<Pathfinding>().UnblockEnemy();
+                if (enemy.tag == enemyTag) {
+                    enemy.gameObject.GetComponent<Pathfinding>().UnblockEnemy();
+                }
             }
+            GridObject gargoyle = gridBuildingSystem.GetGridXZ().GetGridObject(transform.position);
+            gridBuildingSystem.ReactivateGridTile(gargoyle.GetGridPosition().x, gargoyle.GetGridPosition().z);
         }
     }
+
 
 
     // ------------------------------
@@ -161,13 +174,13 @@ public class PlacedTower : MonoBehaviour {
     private void Update() {
 
         if (towerName == "Gargoyle") {
-            blockedEnemies = Physics.OverlapSphere(transform.position + new Vector3(gridBuildingSystem.GetBuildOffset(), 0, gridBuildingSystem.GetBuildOffset()), 5);
+            blockedEnemies = Physics.OverlapSphere(transform.position + gridBuildingSystem.GetBuildOffset(), 5);
             foreach (Collider enemy in blockedEnemies) {
                 if (enemy.tag == enemyTag) {
                     enemy.transform.GetComponent<Pathfinding>().BlockEnemy();
                 }
             }
-            SelfDestruct();
+            DestroySelf();
             return;
         }
 
@@ -189,7 +202,6 @@ public class PlacedTower : MonoBehaviour {
         fireCountdown -= Time.deltaTime;
     }
 
-
     // finding the closest enemy in range
     private void UpdateTarget() {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
@@ -197,7 +209,7 @@ public class PlacedTower : MonoBehaviour {
         GameObject nearestEnemy = null;
 
         foreach(GameObject enemy in enemies) {
-            float distanceToEnemy = Vector3.Distance(transform.position + new Vector3(gridBuildingSystem.GetBuildOffset(), 0, gridBuildingSystem.GetBuildOffset()), enemy.transform.position);
+            float distanceToEnemy = Vector3.Distance(transform.position + gridBuildingSystem.GetBuildOffset(), enemy.transform.position);
             if (distanceToEnemy < shortestDistance) {
                 shortestDistance = distanceToEnemy;
                 nearestEnemy = enemy;
@@ -228,6 +240,6 @@ public class PlacedTower : MonoBehaviour {
     // drawing a red gizmo around the selected tower that indicates the towers range
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + new Vector3(gridBuildingSystem.GetBuildOffset(), 0, gridBuildingSystem.GetBuildOffset()), range);
+        Gizmos.DrawWireSphere(transform.position + gridBuildingSystem.GetBuildOffset(), range);
     }
 }
