@@ -6,13 +6,13 @@ public class SwitchGameMode : MonoBehaviour
 {
     [SerializeField] GameObject crosshairs;
     
-    EyeMoovement gamemode;
+   // EyeMoovement gamemode;
     DoomRay ray;
     
     // Start is called before the first frame update
     void Start()
     {
-        gamemode = gameObject.GetComponent<EyeMoovement>();
+        //gamemode = gameObject.GetComponent<EyeMoovement>();
         ray = gameObject.GetComponent<DoomRay>();
     }
 
@@ -20,9 +20,10 @@ public class SwitchGameMode : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown("space")){
-            gamemode.enabled = !gamemode.enabled;
+            //gamemode.enabled = !gamemode.enabled;
             ray.enabled = !ray.enabled;
             crosshairs.SetActive(true);
         }
     }
 }
+// lock mode non
