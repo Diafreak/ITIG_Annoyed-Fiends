@@ -1,34 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class EyeMoovement : MonoBehaviour
-{
-    
+
+public class EyeMoovement : MonoBehaviour {
+
     public float sensitivityX;
     public float sensitivityY;
-    
+
     public Transform orientation;
 
-    float rotationX;
-    float rotationY;
+    private float rotationX;
+    private float rotationY;
+
 
     private void Start() {
-         Cursor.lockState = CursorLockMode.Locked;
-          Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
-    private void Update()
-    {
+    private void Update() {
         //reads mouse input
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensitivityX;
-
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensitivityY;
 
         rotationY += mouseX;
-
         rotationX -= mouseY;
+
         //prevent player to look more then 90° up or down
         rotationX = Mathf.Clamp(rotationX, -90f, 90f);
 
