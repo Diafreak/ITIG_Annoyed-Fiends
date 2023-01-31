@@ -12,11 +12,12 @@ public class PlayerUITextHandler : MonoBehaviour {
 
     // private EnemySpawner enemySpawner;
     private GameManager gameManager;
+    private EnemySpawner enemySpawner;
 
 
     private void Start() {
-        // enemySpawner = EnemySpawner.instance;
         gameManager  = GameManager.instance;
+        enemySpawner = EnemySpawner.instance;
     }
 
 
@@ -25,7 +26,11 @@ public class PlayerUITextHandler : MonoBehaviour {
 
         moneyText.text = PlayerStats.GetMoney().ToString() + "€";
 
-        waveNumberText.text = string.Format("Wave {0}/{1}", gameManager.GetCurrentWaveNumber(), gameManager.GetMaxWaveNumber());
+        if (enemySpawner.IsEndless()) {
+            waveNumberText.text = string.Format("Wave {0}", gameManager.GetCurrentWaveNumber());
+        } else {
+            waveNumberText.text = string.Format("Wave {0}/{1}", gameManager.GetCurrentWaveNumber(), gameManager.GetMaxWaveNumber());
+        }
 
         if (gameOverWaveReachedText.IsActive()) {
             gameOverWaveReachedText.text = "Wave Reached: " + gameManager.GetCurrentWaveNumber();

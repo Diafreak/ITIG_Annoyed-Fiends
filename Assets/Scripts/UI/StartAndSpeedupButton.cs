@@ -34,7 +34,7 @@ public class StartAndSpeedupButton : MonoBehaviour {
                 Time.timeScale = 1f;
                 state = GameManager.GameState.play;
                 StartCoroutine(enemySpawner.SpawnWave());
-                buttonText.text = "1x Speed";
+                buttonText.text = "x1 Speed";
                 break;
 
             case (GameManager.GameState.play):
@@ -52,7 +52,7 @@ public class StartAndSpeedupButton : MonoBehaviour {
             case (GameManager.GameState.speed3):
                 Time.timeScale = 1f;
                 state = GameManager.GameState.play;
-                buttonText.text = "1x Speed";
+                buttonText.text = "x1 Speed";
                 break;
         }
     }
