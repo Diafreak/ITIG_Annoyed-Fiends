@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using TMPro;
 
 
 public class EnemySpawner : MonoBehaviour {
@@ -23,6 +22,7 @@ public class EnemySpawner : MonoBehaviour {
 
     private GameManager gameManager;
     private int maxWaveNumber;
+    private bool isEndless = false;
 
     // Singleton
     public static EnemySpawner instance;
@@ -52,7 +52,7 @@ public class EnemySpawner : MonoBehaviour {
             return;
         }
 
-        if (waveNumber == maxWaveNumber) {
+        if (!isEndless && waveNumber == maxWaveNumber) {
             gameManager.WinLevel();
             return;
         }
@@ -72,11 +72,22 @@ public class EnemySpawner : MonoBehaviour {
         }
     }
 
+
     private void SpawnEnemy() {
         Instantiate(towner, transform.position, transform.rotation);
     }
 
+
     public int GetCurrentWaveNumber() {
         return waveNumber;
+    }
+
+
+    public void SetEndlessMode() {
+        isEndless = true;
+    }
+
+    public bool IsEndless() {
+        return isEndless;
     }
 }

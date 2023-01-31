@@ -9,10 +9,12 @@ public class PlayerUIButtonHandler : MonoBehaviour {
     public string menuSceneName = "MainMenu";
 
     private GameManager gameManager;
+    private EnemySpawner enemySpawner;
 
 
     private void Start() {
         gameManager = GameManager.instance;
+        enemySpawner = EnemySpawner.instance;
     }
 
 
@@ -31,8 +33,12 @@ public class PlayerUIButtonHandler : MonoBehaviour {
     // LevelWonUI
     public void NextLevel() {
         SceneManager.LoadScene(nextLevelName);
-        // EnemySpawner.enemiesAlive = 0;
     }
+
+    public void ContinueFreeplay() {
+        gameManager.SetEndlessMode();
+    }
+
 
     // PauseUI
     public void Continue() {

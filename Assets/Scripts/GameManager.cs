@@ -28,8 +28,10 @@ public class GameManager : MonoBehaviour {
     private int currentWaveNumber = 0;
 
     private float previousGameSpeed;
+    private bool eyeWasPreviouslyActive;
 
     private SwitchGameMode switchGameMode;
+    private EnemySpawner enemySpawner;
 
     // Singleton
     public static GameManager instance;
@@ -49,6 +51,7 @@ public class GameManager : MonoBehaviour {
 
     private void Start() {
         switchGameMode = SwitchGameMode.instance;
+        enemySpawner = EnemySpawner.instance;
     }
 
 
@@ -66,7 +69,6 @@ public class GameManager : MonoBehaviour {
             TogglePauseMenuVisibility();
         }
     }
-
 
 
     // ------------------------------
@@ -88,7 +90,6 @@ public class GameManager : MonoBehaviour {
     }
 
 
-
     // ------------------------------
     // Pause Menu
     // ------------------------------
@@ -102,12 +103,11 @@ public class GameManager : MonoBehaviour {
             UnlockMouse();
         } else {
             Time.timeScale = previousGameSpeed;
-            if (switchGameMode.IsEyeOfDoomActive()) {
+            if (eyeWasPreviouslyActive) {
                 LockMouse();
             }
         }
     }
-
 
 
     // ------------------------------
@@ -118,16 +118,32 @@ public class GameManager : MonoBehaviour {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         crosshairUI.SetActive(false);
-        switchGameMode.DisableRay();
+        eyeWasPreviouslyActive = switchGameMode.IsEyeOfDoomActive();
+        switchGameMode.DisableEye();
     }
 
     private void LockMouse() {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         crosshairUI.SetActive(true);
-        switchGameMode.EnableRay();
+        switchGameMode.EnableEye();
     }
 
+
+    // ------------------------------
+    // Endless
+    // ------------------------------
+    public void SetEndlessMode() {
+        enemySpawner.SetEndlessMode();
+        ContinueGameAfterWin();
+    }
+
+    private void ContinueGameAfterWin() {
+        levelWonUI.SetActive(false);
+        if (eyeWasPreviouslyActive) {
+            LockMouse();
+        }
+    }
 
 
     // ------------------------------

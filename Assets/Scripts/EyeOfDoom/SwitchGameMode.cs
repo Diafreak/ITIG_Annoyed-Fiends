@@ -39,12 +39,14 @@ public class SwitchGameMode : MonoBehaviour {
     }
 
 
-    public void DisableRay() {
+    public void DisableEye() {
         ray.enabled = false;
+        eyeMovement.enabled = false;
     }
 
-    public void EnableRay() {
+    public void EnableEye() {
         ray.enabled = true;
+        eyeMovement.enabled = true;
     }
 
 
