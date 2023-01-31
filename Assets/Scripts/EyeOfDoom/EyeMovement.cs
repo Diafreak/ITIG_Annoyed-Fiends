@@ -8,9 +8,13 @@ public class EyeMovement : MonoBehaviour {
 
     public Transform orientation;
 
-
     private float rotationX;
     private float rotationY;
+
+    public float smoothing = 10f;
+    float xAccumulator;
+    float yAccumulator;
+
 
 
     private void OnEnable() {
@@ -28,8 +32,12 @@ public class EyeMovement : MonoBehaviour {
         float mouseX = Input.GetAxisRaw("Mouse X") * (Time.deltaTime/Time.timeScale) * sensitivityX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * (Time.deltaTime/Time.timeScale) * sensitivityY;
 
-        rotationY += mouseX;
-        rotationX -= mouseY;
+        // Mouse smoothing
+        xAccumulator = Mathf.Lerp(xAccumulator, mouseX, smoothing * (Time.deltaTime/Time.timeScale));
+        yAccumulator = Mathf.Lerp(yAccumulator, mouseY, smoothing * (Time.deltaTime/Time.timeScale));
+
+        rotationY += xAccumulator;
+        rotationX -= yAccumulator;
 
         //prevent player to look more then 90° up or down
         rotationX = Mathf.Clamp(rotationX, -90f, 90f);
