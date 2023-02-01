@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 public class PlayerUIButtonHandler : MonoBehaviour {
 
     [Header("Scenes")]
-    public string nextLevelName;
     public string menuSceneName = "MainMenu";
 
     private GameManager gameManager;
@@ -32,7 +31,7 @@ public class PlayerUIButtonHandler : MonoBehaviour {
 
     // LevelWonUI
     public void NextLevel() {
-        SceneManager.LoadScene(nextLevelName);
+        SceneManager.LoadScene(gameManager.GetNextLevelName());
     }
 
     public void ContinueFreeplay() {
