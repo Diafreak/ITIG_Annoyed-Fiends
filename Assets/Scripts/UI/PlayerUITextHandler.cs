@@ -24,7 +24,7 @@ public class PlayerUITextHandler : MonoBehaviour {
     void Update() {
         livesText.text = "Lives: " + PlayerStats.lives.ToString();
 
-        moneyText.text = PlayerStats.GetMoney().ToString() + "€";
+        moneyText.text =  "$" + PlayerStats.GetMoney().ToString();
 
         if (enemySpawner.IsEndless()) {
             waveNumberText.text = string.Format("Wave {0}", gameManager.GetCurrentWaveNumber());
