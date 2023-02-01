@@ -22,9 +22,9 @@ public class TowerShop : MonoBehaviour {
     private void Start() {
         gridBuildingSystem = GridBuildingSystem.instance;
 
-        archerTextField.text   = archerTowerSO.name   + " " + archerTowerSO.price   + "€";
-        devilTextField.text    = devilTowerSO.name    + " " + devilTowerSO.price    + "€";
-        gargoyleTextField.text = gargoyleTowerSO.name + " " + gargoyleTowerSO.price + "€";
+        archerTextField.text   = archerTowerSO.name   + " " + "$" + archerTowerSO.price;
+        devilTextField.text    = devilTowerSO.name    + " " + "$" +  devilTowerSO.price;
+        gargoyleTextField.text = gargoyleTowerSO.name + " " + "$" +  gargoyleTowerSO.price;
     }
 
 

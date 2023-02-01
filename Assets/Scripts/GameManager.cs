@@ -161,4 +161,8 @@ public class GameManager : MonoBehaviour {
     public int GetMaxWaveNumber() {
         return maxWaveNumber;
     }
+
+    public string GetNextLevelName() {
+        return nextLevelName;
+    }
 }

@@ -8,15 +8,13 @@ public class GridTile : MonoBehaviour {
         Path
     }
 
-    private TileType type;
+    private TileType tileType;
 
-    private Color color;
     private GameObject highlight;
-    [SerializeField] private SpriteRenderer spriteRenderer;
+
     private Renderer tileRenderer;
 
     private GridTileSO gridTileSO;
-
     private GridBuildingSystem gridBuildingSystem;
 
 
@@ -26,7 +24,7 @@ public class GridTile : MonoBehaviour {
     }
 
 
-    public static GridTile Create(Vector3 worldPosition, GridTileSO givenGridTileSO, Transform parent, TileType _type) {
+    public static GridTile Create(Vector3 worldPosition, GridTileSO givenGridTileSO, Transform parent, TileType type) {
 
         Transform gridTileTransform =
             Instantiate(
@@ -42,10 +40,9 @@ public class GridTile : MonoBehaviour {
 
         GridTile gridTile = gridTileTransform.GetChild(0).GetComponent<GridTile>();
         gridTile.gridTileSO = givenGridTileSO;
-        gridTile.color = givenGridTileSO.defaultColor;
         gridTile.highlight = gridTileTransform.GetChild(0).GetChild(0).gameObject;
-        gridTile.type = _type;
-        gridTile.gameObject.tag = _type.ToString();
+        gridTile.tileType = type;
+        gridTile.gameObject.tag = type.ToString();
 
         return gridTile;
     }
@@ -54,6 +51,7 @@ public class GridTile : MonoBehaviour {
     private void Update() {
         CheckIfPlayerHasEnoughMoney();
     }
+
 
     private void OnMouseEnter() {
         highlight.SetActive(true);
@@ -71,17 +69,15 @@ public class GridTile : MonoBehaviour {
 
 
     private void CheckIfPlayerHasEnoughMoney() {
-
-        color = gridTileSO.defaultColor;
-
-        if (!gridBuildingSystem.PlayerHasEnoughMoney()) {
-            color = gridTileSO.insufficientMoneyColor;
+        if (gridBuildingSystem.PlayerHasEnoughMoney()) {
+            tileRenderer.material.SetColor("_Color", gridTileSO.defaultColor);
+        } else {
+            tileRenderer.material.SetColor("_Color", gridTileSO.insufficientMoneyColor);
         }
-
-        tileRenderer.material.SetColor("_Color", color);
     }
 
+
     public TileType GetTileType() {
-        return type;
+        return tileType;
     }
 }
