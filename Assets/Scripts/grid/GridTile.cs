@@ -70,9 +70,9 @@ public class GridTile : MonoBehaviour {
 
     private void CheckIfPlayerHasEnoughMoney() {
         if (gridBuildingSystem.PlayerHasEnoughMoney()) {
-            tileRenderer.material.SetColor("_Color", gridTileSO.defaultColor);
+            tileRenderer.material.SetColor("_BaseColor", gridTileSO.defaultColor);
         } else {
-            tileRenderer.material.SetColor("_Color", gridTileSO.insufficientMoneyColor);
+            tileRenderer.material.SetColor("_BaseColor", gridTileSO.insufficientMoneyColor);
         }
     }
 
