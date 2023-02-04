@@ -7,6 +7,7 @@ public class TowerUI : MonoBehaviour {
 
     [Header("UI")]
     public GameObject towerUI;
+    public Transform towerRange;
 
     [Header("Texts")]
     public TMP_Text upgradeText;
@@ -22,6 +23,7 @@ public class TowerUI : MonoBehaviour {
 
     private void Start() {
         gridBuildingSystem = GridBuildingSystem.instance;
+        HideUI();
     }
 
 
@@ -37,11 +39,12 @@ public class TowerUI : MonoBehaviour {
     }
 
 
+    // sets the selected Tower
     public void SetTarget(GridObject gridObject) {
 
         if (targetedGridObject == gridObject && towerUI.activeSelf) {
             // if the same tile is clicked again, hide the Upgrade/Sell-Menu
-            Hide();
+            HideUI();
         } else {
             // show & move the Upgrade/Sell-Menu over the selected Tower
             targetedGridObject = gridObject;
@@ -51,6 +54,25 @@ public class TowerUI : MonoBehaviour {
         }
     }
 
+
+    private void UpdateUI() {
+        upgradeText.text = "$" + targetedGridObject.GetTower().GetUpgradeCost().ToString();
+        sellText.text    = "$" + targetedGridObject.GetTower().GetSellingPrice().ToString();
+        ShowTowerRange();
+    }
+
+
+    public void HideUI() {
+        HideTowerRange();
+        targetedGridObject = null;
+        towerUI.SetActive(false);
+    }
+
+
+
+    // ------------------------------
+    // Buttons
+    // ------------------------------
 
     public void Upgrade() {
         targetedGridObject.GetTower().UpgradeTower();
@@ -64,25 +86,27 @@ public class TowerUI : MonoBehaviour {
         targetedGridObject.ClearPlacedTower();
         // reactivate the placement-tile at the sold towers position
         gridBuildingSystem.ReactivateGridTile(targetedGridObject.GetGridPosition().x, targetedGridObject.GetGridPosition().z);
-        Hide();
+        HideUI();
     }
-
-
-    private void UpdateUI() {
-        upgradeText.text = "$" + targetedGridObject.GetTower().GetUpgradeCost().ToString();
-        sellText.text    = "$" + targetedGridObject.GetTower().GetSellingPrice().ToString();
-        targetedGridObject.GetTower().ShowTowerRange(targetedGridObject);
-    }
-
-
-    public void Hide() {
-        targetedGridObject?.GetTower()?.HideRange();
-        targetedGridObject = null;
-        towerUI.SetActive(false);
-    }
-
 
     private bool PlayerHasEnoughMoney() {
         return PlayerStats.GetMoney() >= targetedGridObject.GetTower().GetUpgradeCost();
+    }
+
+
+
+    // ------------------------------
+    // Tower-Range
+    // ------------------------------
+
+    public void ShowTowerRange() {
+        towerRange.position = targetedGridObject.GetWorldPosition() + gridBuildingSystem.GetBuildOffset();
+        float range = targetedGridObject.GetTower().GetRange();
+        towerRange.localScale = new Vector3(range/4, range/4);
+        towerRange.gameObject.SetActive(true);
+    }
+
+    public void HideTowerRange() {
+        towerRange.gameObject.SetActive(false);
     }
 }

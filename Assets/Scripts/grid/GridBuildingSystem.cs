@@ -37,7 +37,6 @@ public class GridBuildingSystem : MonoBehaviour {
     // UI for Upgrading/Selling a Tower
     [Header("Tower UI")]
     public TowerUI towerUI;
-    public Transform towerRange;
 
     // Singleton
     public static GridBuildingSystem instance;
@@ -65,9 +64,6 @@ public class GridBuildingSystem : MonoBehaviour {
         currentlySelectedTowerTypeSO = null;
 
         InitializeGridTiles();
-
-        towerUI.Hide();
-        towerRange.gameObject.SetActive(false);
     }
 
 
@@ -111,7 +107,7 @@ public class GridBuildingSystem : MonoBehaviour {
     // gets called by the UI-Buttons and sets the current placable Tower-Type
     public void SetSelectedTower(TowerTypeSO towerTypeSO) {
         // hide Upgrade/Sell-Menu + Range
-        towerUI.Hide();
+        towerUI.HideUI();
 
         currentlySelectedTowerTypeSO = towerTypeSO;
 

@@ -88,6 +88,10 @@ public class PlacedTower : MonoBehaviour {
         return sellingPrice;
     }
 
+    public float GetRange() {
+        return range;
+    }
+
 
 
     // ------------------------------
@@ -143,7 +147,6 @@ public class PlacedTower : MonoBehaviour {
 
     public void SellTower() {
         PlayerStats.AddMoney(sellingPrice);
-        HideRange();
         DestroySelf();
     }
 
@@ -189,11 +192,7 @@ public class PlacedTower : MonoBehaviour {
             return;
         }
 
-        // target lock on
-        Vector3 direction = target.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(direction);
-        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        LockOnTarget();
 
         if (fireCountdown <= 0f) {
             Shoot();
@@ -202,6 +201,7 @@ public class PlacedTower : MonoBehaviour {
 
         fireCountdown -= Time.deltaTime;
     }
+
 
     // finding the closest enemy in range
     private void UpdateTarget() {
@@ -226,6 +226,14 @@ public class PlacedTower : MonoBehaviour {
     }
 
 
+    private void LockOnTarget() {
+        Vector3 direction = target.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+    }
+
+
     // shooting at the designated target
     private void Shoot() {
         Debug.Log("SHOOT!");
@@ -238,19 +246,10 @@ public class PlacedTower : MonoBehaviour {
     }
 
 
-    // ------------------------------
-    // Show Tower-Range
-    // ------------------------------
 
-    public void ShowTowerRange(GridObject gridObject) {
-        gridBuildingSystem.towerRange.position = gridObject.GetWorldPosition() + gridBuildingSystem.GetBuildOffset();
-        gridBuildingSystem.towerRange.localScale = new Vector3(range*2, range*2);
-        gridBuildingSystem.towerRange.gameObject.SetActive(true);
-    }
-
-    public void HideRange() {
-        gridBuildingSystem.towerRange.gameObject.SetActive(false);
-    }
+    // ------------------------------
+    // Debug
+    // ------------------------------
 
     // drawing a red gizmo around the selected tower that indicates the towers range
     private void OnDrawGizmosSelected() {
