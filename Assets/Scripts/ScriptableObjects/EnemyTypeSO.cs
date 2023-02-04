@@ -7,9 +7,8 @@ public class EnemyTypeSO : ScriptableObject {
     [Header("Enemy Name")]
     public string enemyName;
 
-    [Header("Enemy Visuals")]
+    [Header("Enemy Prefabs")]
     public Transform prefab;
-    public Transform visual;
 
     [Header("Enemy Stats")]
     public float startHp;

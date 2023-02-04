@@ -4,13 +4,14 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour {
 
-    [Header("Attributes")]
-    public float startHP = 100;
-    public int killValue = 100;
-    public float speed = 10f;
-
     [Header("Health Bar Visual")]
     public Image healthBar;
+
+    // Attributes
+    private string enemyName;
+    private float startHp;
+    private int killValue;
+    private float speed;
 
     private float currentHP;
 
@@ -21,12 +22,36 @@ public class Enemy : MonoBehaviour {
     private int nextWaypointIndex = 0;
 
 
+    public static Enemy Create(Vector3 worldPosition, EnemyTypeSO enemyTypeSO) {
+
+        Transform spawnedEnemyTransform =
+            Instantiate(
+                // Visual
+                enemyTypeSO.prefab,
+                // Position
+                worldPosition,
+                // Rotation
+                Quaternion.identity
+            );
+
+        // get the spawned Enemy
+        Enemy enemy = spawnedEnemyTransform.GetComponent<Enemy>();
+
+        // set variables from the template to the spawned Enemy
+        enemy.enemyName = enemyTypeSO.enemyName;
+        enemy.startHp   = enemyTypeSO.startHp;
+        enemy.killValue = enemyTypeSO.killValue;
+        enemy.speed     = enemyTypeSO.speed;
+
+        return enemy;
+    }
+
 
     private void Start() {
         nextWaypoint = Waypoints.waypoints[0];
         speed = gameObject.GetComponent<Enemy>().speed;
         isBlocked = false;
-        currentHP = startHP;
+        currentHP = startHp;
     }
 
 
@@ -50,7 +75,7 @@ public class Enemy : MonoBehaviour {
 
     public void TakeDamage(float amount) {
         currentHP -= amount;
-        healthBar.fillAmount = currentHP / startHP;
+        healthBar.fillAmount = currentHP / startHp;
 
         if (currentHP <= 0) {
             Die();
