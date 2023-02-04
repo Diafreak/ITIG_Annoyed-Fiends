@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
 public class GridBuildingSystem : MonoBehaviour {
 
     // current selected Tower-Type
@@ -36,6 +37,7 @@ public class GridBuildingSystem : MonoBehaviour {
     // UI for Upgrading/Selling a Tower
     [Header("Tower UI")]
     public TowerUI towerUI;
+    public Transform towerRange;
 
     // Singleton
     public static GridBuildingSystem instance;
@@ -63,6 +65,9 @@ public class GridBuildingSystem : MonoBehaviour {
         currentlySelectedTowerTypeSO = null;
 
         InitializeGridTiles();
+
+        towerUI.Hide();
+        towerRange.gameObject.SetActive(false);
     }
 
 
@@ -83,7 +88,7 @@ public class GridBuildingSystem : MonoBehaviour {
                 BuildTower(gridObject);
 
             } else if (TileHasTower(gridObject) && IsPlaceable(gridCoordinates.x, gridCoordinates.z)) {
-                // if Tile already has a Tower -> show Upgrade/Sell-Menu
+                // if Tile already has a Tower -> show Upgrade/Sell-Menu + Range
                 towerUI.SetTarget(gridObject);
             }
 
@@ -105,7 +110,7 @@ public class GridBuildingSystem : MonoBehaviour {
 
     // gets called by the UI-Buttons and sets the current placable Tower-Type
     public void SetSelectedTower(TowerTypeSO towerTypeSO) {
-        // hide Upgrade/Sell-Menu
+        // hide Upgrade/Sell-Menu + Range
         towerUI.Hide();
 
         currentlySelectedTowerTypeSO = towerTypeSO;
@@ -205,23 +210,24 @@ public class GridBuildingSystem : MonoBehaviour {
 
 
     private bool TileHasTower(GridObject gridObject) {
-        return gridObject != null && gridObject.GetTower() != null;
+        return gridObject?.GetTower() != null;
     }
 
 
     private bool IsPath(int x, int z) {
-        return gridTiles[x, z] != null && gridTiles[x, z].GetTileType() == GridTile.TileType.Path;
+        return gridTiles[x, z]?.GetTileType() == GridTile.TileType.Path;
     }
 
 
     private bool IsPlaceable(int x, int z) {
-        return gridTiles[x, z] != null && gridTiles[x, z].GetTileType() == GridTile.TileType.Placeable;
+        return gridTiles[x, z]?.GetTileType() == GridTile.TileType.Placeable;
     }
 
 
     public GridTile GetGridTile(int x, int z) {
         return gridTiles[x, z];
     }
+
 
     public void ReactivateGridTile(int x, int z) {
         gridTiles[x, z].gameObject.SetActive(true);
@@ -238,6 +244,7 @@ public class GridBuildingSystem : MonoBehaviour {
         return !EventSystem.current.IsPointerOverGameObject();
     }
 
+
     private Vector3 GetClickedTile() {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -247,6 +254,7 @@ public class GridBuildingSystem : MonoBehaviour {
         }
         return new Vector3(-1, -1, -1);
     }
+
 
     // Mouse-Position in 3D-Space
     private Vector3 GetMouseWorldPosition3d() {
@@ -259,9 +267,13 @@ public class GridBuildingSystem : MonoBehaviour {
     }
 
 
-
     public GridXZ<GridObject> GetGridXZ() {
         return grid;
+    }
+
+
+    public float GetCellSize() {
+        return cellSize;
     }
 
 }
