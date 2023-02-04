@@ -1994,7 +1994,6 @@ MonoBehaviour:
   gameOverUI: {fileID: 530066630}
   levelWonUI: {fileID: 220643123}
   pauseUI: {fileID: 1976977491}
-  crosshairUI: {fileID: 1614183634}
 --- !u!1 &194087172
 GameObject:
   m_ObjectHideFlags: 0
@@ -5213,6 +5212,7 @@ MonoBehaviour:
   damage: 34
   povCam: {fileID: 370881016}
   doomRayOrigin: {fileID: 2079922957}
+  crosshairUI: {fileID: 1614183634}
 --- !u!114 &451585463
 MonoBehaviour:
   m_ObjectHideFlags: 0
