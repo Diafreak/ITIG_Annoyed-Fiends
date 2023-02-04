@@ -143,6 +143,7 @@ public class PlacedTower : MonoBehaviour {
 
     public void SellTower() {
         PlayerStats.AddMoney(sellingPrice);
+        HideRange();
         DestroySelf();
     }
 
@@ -236,6 +237,20 @@ public class PlacedTower : MonoBehaviour {
         }
     }
 
+
+    // ------------------------------
+    // Show Tower-Range
+    // ------------------------------
+
+    public void ShowTowerRange(GridObject gridObject) {
+        gridBuildingSystem.towerRange.position = gridObject.GetWorldPosition() + gridBuildingSystem.GetBuildOffset();
+        gridBuildingSystem.towerRange.localScale = new Vector3(range*2, range*2);
+        gridBuildingSystem.towerRange.gameObject.SetActive(true);
+    }
+
+    public void HideRange() {
+        gridBuildingSystem.towerRange.gameObject.SetActive(false);
+    }
 
     // drawing a red gizmo around the selected tower that indicates the towers range
     private void OnDrawGizmosSelected() {

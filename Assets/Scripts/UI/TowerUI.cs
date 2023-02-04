@@ -41,12 +41,12 @@ public class TowerUI : MonoBehaviour {
 
         if (targetedGridObject == gridObject && towerUI.activeSelf) {
             // if the same tile is clicked again, hide the Upgrade/Sell-Menu
-            towerUI.SetActive(false);
+            Hide();
         } else {
             // show & move the Upgrade/Sell-Menu over the selected Tower
             targetedGridObject = gridObject;
             transform.position = gridObject.GetWorldPosition();
-            UpdateUIText();
+            UpdateUI();
             towerUI.SetActive(true);
         }
     }
@@ -54,7 +54,7 @@ public class TowerUI : MonoBehaviour {
 
     public void Upgrade() {
         targetedGridObject.GetTower().UpgradeTower();
-        UpdateUIText();
+        UpdateUI();
     }
 
 
@@ -68,13 +68,15 @@ public class TowerUI : MonoBehaviour {
     }
 
 
-    private void UpdateUIText() {
+    private void UpdateUI() {
         upgradeText.text = "$" + targetedGridObject.GetTower().GetUpgradeCost().ToString();
         sellText.text    = "$" + targetedGridObject.GetTower().GetSellingPrice().ToString();
+        targetedGridObject.GetTower().ShowTowerRange(targetedGridObject);
     }
 
 
     public void Hide() {
+        targetedGridObject?.GetTower()?.HideRange();
         targetedGridObject = null;
         towerUI.SetActive(false);
     }
