@@ -7,9 +7,8 @@ public class TowerTypeSO : ScriptableObject {
     [Header("Tower Name")]
     public string towerName;
 
-    [Header("Tower Visuals")]
+    [Header("Tower Prefabs")]
     public Transform prefab;
-    public Transform visual;
     public GameObject projectilePrefab;
 
     [Header("Tower Stats")]

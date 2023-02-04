@@ -18,7 +18,6 @@ public class DoomRay : MonoBehaviour {
     [Header("Ray Origin")]
     public Transform doomRayOrigin;
 
-
     private LineRenderer rayLine;
     private float fireTimer;
 

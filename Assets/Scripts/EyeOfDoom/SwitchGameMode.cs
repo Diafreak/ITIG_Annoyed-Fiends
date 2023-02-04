@@ -34,7 +34,6 @@ public class SwitchGameMode : MonoBehaviour {
         if (Input.GetKeyDown("space")) {
             ray.enabled = !ray.enabled;
             eyeMovement.enabled = !eyeMovement.enabled;
-            gameManager.crosshairUI.SetActive(!gameManager.crosshairUI.activeSelf);
         }
     }
 

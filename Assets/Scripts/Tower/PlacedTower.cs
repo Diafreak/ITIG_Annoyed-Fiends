@@ -35,10 +35,12 @@ public class PlacedTower : MonoBehaviour {
     private Collider[] blockedEnemies;
 
     private GridBuildingSystem gridBuildingSystem;
+    private TowerShop towerShop;
 
 
     private void Start() {
         gridBuildingSystem = GridBuildingSystem.instance;
+        towerShop = TowerShop.instance;
 
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
@@ -86,6 +88,10 @@ public class PlacedTower : MonoBehaviour {
 
     public int GetSellingPrice() {
         return sellingPrice;
+    }
+
+    public float GetRange() {
+        return range;
     }
 
 
@@ -143,7 +149,6 @@ public class PlacedTower : MonoBehaviour {
 
     public void SellTower() {
         PlayerStats.AddMoney(sellingPrice);
-        HideRange();
         DestroySelf();
     }
 
@@ -155,14 +160,38 @@ public class PlacedTower : MonoBehaviour {
 
 
     private void OnDestroy() {
-        if (towerName == "Gargoyle") {
-            foreach (Collider enemy in blockedEnemies) {
-                if (enemy.tag == enemyTag) {
-                    enemy.gameObject.GetComponent<Pathfinding>().UnblockEnemy();
-                }
+        if (towerName != "Gargoyle") {
+            return;
+        }
+
+        UnblockEnemies();
+        // reactivate the Placement-Tile on the Gargoyle's Position
+        GridObject gargoyle = gridBuildingSystem.GetGridXZ().GetGridObject(transform.position);
+        gridBuildingSystem.ReactivateGridTile(gargoyle.GetGridPosition().x, gargoyle.GetGridPosition().z);
+    }
+
+
+
+    // ------------------------------
+    // Gargoyle
+    // ------------------------------
+
+    private void UnblockEnemies() {
+        foreach (Collider enemy in blockedEnemies) {
+            if (enemy.tag == enemyTag) {
+                enemy.gameObject.GetComponent<Enemy>().UnblockEnemy();
             }
-            GridObject gargoyle = gridBuildingSystem.GetGridXZ().GetGridObject(transform.position);
-            gridBuildingSystem.ReactivateGridTile(gargoyle.GetGridPosition().x, gargoyle.GetGridPosition().z);
+        }
+    }
+
+
+    private void BlockEnemies() {
+        blockedEnemies = Physics.OverlapSphere(transform.position + gridBuildingSystem.GetBuildOffset(), gridBuildingSystem.GetCellSize()/2);
+
+        foreach (Collider enemy in blockedEnemies) {
+            if (enemy.tag == enemyTag) {
+                enemy.transform.GetComponent<Enemy>().BlockEnemy();
+            }
         }
     }
 
@@ -175,12 +204,8 @@ public class PlacedTower : MonoBehaviour {
     private void Update() {
 
         if (towerName == "Gargoyle") {
-            blockedEnemies = Physics.OverlapSphere(transform.position + gridBuildingSystem.GetBuildOffset(), 5);
-            foreach (Collider enemy in blockedEnemies) {
-                if (enemy.tag == enemyTag) {
-                    enemy.transform.GetComponent<Pathfinding>().BlockEnemy();
-                }
-            }
+            towerShop.LockGargoyle();
+            BlockEnemies();
             DestroySelf();
             return;
         }
@@ -189,11 +214,7 @@ public class PlacedTower : MonoBehaviour {
             return;
         }
 
-        // target lock on
-        Vector3 direction = target.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(direction);
-        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        LockOnTarget();
 
         if (fireCountdown <= 0f) {
             Shoot();
@@ -202,6 +223,7 @@ public class PlacedTower : MonoBehaviour {
 
         fireCountdown -= Time.deltaTime;
     }
+
 
     // finding the closest enemy in range
     private void UpdateTarget() {
@@ -217,12 +239,19 @@ public class PlacedTower : MonoBehaviour {
             }
         }
 
+        target = null;
+
         if (nearestEnemy != null && shortestDistance <= range) {
             target = nearestEnemy.transform;
         }
-        else {
-            target = null;
-        }
+    }
+
+
+    private void LockOnTarget() {
+        Vector3 direction = target.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
 
@@ -238,19 +267,10 @@ public class PlacedTower : MonoBehaviour {
     }
 
 
-    // ------------------------------
-    // Show Tower-Range
-    // ------------------------------
 
-    public void ShowTowerRange(GridObject gridObject) {
-        gridBuildingSystem.towerRange.position = gridObject.GetWorldPosition() + gridBuildingSystem.GetBuildOffset();
-        gridBuildingSystem.towerRange.localScale = new Vector3(range*2, range*2);
-        gridBuildingSystem.towerRange.gameObject.SetActive(true);
-    }
-
-    public void HideRange() {
-        gridBuildingSystem.towerRange.gameObject.SetActive(false);
-    }
+    // ------------------------------
+    // Debug
+    // ------------------------------
 
     // drawing a red gizmo around the selected tower that indicates the towers range
     private void OnDrawGizmosSelected() {

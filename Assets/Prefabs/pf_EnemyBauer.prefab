@@ -264,7 +264,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4033222630682075389}
   - component: {fileID: 3293437406559839957}
-  - component: {fileID: -1660055457386631985}
   - component: {fileID: 2666445697759459671}
   m_Layer: 0
   m_Name: pf_EnemyBauer
@@ -303,18 +302,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 3, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-1660055457386631985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8981170466004061855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 127b90df825dea2439d2cd376fa8c379, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2666445697759459671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,11 +314,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6949e0323f74104cbd85c07ba0317a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHp: 100
+  startHP: 100
   killValue: 100
   speed: 10
   healthBar: {fileID: 4141758708601603863}
-  isBlocked: 0
 --- !u!1001 &2108922556856147895
 PrefabInstance:
   m_ObjectHideFlags: 0

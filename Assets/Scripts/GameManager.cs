@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour {
     public GameObject gameOverUI;
     public GameObject levelWonUI;
     public GameObject pauseUI;
-    public GameObject crosshairUI;
 
 
     private bool gameOver = false;
@@ -77,7 +76,7 @@ public class GameManager : MonoBehaviour {
 
     public void WinLevel() {
         levelWonUI.SetActive(true);
-        UnlockMouse();
+        DisableEyeOfDoom();
         PlayerPrefs.SetInt("levelsUnlocked", nextLevel);
     }
 
@@ -85,7 +84,7 @@ public class GameManager : MonoBehaviour {
         Debug.Log("Game Over");
         gameOver = true;
         gameOverUI.SetActive(true);
-        UnlockMouse();
+        DisableEyeOfDoom();
         Time.timeScale = 0f;
     }
 
@@ -100,32 +99,26 @@ public class GameManager : MonoBehaviour {
         if (pauseUI.activeSelf) {
             previousGameSpeed = Time.timeScale;
             Time.timeScale = 0f;
-            UnlockMouse();
+            DisableEyeOfDoom();
         } else {
             Time.timeScale = previousGameSpeed;
             if (eyeWasPreviouslyActive) {
-                LockMouse();
+                EnableEyeOfDoom();
             }
         }
     }
 
 
     // ------------------------------
-    // Mouse for Eye of Doom
+    // Eye of Doom
     // ------------------------------
 
-    private void UnlockMouse() {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        crosshairUI.SetActive(false);
+    private void DisableEyeOfDoom() {
         eyeWasPreviouslyActive = switchGameMode.IsEyeOfDoomActive();
         switchGameMode.DisableEye();
     }
 
-    private void LockMouse() {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        crosshairUI.SetActive(true);
+    private void EnableEyeOfDoom() {
         switchGameMode.EnableEye();
     }
 
@@ -141,7 +134,7 @@ public class GameManager : MonoBehaviour {
     private void ContinueGameAfterWin() {
         levelWonUI.SetActive(false);
         if (eyeWasPreviouslyActive) {
-            LockMouse();
+            EnableEyeOfDoom();
         }
     }
 

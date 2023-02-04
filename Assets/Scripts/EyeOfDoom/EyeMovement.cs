@@ -3,30 +3,38 @@ using UnityEngine;
 
 public class EyeMovement : MonoBehaviour {
 
+    [Header("Sensitivity")]
     public float sensitivityX;
     public float sensitivityY;
 
-    public Transform eyeBall;
+    [Header("Eye Camera")]
     public Transform eyeCam;
+    public Transform eyeBall;
+
+    [Header("UI")]
+    public GameObject crosshairUI;
+
+    [Header("Mouse Smoothing (Higher Value = less smoothing)")]
+    public float smoothing = 10f;
+    private float xAccumulator;
+    private float yAccumulator;
 
     private float rotationX;
     private float rotationY;
-
-    public float smoothing = 10f;
-    float xAccumulator;
-    float yAccumulator;
-
 
 
     private void OnEnable() {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        crosshairUI.SetActive(true);
     }
 
     private void OnDisable() {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        crosshairUI.SetActive(false);
     }
+
 
     private void Update() {
         //reads mouse input

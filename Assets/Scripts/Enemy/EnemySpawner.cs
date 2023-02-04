@@ -7,22 +7,21 @@ public class EnemySpawner : MonoBehaviour {
     public static int enemiesAlive = 0;
 
     [Header("Enemy Types")]
-    public Transform towner;
-    public Transform dorfschranze;
-    public Transform boss;
+    public EnemyTypeSO townerSO;
+    public EnemyTypeSO dorfschranzeSO;
+    public EnemyTypeSO holzfaellerSO;
 
     [Header("Attributes")]
     public float timeBetweenWaves = 5f;
     public float waveSpawnRate = 1f;
     public float countdown = 2f;
-    public int waveNumber = 0;
+    public int waveNumber;
 
-    [Header("UI Text Fields")]
-    private StartAndSpeedupButton startAndSpeedupButton;
-
-    private GameManager gameManager;
     private int maxWaveNumber;
-    private bool isEndless = false;
+    private bool isEndless;
+
+    private StartAndSpeedupButton startAndSpeedupButton;
+    private GameManager gameManager;
 
     // Singleton
     public static EnemySpawner instance;
@@ -39,6 +38,7 @@ public class EnemySpawner : MonoBehaviour {
     private void Start() {
         enemiesAlive = 0;
         waveNumber = 0;
+        isEndless = false;
 
         gameManager = GameManager.instance;
         startAndSpeedupButton = StartAndSpeedupButton.instance;
@@ -74,7 +74,7 @@ public class EnemySpawner : MonoBehaviour {
 
 
     private void SpawnEnemy() {
-        Instantiate(towner, transform.position, transform.rotation);
+        Enemy.Create(transform.position, townerSO);
     }
 
 
