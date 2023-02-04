@@ -6,7 +6,8 @@ public class EyeMovement : MonoBehaviour {
     public float sensitivityX;
     public float sensitivityY;
 
-    public Transform orientation;
+    public Transform eyeBall;
+    public Transform eyeCam;
 
     private float rotationX;
     private float rotationY;
@@ -43,7 +44,8 @@ public class EyeMovement : MonoBehaviour {
         rotationX = Mathf.Clamp(rotationX, -90f, 90f);
 
         //rotates camera
-        transform.rotation = Quaternion.Euler(rotationX, rotationY, 0);
-        orientation.rotation = Quaternion.Euler(0, rotationY, 0);
+        eyeCam.rotation = Quaternion.Euler(rotationX, rotationY, 0);
+        //rotates eye to follow Camera
+        eyeBall.localRotation = Quaternion.Euler(90, rotationY, 0);
     }
 }

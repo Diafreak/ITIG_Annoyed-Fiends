@@ -23,9 +23,9 @@ public class SwitchGameMode : MonoBehaviour {
     private void Start() {
         gameManager = GameManager.instance;
 
-        ray         = gameObject.GetComponent<DoomRay>();
+        ray = GetComponent<DoomRay>();
         ray.enabled = false;
-        eyeMovement         = gameObject.GetComponent<EyeMovement>();
+        eyeMovement = GetComponent<EyeMovement>();
         eyeMovement.enabled = false;
     }
 
