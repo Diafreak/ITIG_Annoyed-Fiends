@@ -26,6 +26,10 @@ public class GridBuildingSystem : MonoBehaviour {
     public GameObject pathTilesLayout;
     public float pathTileYOffset = 0f;
 
+    // UI for Upgrading/Selling a Tower
+    [Header("Tower UI")]
+    public TowerUI towerUI;
+
     // Array that holds all Tile-types at the corresponding grid-coordinates to check tower placement
     private GridTile[,] gridTiles;
 
@@ -33,10 +37,6 @@ public class GridBuildingSystem : MonoBehaviour {
     // used to toggle the visual representation of placeable tiles for a tower
     private GameObject pathTiles;
     private GameObject placeableTiles;
-
-    // UI for Upgrading/Selling a Tower
-    [Header("Tower UI")]
-    public TowerUI towerUI;
 
     // Singleton
     public static GridBuildingSystem instance;
@@ -139,7 +139,7 @@ public class GridBuildingSystem : MonoBehaviour {
         PlayerStats.SubtractMoney(currentlySelectedTowerTypeSO.price);
 
         // Hide placement-tile on the Tower-position
-        gridTiles[gridObject.GetGridPosition().x, gridObject.GetGridPosition().z].gameObject.SetActive(false);
+        DeactivateGridTile(gridObject.GetGridPosition().x, gridObject.GetGridPosition().z);
     }
 
 
@@ -156,7 +156,7 @@ public class GridBuildingSystem : MonoBehaviour {
 
 
     // ------------------------------
-    // Tiles
+    // Grid Tiles
     // ------------------------------
 
     // Convert the world coordinates of the LayoutTiles in Grid-Coordinates and save them in separate arrays
@@ -165,11 +165,10 @@ public class GridBuildingSystem : MonoBehaviour {
 
         // load Tile-Layout from Map into array
         placeableTilesLayout.SetActive(true);
-        GameObject[] placeableTilesFromLayout = GameObject.FindGameObjectsWithTag("Placeable");
-        placeableTilesLayout.SetActive(false);
-
         pathTilesLayout.SetActive(true);
+        GameObject[] placeableTilesFromLayout = GameObject.FindGameObjectsWithTag("Placeable");
         GameObject[] pathTilesFromLayout = GameObject.FindGameObjectsWithTag("Path");
+        placeableTilesLayout.SetActive(false);
         pathTilesLayout.SetActive(false);
 
         InitializeGridTileArray(placeableTilesFromLayout, GridTile.TileType.Placeable, placeableTiles);
@@ -186,7 +185,7 @@ public class GridBuildingSystem : MonoBehaviour {
             var coordinates = grid.GetXZ(tile.transform.position);
             gridTiles[coordinates.x, coordinates.z] = GridTile.Create(grid.GetWorldPosition(coordinates.x, coordinates.z), gridTileSO, tileParent.transform, type);
         }
-        tileParent.transform.position += new Vector3(0, yOffset, 0);
+        tileParent.transform.position = new Vector3(0, yOffset, 0);
         tileParent.SetActive(false);
     }
 
@@ -222,6 +221,11 @@ public class GridBuildingSystem : MonoBehaviour {
 
     public GridTile GetGridTile(int x, int z) {
         return gridTiles[x, z];
+    }
+
+
+    private void DeactivateGridTile(int x, int z) {
+        gridTiles[x, z].gameObject.SetActive(false);
     }
 
 

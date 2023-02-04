@@ -158,14 +158,38 @@ public class PlacedTower : MonoBehaviour {
 
 
     private void OnDestroy() {
-        if (towerName == "Gargoyle") {
-            foreach (Collider enemy in blockedEnemies) {
-                if (enemy.tag == enemyTag) {
-                    enemy.gameObject.GetComponent<Enemy>().UnblockEnemy();
-                }
+        if (towerName != "Gargoyle") {
+            return;
+        }
+
+        UnblockEnemies();
+        // reactivate the Placement-Tile on the Gargoyle's Position
+        GridObject gargoyle = gridBuildingSystem.GetGridXZ().GetGridObject(transform.position);
+        gridBuildingSystem.ReactivateGridTile(gargoyle.GetGridPosition().x, gargoyle.GetGridPosition().z);
+    }
+
+
+
+    // ------------------------------
+    // Gargoyle
+    // ------------------------------
+
+    private void UnblockEnemies() {
+        foreach (Collider enemy in blockedEnemies) {
+            if (enemy.tag == enemyTag) {
+                enemy.gameObject.GetComponent<Enemy>().UnblockEnemy();
             }
-            GridObject gargoyle = gridBuildingSystem.GetGridXZ().GetGridObject(transform.position);
-            gridBuildingSystem.ReactivateGridTile(gargoyle.GetGridPosition().x, gargoyle.GetGridPosition().z);
+        }
+    }
+
+
+    private void BlockEnemies() {
+        blockedEnemies = Physics.OverlapSphere(transform.position + gridBuildingSystem.GetBuildOffset(), gridBuildingSystem.GetCellSize()/2);
+
+        foreach (Collider enemy in blockedEnemies) {
+            if (enemy.tag == enemyTag) {
+                enemy.transform.GetComponent<Enemy>().BlockEnemy();
+            }
         }
     }
 
@@ -178,12 +202,7 @@ public class PlacedTower : MonoBehaviour {
     private void Update() {
 
         if (towerName == "Gargoyle") {
-            blockedEnemies = Physics.OverlapSphere(transform.position + gridBuildingSystem.GetBuildOffset(), 5);
-            foreach (Collider enemy in blockedEnemies) {
-                if (enemy.tag == enemyTag) {
-                    enemy.transform.GetComponent<Enemy>().BlockEnemy();
-                }
-            }
+            BlockEnemies();
             DestroySelf();
             return;
         }
@@ -217,11 +236,10 @@ public class PlacedTower : MonoBehaviour {
             }
         }
 
+        target = null;
+
         if (nearestEnemy != null && shortestDistance <= range) {
             target = nearestEnemy.transform;
-        }
-        else {
-            target = null;
         }
     }
 
