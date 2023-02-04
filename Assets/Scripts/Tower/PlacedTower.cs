@@ -161,7 +161,7 @@ public class PlacedTower : MonoBehaviour {
         if (towerName == "Gargoyle") {
             foreach (Collider enemy in blockedEnemies) {
                 if (enemy.tag == enemyTag) {
-                    enemy.gameObject.GetComponent<Pathfinding>().UnblockEnemy();
+                    enemy.gameObject.GetComponent<Enemy>().UnblockEnemy();
                 }
             }
             GridObject gargoyle = gridBuildingSystem.GetGridXZ().GetGridObject(transform.position);
@@ -181,7 +181,7 @@ public class PlacedTower : MonoBehaviour {
             blockedEnemies = Physics.OverlapSphere(transform.position + gridBuildingSystem.GetBuildOffset(), 5);
             foreach (Collider enemy in blockedEnemies) {
                 if (enemy.tag == enemyTag) {
-                    enemy.transform.GetComponent<Pathfinding>().BlockEnemy();
+                    enemy.transform.GetComponent<Enemy>().BlockEnemy();
                 }
             }
             DestroySelf();
