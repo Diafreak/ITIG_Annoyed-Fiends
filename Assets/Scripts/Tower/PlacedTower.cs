@@ -35,10 +35,12 @@ public class PlacedTower : MonoBehaviour {
     private Collider[] blockedEnemies;
 
     private GridBuildingSystem gridBuildingSystem;
+    private TowerShop towerShop;
 
 
     private void Start() {
         gridBuildingSystem = GridBuildingSystem.instance;
+        towerShop = TowerShop.instance;
 
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
@@ -202,6 +204,7 @@ public class PlacedTower : MonoBehaviour {
     private void Update() {
 
         if (towerName == "Gargoyle") {
+            towerShop.LockGargoyle();
             BlockEnemies();
             DestroySelf();
             return;

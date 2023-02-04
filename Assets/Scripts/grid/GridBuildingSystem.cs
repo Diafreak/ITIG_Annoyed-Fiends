@@ -32,7 +32,6 @@ public class GridBuildingSystem : MonoBehaviour {
 
     // Array that holds all Tile-types at the corresponding grid-coordinates to check tower placement
     private GridTile[,] gridTiles;
-
     // Parents that have all their specific tiles as their children
     // used to toggle the visual representation of placeable tiles for a tower
     private GameObject pathTiles;
