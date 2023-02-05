@@ -7,6 +7,12 @@ public class PlayerUIButtonHandler : MonoBehaviour {
     [Header("Scenes")]
     public string menuSceneName = "MainMenu";
 
+    [Header("UI Elements")]
+    public GameObject pauseUI;
+    public GameObject settingsUI;
+
+    private float previousGameSpeed;
+
     private GameManager gameManager;
     private EnemySpawner enemySpawner;
 
@@ -14,6 +20,15 @@ public class PlayerUIButtonHandler : MonoBehaviour {
     private void Start() {
         gameManager = GameManager.instance;
         enemySpawner = EnemySpawner.instance;
+        pauseUI.SetActive(false);
+        settingsUI.SetActive(false);
+    }
+
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            TogglePauseMenuVisibility();
+        }
     }
 
 
@@ -41,6 +56,33 @@ public class PlayerUIButtonHandler : MonoBehaviour {
 
     // PauseUI
     public void Continue() {
-        gameManager.TogglePauseMenuVisibility();
+        TogglePauseMenuVisibility();
     }
+
+    public void TogglePauseMenuVisibility() {
+
+        pauseUI.SetActive(!pauseUI.activeSelf);
+
+        if (pauseUI.activeSelf) {
+            previousGameSpeed = Time.timeScale;
+            Time.timeScale = 0f;
+            gameManager.DisableEyeOfDoom();
+        } else {
+            Time.timeScale = previousGameSpeed;
+            gameManager.EnableEyeOfDoom();
+        }
+    }
+
+
+    // SettingsUI
+    public void ShowSettingsUI() {
+        settingsUI.SetActive(true);
+        pauseUI.SetActive(false);
+    }
+
+    public void HideSettingsUI() {
+        settingsUI.SetActive(false);
+        pauseUI.SetActive(true);
+    }
+
 }

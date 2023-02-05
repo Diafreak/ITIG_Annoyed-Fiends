@@ -20,13 +20,11 @@ public class GameManager : MonoBehaviour {
     [Header("UI Elements")]
     public GameObject gameOverUI;
     public GameObject levelWonUI;
-    public GameObject pauseUI;
 
 
     private bool gameOver = false;
     private int currentWaveNumber = 0;
 
-    private float previousGameSpeed;
     private bool eyeWasPreviouslyActive;
 
     private SwitchGameMode switchGameMode;
@@ -44,7 +42,6 @@ public class GameManager : MonoBehaviour {
 
         gameOverUI.SetActive(false);
         levelWonUI.SetActive(false);
-        pauseUI.SetActive(false);
     }
 
 
@@ -62,10 +59,6 @@ public class GameManager : MonoBehaviour {
 
         if (PlayerStats.lives <= 0) {
             LostLevel();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            TogglePauseMenuVisibility();
         }
     }
 
@@ -89,38 +82,22 @@ public class GameManager : MonoBehaviour {
     }
 
 
-    // ------------------------------
-    // Pause Menu
-    // ------------------------------
-
-    public void TogglePauseMenuVisibility() {
-        pauseUI.SetActive(!pauseUI.activeSelf);
-
-        if (pauseUI.activeSelf) {
-            previousGameSpeed = Time.timeScale;
-            Time.timeScale = 0f;
-            DisableEyeOfDoom();
-        } else {
-            Time.timeScale = previousGameSpeed;
-            if (eyeWasPreviouslyActive) {
-                EnableEyeOfDoom();
-            }
-        }
-    }
-
 
     // ------------------------------
     // Eye of Doom
     // ------------------------------
 
-    private void DisableEyeOfDoom() {
+    public void DisableEyeOfDoom() {
         eyeWasPreviouslyActive = switchGameMode.IsEyeOfDoomActive();
         switchGameMode.DisableEye();
     }
 
-    private void EnableEyeOfDoom() {
-        switchGameMode.EnableEye();
+    public void EnableEyeOfDoom() {
+        if (eyeWasPreviouslyActive) {
+            switchGameMode.EnableEye();
+        }
     }
+
 
 
     // ------------------------------
@@ -137,6 +114,7 @@ public class GameManager : MonoBehaviour {
             EnableEyeOfDoom();
         }
     }
+
 
 
     // ------------------------------
