@@ -26,7 +26,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: PostProcessing Profile
+  m_Name: PostProcessing Map_1
   m_EditorClassIdentifier: 
   components:
   - {fileID: -1090142194532069436}
@@ -48,7 +48,7 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.8598344, z: 0.8711419, w: 0.186418}
+    m_Value: {x: 1, y: 0.77752304, z: 0.78034705, w: 0.2263647}
   midtones:
     m_OverrideState: 0
     m_Value: {x: 1, y: 1, z: 1, w: -0.07989347}
@@ -82,13 +82,13 @@ MonoBehaviour:
   active: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.78
+    m_Value: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.35
+    m_Value: 2.5
   scatter:
     m_OverrideState: 1
-    m_Value: 0.489
+    m_Value: 0.58
   clamp:
     m_OverrideState: 1
     m_Value: 65472
@@ -100,7 +100,7 @@ MonoBehaviour:
     m_Value: 0
   skipIterations:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 2
   dirtTexture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
@@ -125,8 +125,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: {x: 1, y: 1, z: 1, w: 0}
   gamma:
-    m_OverrideState: 0
-    m_Value: {x: 0.9933883, y: 1, z: 0.9970726, w: -0.013315582}
+    m_OverrideState: 1
+    m_Value: {x: 0.9933883, y: 1, z: 0.9970726, w: 0.026631165}
   gain:
     m_OverrideState: 0
     m_Value: {x: 1, y: 1, z: 1, w: -0.039946742}
