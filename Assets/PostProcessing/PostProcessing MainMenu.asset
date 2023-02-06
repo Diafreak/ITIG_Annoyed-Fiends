@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: PostProcessing MainMenu
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 8242703405374762864}
   - {fileID: 3979475913286294347}
   - {fileID: 3796622602697172688}
-  - {fileID: 6201408116824505274}
 --- !u!114 &3796622602697172688
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -29,16 +27,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 558a8e2b6826cf840aae193990ba9f2e, type: 3}
   m_Name: ShadowsMidtonesHighlights
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   shadows:
-    m_OverrideState: 1
-    m_Value: {x: 1, y: 0.6761654, z: 0.43073255, w: 0.039946623}
+    m_OverrideState: 0
+    m_Value: {x: 1, y: 0.9798783, z: 0.98128325, w: -0.024694612}
   midtones:
-    m_OverrideState: 1
-    m_Value: {x: 1, y: 0.9704716, z: 0.92193747, w: -0.26631156}
+    m_OverrideState: 0
+    m_Value: {x: 1, y: 0.9704716, z: 0.92193747, w: 0.000000012557669}
   highlights:
-    m_OverrideState: 1
-    m_Value: {x: 0.9919473, y: 1, z: 0.9821082, w: -1}
+    m_OverrideState: 0
+    m_Value: {x: 0.9919473, y: 1, z: 0.9821082, w: -0.0013314333}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0
@@ -69,10 +67,10 @@ MonoBehaviour:
     m_Value: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 4.46
+    m_Value: 6
   scatter:
     m_OverrideState: 1
-    m_Value: 0.58
+    m_Value: 0.5
   clamp:
     m_OverrideState: 1
     m_Value: 65472
@@ -92,41 +90,3 @@ MonoBehaviour:
   dirtIntensity:
     m_OverrideState: 0
     m_Value: 0
---- !u!114 &6201408116824505274
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5485954d14dfb9a4c8ead8edb0ded5b1, type: 3}
-  m_Name: LiftGammaGain
-  m_EditorClassIdentifier: 
-  active: 1
-  lift:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
-  gamma:
-    m_OverrideState: 1
-    m_Value: {x: 0.9933883, y: 1, z: 0.9970726, w: 0.46604526}
-  gain:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: -0.039946742}
---- !u!114 &8242703405374762864
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97c23e3b12dc18c42a140437e53d3951, type: 3}
-  m_Name: Tonemapping
-  m_EditorClassIdentifier: 
-  active: 1
-  mode:
-    m_OverrideState: 1
-    m_Value: 2
