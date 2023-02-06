@@ -19,6 +19,9 @@ public class LevelSelectUIButtonHandler : MonoBehaviour {
     [Header("Reset Player Prefs")]
     public int levelForPlayerPrefs = 0;
 
+    [Header("Main Menu Scene")]
+    public string mainMenuSceneName = "MainMenu";
+
 
     private void Awake() {
         // just for Resetting the PlayerPrefs
@@ -46,5 +49,10 @@ public class LevelSelectUIButtonHandler : MonoBehaviour {
 
     public void SelectLevel(string levelName) {
         SceneManager.LoadScene(levelName);
+    }
+
+
+    public void BackToMainMenu() {
+        SceneManager.LoadScene("MainMenu");
     }
 }

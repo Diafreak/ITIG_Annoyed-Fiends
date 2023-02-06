@@ -1,12 +1,29 @@
 using System.Collections.Generic;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class SettingsUI : MonoBehaviour {
 
     [Header("Screen Resolution")]
     public TMP_Dropdown resolutionDropdown;
+
+    [Header("Audio Mixer")]
+    public AudioMixer masterMixer;
+
+    [Header("Sliders")]
+    public Slider brightnessSlider;
+    public Slider musicSlider;
+    public Slider sfxSlider;
+
+    [Header("Volume for Exposure")]
+    public Volume postProcessingVolume;
+
+    [Header("Brightness-Slider Snap Threshold")]
+    public float brightnessSliderThreshold = 0.1f;
 
     private Resolution[] screenResolutions;
     private List<Resolution> filteredResolutions;
@@ -17,8 +34,15 @@ public class SettingsUI : MonoBehaviour {
 
     private void Start() {
         InitializeScreenResolutionDropdown();
+        InitializeAudioSliders();
+        InitializeBrightnessSlider();
     }
 
+
+
+    // ------------------------------
+    // Screen Resolution
+    // ------------------------------
 
     private void InitializeScreenResolutionDropdown() {
         screenResolutions = Screen.resolutions;
@@ -61,5 +85,64 @@ public class SettingsUI : MonoBehaviour {
 
     public void ToggleFullScreen(bool isFullscreen) {
         Screen.fullScreen = isFullscreen;
+    }
+
+
+
+    // ------------------------------
+    // Audio
+    // ------------------------------
+
+    private void InitializeAudioSliders() {
+        // if PlayerPrefs aren't set yet, the values from the masterMixer are used instead
+        masterMixer.GetFloat("MusicVolume", out float musicVolume);
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", musicVolume);
+
+        masterMixer.GetFloat("SFXVolume", out float sfxVolume);
+        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", sfxVolume);
+    }
+
+
+    public void AdjustMusicVolume(float volume) {
+        masterMixer.SetFloat("MusicVolume", volume);
+        // Mute
+        if (volume <= musicSlider.minValue) {
+            masterMixer.SetFloat("MusicVolume", -80f);
+        }
+        // Save Volume
+        PlayerPrefs.SetFloat("MusicVolume", volume);
+    }
+
+
+    public void AdjustSFXVolume(float volume) {
+        masterMixer.SetFloat("SFXVolume", volume);
+        // Mute
+        if (volume <= musicSlider.minValue) {
+            masterMixer.SetFloat("SFXVolume", -80f);
+        }
+        // Save Volume
+        PlayerPrefs.SetFloat("SFXVolume", volume);
+    }
+
+
+
+    // ------------------------------
+    // Brightness
+    // ------------------------------
+
+    private void InitializeBrightnessSlider() {
+        brightnessSlider.value = PlayerPrefs.GetFloat("Brightness", 0);
+    }
+
+
+    public void AdjustBrightness(float brightnessValue) {
+        if (brightnessValue >= -brightnessSliderThreshold && brightnessValue <= brightnessSliderThreshold) {
+            brightnessValue = 0f;
+            brightnessSlider.value = brightnessValue;
+        }
+        postProcessingVolume.profile.TryGet(out ColorAdjustments colorAdjustments);
+        colorAdjustments.postExposure.value = brightnessValue;
+        // Save Brightness
+        PlayerPrefs.SetFloat("Brightness", brightnessValue);
     }
 }
