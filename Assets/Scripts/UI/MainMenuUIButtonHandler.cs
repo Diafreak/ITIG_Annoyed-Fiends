@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class MainMenuUI : MonoBehaviour {
+public class MainMenuUIButtonHandler : MonoBehaviour {
 
     [Header("Level-Select Scene Name")]
     public string levelName = "LevelSelect";
