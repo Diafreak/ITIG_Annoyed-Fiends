@@ -20,8 +20,8 @@ public class SettingsUI : MonoBehaviour {
     public Slider brightnessSlider;
     public Slider musicSlider;
     public Slider sfxSlider;
-    public Slider sensitivityXSlider;
-    public Slider sensitivityYSlider;
+    public Slider sensitivitySlider;
+    public Slider smoothingSlider;
 
     [Header("Volume for Exposure")]
     public Volume postProcessingVolume;
@@ -41,7 +41,7 @@ public class SettingsUI : MonoBehaviour {
         InitializeFullscreenToggle();
         InitializeAudioSliders();
         InitializeBrightnessSlider();
-        InitializeSensitivitySlider();
+        InitializeMouseSlider();
     }
 
 
@@ -162,18 +162,18 @@ public class SettingsUI : MonoBehaviour {
     // Mouse Sensitivity
     // ------------------------------
 
-    private void InitializeSensitivitySlider() {
-        // sensitivityXSlider.value = PlayerPrefs.GetFloat("SensitivityX", 0);
-        // sensitivityYSlider.value = PlayerPrefs.GetFloat("SensitivityY", 0);
+    private void InitializeMouseSlider() {
+        // sensitivitySlider.value = PlayerPrefs.GetInt("MouseSensitivity", 250);
+        // smoothingSlider.value   = PlayerPrefs.GetFloat("MouseSmoothing", 0);
     }
 
 
-    public void AdjustSensitivityX(float sensitivityX) {
-        // PlayerPrefs.SetFloat("SensitivityX", sensitivityX);
+    public void AdjustSensitivity(int sensitivity) {
+        // PlayerPrefs.SetInt("MouseSensitivity", sensitivity);
     }
 
 
-    public void AdjustSensitivityY(float sensitivityY) {
-        // PlayerPrefs.SetFloat("SensitivityY", sensitivityY);
+    public void AdjustMouseSmoothing(float smoothing) {
+        // PlayerPrefs.SetFloat("MouseSmoothing", smoothing);
     }
 }
