@@ -6,10 +6,12 @@ using TMPro;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
+
 public class SettingsUI : MonoBehaviour {
 
     [Header("Screen Resolution")]
     public TMP_Dropdown resolutionDropdown;
+    public Toggle fullscreenToggle;
 
     [Header("Audio Mixer")]
     public AudioMixer masterMixer;
@@ -18,6 +20,8 @@ public class SettingsUI : MonoBehaviour {
     public Slider brightnessSlider;
     public Slider musicSlider;
     public Slider sfxSlider;
+    public Slider sensitivityXSlider;
+    public Slider sensitivityYSlider;
 
     [Header("Volume for Exposure")]
     public Volume postProcessingVolume;
@@ -34,10 +38,11 @@ public class SettingsUI : MonoBehaviour {
 
     private void Start() {
         InitializeScreenResolutionDropdown();
+        InitializeFullscreenToggle();
         InitializeAudioSliders();
         InitializeBrightnessSlider();
+        InitializeSensitivitySlider();
     }
-
 
 
     // ------------------------------
@@ -80,6 +85,11 @@ public class SettingsUI : MonoBehaviour {
     public void SetScreenResolution(int index) {
         Resolution selectedResolution = filteredResolutions[index];
         Screen.SetResolution(selectedResolution.width, selectedResolution.height, Screen.fullScreen);
+    }
+
+
+    public void InitializeFullscreenToggle() {
+        fullscreenToggle.isOn = Screen.fullScreen;
     }
 
 
@@ -144,5 +154,26 @@ public class SettingsUI : MonoBehaviour {
         colorAdjustments.postExposure.value = brightnessValue;
         // Save Brightness
         PlayerPrefs.SetFloat("Brightness", brightnessValue);
+    }
+
+
+
+    // ------------------------------
+    // Mouse Sensitivity
+    // ------------------------------
+
+    private void InitializeSensitivitySlider() {
+        // sensitivityXSlider.value = PlayerPrefs.GetFloat("SensitivityX", 0);
+        // sensitivityYSlider.value = PlayerPrefs.GetFloat("SensitivityY", 0);
+    }
+
+
+    public void AdjustSensitivityX(float sensitivityX) {
+        // PlayerPrefs.SetFloat("SensitivityX", sensitivityX);
+    }
+
+
+    public void AdjustSensitivityY(float sensitivityY) {
+        // PlayerPrefs.SetFloat("SensitivityY", sensitivityY);
     }
 }
