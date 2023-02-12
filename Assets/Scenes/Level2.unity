@@ -1301,8 +1301,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   townerSO: {fileID: 11400000, guid: 8f3231919f5eba84c982030e1eab2a61, type: 2}
-  dorfschranzeSO: {fileID: 0}
-  holzfaellerSO: {fileID: 0}
+  dorfschranzeSO: {fileID: 11400000, guid: 64c9862bcd6a6c54aacd93f21cda5422, type: 2}
+  holzfaellerSO: {fileID: 11400000, guid: acefb3af99ab606438ba0842271cb395, type: 2}
   timeBetweenWaves: 2
   waveSpawnRate: 1
   countdown: 2
