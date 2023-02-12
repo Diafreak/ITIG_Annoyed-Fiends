@@ -3,7 +3,67 @@ guid: 2995006a3705a844183ab666d8121bd6
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Arteries
+    second: {fileID: 2100000, guid: b422157b4f3296c4db9bbfd85ab399d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BackgroundWall
+    second: {fileID: 2100000, guid: d7750fcbf85536f4097b05cb9a33f2e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black
+    second: {fileID: 2100000, guid: 8eaff90b3ef4c714eb9d2e4d5fe97c46, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Crystal
+    second: {fileID: 2100000, guid: 8830c02b402c6a34087e19ee7af29533, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lava
+    second: {fileID: 2100000, guid: 5248b9c1212004444bd5922fd9809f1e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pathway
+    second: {fileID: 2100000, guid: e9ecb2f078151e94897c08312fd50d5e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Podium
+    second: {fileID: 2100000, guid: 62fab32ef777b2a43818d038477a30f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RockSocket
+    second: {fileID: 2100000, guid: c511ba32fc3fd314b83825d3f5d3eabb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rockwall V2
+    second: {fileID: 2100000, guid: 66589d5a64dc12344a4821d671ebf2d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shroom
+    second: {fileID: 2100000, guid: b3f32bf3187ee5f499d8e42f35bc6c8d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stalaknite
+    second: {fileID: 2100000, guid: 79807a78505a96443953569bbd6a4cb3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wooden plank
+    second: {fileID: 2100000, guid: b5eb8683b302ce240b92ed271c1175a6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -42,12 +102,12 @@ ModelImporter:
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1

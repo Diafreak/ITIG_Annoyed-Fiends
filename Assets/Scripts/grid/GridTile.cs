@@ -21,6 +21,11 @@ public class GridTile : MonoBehaviour {
     private void Start() {
         gridBuildingSystem = GridBuildingSystem.instance;
         tileRenderer = gameObject.GetComponent<Renderer>();
+
+        CheckIfPlayerHasEnoughMoney();
+
+        highlight.GetComponent<Renderer>().material.SetColor("_BaseColor", gridTileSO.highlightColor);
+        highlight.GetComponent<Renderer>().material.SetColor("_EmissionColor", gridTileSO.highlightEmissionColor);
     }
 
 
@@ -71,8 +76,10 @@ public class GridTile : MonoBehaviour {
     private void CheckIfPlayerHasEnoughMoney() {
         if (gridBuildingSystem.PlayerHasEnoughMoney()) {
             tileRenderer.material.SetColor("_BaseColor", gridTileSO.defaultColor);
+            tileRenderer.material.SetColor("_EmissionColor", gridTileSO.defaultEmissionColor);
         } else {
             tileRenderer.material.SetColor("_BaseColor", gridTileSO.insufficientMoneyColor);
+            tileRenderer.material.SetColor("_EmissionColor", gridTileSO.insufficientMoneyEmissionColor);
         }
     }
 

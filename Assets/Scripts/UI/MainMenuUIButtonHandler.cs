@@ -11,6 +11,11 @@ public class MainMenuUIButtonHandler : MonoBehaviour {
     public GameObject settingsUI;
 
 
+    private void Start() {
+        settingsUI.SetActive(false);
+    }
+
+
     public void StartGame() {
         SceneManager.LoadScene(levelName);
     }
