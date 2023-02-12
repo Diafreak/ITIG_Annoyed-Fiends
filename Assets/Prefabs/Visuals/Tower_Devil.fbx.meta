@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: e32c0e04a84629a44a1af325049046b6
+guid: 4568e9444a9f62341abff80d560e5f14
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DevilSkin
+    second: {fileID: 2100000, guid: a5389315351decf42a17038c9df1783a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyes
+    second: {fileID: 2100000, guid: 83f7cd82ad4c1ef41a7dc3fa586df124, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pants
+    second: {fileID: 2100000, guid: a785597233c8be34c88d1de735f990dd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Teeth
+    second: {fileID: 2100000, guid: 260182c942d5b6c46b03e6defb465075, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
