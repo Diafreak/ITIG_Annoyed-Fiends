@@ -163,13 +163,13 @@ public class SettingsUI : MonoBehaviour {
     // ------------------------------
 
     private void InitializeMouseSlider() {
-        // sensitivitySlider.value = PlayerPrefs.GetInt("MouseSensitivity", 250);
+        // sensitivitySlider.value = PlayerPrefs.GetFloat("MouseSensitivity", 250);
         // smoothingSlider.value   = PlayerPrefs.GetFloat("MouseSmoothing", 0);
     }
 
 
-    public void AdjustSensitivity(int sensitivity) {
-        // PlayerPrefs.SetInt("MouseSensitivity", sensitivity);
+    public void AdjustSensitivity(float sensitivity) {
+        // PlayerPrefs.SetFloat("MouseSensitivity", sensitivity);
     }
 
 

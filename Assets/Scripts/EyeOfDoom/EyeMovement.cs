@@ -55,5 +55,6 @@ public class EyeMovement : MonoBehaviour {
         eyeCam.rotation = Quaternion.Euler(rotationX, rotationY, 0);
         //rotates eye to follow Camera
         eyeBall.localRotation = Quaternion.Euler(90, rotationY, 0);
+        
     }
 }

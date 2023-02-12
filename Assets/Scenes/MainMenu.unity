@@ -311,7 +311,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 349554931}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
         m_MethodName: AdjustSFXVolume
         m_Mode: 0
@@ -770,7 +770,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 349554931}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
         m_MethodName: AdjustBrightness
         m_Mode: 0
@@ -1120,7 +1120,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 349554931}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
         m_MethodName: SetScreenResolution
         m_Mode: 0
@@ -1721,9 +1721,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 349554931}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
-        m_MethodName: AdjustSensitivityX
+        m_MethodName: AdjustSensitivity
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2745,7 +2745,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 349554931}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
         m_MethodName: ToggleFullScreen
         m_Mode: 0
@@ -3419,8 +3419,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerUIButtonHandler, Assembly-CSharp
+      - m_Target: {fileID: 349554929}
+        m_TargetAssemblyTypeName: MainMenuUIButtonHandler, Assembly-CSharp
         m_MethodName: HideSettingsUI
         m_Mode: 1
         m_Arguments:
@@ -5908,7 +5908,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 349554931}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
         m_MethodName: AdjustMusicVolume
         m_Mode: 0
@@ -7430,9 +7430,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 349554931}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
-        m_MethodName: AdjustSensitivityY
+        m_MethodName: AdjustMouseSmoothing
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
