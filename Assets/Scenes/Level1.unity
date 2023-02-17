@@ -2353,6 +2353,7 @@ MonoBehaviour:
   nextLevel: 2
   gameOverUI: {fileID: 530066630}
   levelWonUI: {fileID: 220643123}
+  nextLevelButton: {fileID: 0}
 --- !u!1 &194087172
 GameObject:
   m_ObjectHideFlags: 0
