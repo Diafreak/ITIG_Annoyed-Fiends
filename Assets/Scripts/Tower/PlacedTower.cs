@@ -47,14 +47,18 @@ public class PlacedTower : MonoBehaviour {
 
 
     // create a Tower on the clicked position
-    public static PlacedTower Create(Vector3 worldPosition, TowerTypeSO towerTypeSO) {
+    public static PlacedTower Create(Vector3 worldPosition, TowerTypeSO towerTypeSO, float yOffset) {
+
+        if (towerTypeSO.towerName != "Gargoyle") {
+            yOffset = 0f;
+        }
 
         Transform placedTowerTransform =
             Instantiate(
                 // Visual
                 towerTypeSO.prefab,
                 // Position
-                worldPosition,
+                worldPosition + new Vector3(0, yOffset, 0),
                 // Rotation
                 Quaternion.identity
             );
@@ -198,7 +202,7 @@ public class PlacedTower : MonoBehaviour {
 
 
     // ------------------------------
-    // Shooting
+    // Shooting / Blocking
     // ------------------------------
 
     private void Update() {
