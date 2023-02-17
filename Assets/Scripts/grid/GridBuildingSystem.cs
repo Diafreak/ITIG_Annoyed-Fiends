@@ -37,6 +37,8 @@ public class GridBuildingSystem : MonoBehaviour {
     private GameObject pathTiles;
     private GameObject placeableTiles;
 
+    private SwitchGameMode switchGameMode;
+
     // Singleton
     public static GridBuildingSystem instance;
 
@@ -48,6 +50,8 @@ public class GridBuildingSystem : MonoBehaviour {
         if (instance == null) {
             instance = this;
         }
+
+        switchGameMode = SwitchGameMode.instance;
 
         pathTiles      = new GameObject("Path Tiles");
         placeableTiles = new GameObject("Placeable Tiles");
@@ -68,6 +72,12 @@ public class GridBuildingSystem : MonoBehaviour {
 
     private void Update() {
 
+        if (switchGameMode.IsEyeOfDoomActive()) {
+            ClearTowerSelection();
+            towerUI.HideUI();
+            return;
+        }
+
         // Build Tower on Left-Click
         if (Input.GetMouseButtonDown(0) && MouseIsNotOverUI()) {
 
@@ -85,11 +95,11 @@ public class GridBuildingSystem : MonoBehaviour {
             } else if (TileHasTower(gridObject) && IsPlaceable(gridCoordinates.x, gridCoordinates.z)) {
                 // if Tile already has a Tower -> show Upgrade/Sell-Menu + Range
                 towerUI.SetTarget(gridObject);
+            } else {
+                towerUI.HideUI();
             }
 
-            currentlySelectedTowerTypeSO = null;
-            pathTiles.SetActive(false);
-            placeableTiles.SetActive(false);
+            ClearTowerSelection();
         }
 
         if (Input.GetMouseButtonDown(1)) {
@@ -130,7 +140,7 @@ public class GridBuildingSystem : MonoBehaviour {
         // get World-Coordinates to build on from Grid-Coordinates
         Vector3 placedTowerWorldPosition = grid.GetWorldPosition(gridObject.GetGridPosition().x, gridObject.GetGridPosition().z);
         // create Tower-Visual
-        PlacedTower placedTower = PlacedTower.Create(placedTowerWorldPosition, currentlySelectedTowerTypeSO);
+        PlacedTower placedTower = PlacedTower.Create(placedTowerWorldPosition, currentlySelectedTowerTypeSO, pathTileYOffset);
         // write created Tower in the Grid-Array
         gridObject.SetPlacedTower(placedTower);
 
@@ -150,6 +160,13 @@ public class GridBuildingSystem : MonoBehaviour {
     // Offset to get the middle of a Grid-Cell because the GridCoordinates-Origin is in the lower left corner
     public Vector3 GetBuildOffset() {
         return new Vector3(cellSize/2, 0, cellSize/2);
+    }
+
+
+    private void ClearTowerSelection() {
+        currentlySelectedTowerTypeSO = null;
+        pathTiles.SetActive(false);
+        placeableTiles.SetActive(false);
     }
 
 
