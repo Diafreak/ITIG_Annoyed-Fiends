@@ -2425,11 +2425,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab64022a4bf16e42a0450bf0ef96f79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxWaveNumber: 3
-  nextLevelName: End
+  maxWaveNumber: 2
+  nextLevelName: Level3
   nextLevel: 0
   gameOverUI: {fileID: 530066630}
   levelWonUI: {fileID: 220643123}
+  nextLevelButton: {fileID: 607814637}
 --- !u!1 &194087172
 GameObject:
   m_ObjectHideFlags: 0

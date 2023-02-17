@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class GameManager : MonoBehaviour {
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour {
     [Header("UI Elements")]
     public GameObject gameOverUI;
     public GameObject levelWonUI;
+    public Button nextLevelButton;
 
 
     private bool gameOver = false;
@@ -70,6 +72,13 @@ public class GameManager : MonoBehaviour {
     public void WinLevel() {
         levelWonUI.SetActive(true);
         DisableEyeOfDoom();
+
+        if (nextLevel == 0) {
+            // Disable the "Next Level"-Button if on last map
+            nextLevelButton.interactable = false;
+            return;
+        }
+
         PlayerPrefs.SetInt("levelsUnlocked", nextLevel);
     }
 

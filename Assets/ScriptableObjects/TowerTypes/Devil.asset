@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: Devil
   prefab: {fileID: 429035047871832740, guid: 4f77189d4a4e15a449c3a5989a70b86a, type: 3}
-  visual: {fileID: 2913211410375365242, guid: ef08cc26ccaaf724894b56bced29d6b4, type: 3}
-  projectilePrefab: {fileID: 3620083769026161391, guid: b57f84a252ecfdc43947b2ebe6f051ef, type: 3}
+  projectilePrefab: {fileID: 56698002057083195, guid: 8ec43674df9e78040a45464c7950851f, type: 3}
   range: 30
   fireRate: 1
   turnSpeed: 10
@@ -24,3 +23,4 @@ MonoBehaviour:
   upgradeCost: 180
   sellingPrice: 75
   level: 1
+  despawnTime: 0

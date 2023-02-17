@@ -1,9 +1,69 @@
 fileFormatVersion: 2
-guid: 8459b69400ce9f142bfca03064446f0c
+guid: 67f8f1a00ac8ddf49a512aae97c86978
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cloud
+    second: {fileID: 2100000, guid: 2ba3314ca37802d4b85882f45de9e6eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hat
+    second: {fileID: 2100000, guid: 689004beb8e68ef4fb474baeae6973e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hat2
+    second: {fileID: 2100000, guid: 3e02c4448c27e5b41a6b4212d464d234, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hat3
+    second: {fileID: 2100000, guid: e273e331659f8d249994aa47bfaefe80, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: 0c8d03d2f0da8ab44a2c210ebd02d31e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shirt1
+    second: {fileID: 2100000, guid: 8e8a3da4a2ef7cd4d82f057d3201d80e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shirt2
+    second: {fileID: 2100000, guid: cbef289775193d641a4b6344cc28885c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shirt3
+    second: {fileID: 2100000, guid: debfb557aa4828e45ac5ac600e7fbbea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skin1
+    second: {fileID: 2100000, guid: 143301be4d14be94db2c01e5728d3234, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skin2
+    second: {fileID: 2100000, guid: 2555b1e7c8a2cc24a9f0da9c54015b84, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skin3
+    second: {fileID: 2100000, guid: b24fc72641a44da408b5d3ac361ebf67, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood
+    second: {fileID: 2100000, guid: edabe6c40c5fd70468f9714fb5e8852f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
