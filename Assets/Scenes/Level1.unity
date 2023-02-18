@@ -1500,12 +1500,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a50f8b48b78e824e812f995b9b1a302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  townerSO: {fileID: 11400000, guid: 8f3231919f5eba84c982030e1eab2a61, type: 2}
+  farmerSO: {fileID: 11400000, guid: 8f3231919f5eba84c982030e1eab2a61, type: 2}
   dorfschranzeSO: {fileID: 11400000, guid: 64c9862bcd6a6c54aacd93f21cda5422, type: 2}
   holzfaellerSO: {fileID: 11400000, guid: acefb3af99ab606438ba0842271cb395, type: 2}
-  timeBetweenWaves: 2
   waveSpawnRate: 1
-  countdown: 2
+  minWaveNumberForDorfschranze: 3
+  minWaveNumberForHolzfaeller: 8
   waveNumber: 0
 --- !u!4 &121926882 stripped
 Transform:
@@ -2348,7 +2348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab64022a4bf16e42a0450bf0ef96f79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxWaveNumber: 3
+  maxWaveNumber: 5
   nextLevelName: Level2
   nextLevel: 2
   gameOverUI: {fileID: 530066630}
@@ -5714,15 +5714,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 401126116}
-  m_LocalRotation: {x: 0, y: 0.7072302, z: -0.7069834, w: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 154.67897, y: 152.70851, z: 155.66418}
+  m_LocalScale: {x: 154.67897, y: 152.70854, z: 155.66422}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 162463689}
   m_Father: {fileID: 451585464}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 89.98, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!23 &401126118
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -7,18 +7,23 @@ public class EnemySpawner : MonoBehaviour {
     public static int enemiesAlive = 0;
 
     [Header("Enemy Types")]
-    public EnemyTypeSO townerSO;
+    public EnemyTypeSO farmerSO;
     public EnemyTypeSO dorfschranzeSO;
     public EnemyTypeSO holzfaellerSO;
 
     [Header("Attributes")]
-    public float timeBetweenWaves = 5f;
     public float waveSpawnRate = 1f;
-    public float countdown = 2f;
-    public int waveNumber;
 
+    public int minWaveNumberForDorfschranze = 3;
+    public int minWaveNumberForHolzfaeller = 8;
+
+    private int currentWaveNumber;
     private int maxWaveNumber;
     private bool isEndless;
+
+    private int waveMultiplicator;
+
+    private int numberOfEnemyTypes;
 
     private StartAndSpeedupButton startAndSpeedupButton;
     private GameManager gameManager;
@@ -37,8 +42,12 @@ public class EnemySpawner : MonoBehaviour {
 
     private void Start() {
         enemiesAlive = 0;
-        waveNumber = 0;
+        currentWaveNumber = 0;
         isEndless = false;
+
+        waveMultiplicator = 10;
+
+        numberOfEnemyTypes = 1;
 
         gameManager = GameManager.instance;
         startAndSpeedupButton = StartAndSpeedupButton.instance;
@@ -52,7 +61,7 @@ public class EnemySpawner : MonoBehaviour {
             return;
         }
 
-        if (!isEndless && waveNumber == maxWaveNumber) {
+        if (!isEndless && currentWaveNumber == maxWaveNumber) {
             gameManager.WinLevel();
             return;
         }
@@ -62,26 +71,51 @@ public class EnemySpawner : MonoBehaviour {
 
 
     public IEnumerator SpawnWave () {
-        waveNumber++;
-        enemiesAlive = waveNumber+5;
-        gameManager.SetCurrentWaveNumber(waveNumber);
+        currentWaveNumber++;
+        enemiesAlive = currentWaveNumber * waveMultiplicator;
+        gameManager.SetCurrentWaveNumber(currentWaveNumber);
 
-        for (int i = 0; i < waveNumber+5; i++) {
-            SpawnEnemy();
+        for (int i = 0; i < currentWaveNumber * waveMultiplicator; i++) {
+
+            if (currentWaveNumber > minWaveNumberForDorfschranze && currentWaveNumber <= minWaveNumberForHolzfaeller) {
+                numberOfEnemyTypes = 2;
+            }
+
+            if (currentWaveNumber > minWaveNumberForHolzfaeller) {
+                numberOfEnemyTypes = 3;
+            }
+
+            // determine a random next enemy that is spawned, depending on how many enemies are "unlocked"
+            int enemyType = Random.Range(1, numberOfEnemyTypes+1);
+
+            switch (enemyType) {
+                case 1:
+                    SpawnEnemy(farmerSO);
+                    break;
+                case 2:
+                    SpawnEnemy(dorfschranzeSO);
+                    break;
+                case 3:
+                    SpawnEnemy(holzfaellerSO);
+                    break;
+                default:
+                    SpawnEnemy(farmerSO);
+                    break;
+            }
+
             yield return new WaitForSeconds(waveSpawnRate);
         }
     }
 
 
-    private void SpawnEnemy() {
-        Enemy.Create(transform.position, townerSO);
+    private void SpawnEnemy(EnemyTypeSO enemyTypeSO) {
+        Enemy.Create(transform.position, enemyTypeSO);
     }
 
 
     public int GetCurrentWaveNumber() {
-        return waveNumber;
+        return currentWaveNumber;
     }
-
 
     public void SetEndlessMode() {
         isEndless = true;

@@ -1748,13 +1748,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a50f8b48b78e824e812f995b9b1a302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  townerSO: {fileID: 11400000, guid: 8f3231919f5eba84c982030e1eab2a61, type: 2}
+  farmerSO: {fileID: 11400000, guid: 8f3231919f5eba84c982030e1eab2a61, type: 2}
   dorfschranzeSO: {fileID: 11400000, guid: 64c9862bcd6a6c54aacd93f21cda5422, type: 2}
   holzfaellerSO: {fileID: 11400000, guid: acefb3af99ab606438ba0842271cb395, type: 2}
-  timeBetweenWaves: 2
   waveSpawnRate: 1
-  countdown: 2
-  waveNumber: 0
+  minWaveNumberForDorfschranze: 3
+  minWaveNumberForHolzfaeller: 8
 --- !u!1 &123985337
 GameObject:
   m_ObjectHideFlags: 0
