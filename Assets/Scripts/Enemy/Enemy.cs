@@ -21,6 +21,10 @@ public class Enemy : MonoBehaviour {
     private Transform nextWaypoint;
     private int nextWaypointIndex = 0;
 
+    [Header("Rotation at Waypoint")]
+    public Transform partToRotate;
+    public float turnSpeed = 10f;
+
 
     public static Enemy Create(Vector3 worldPosition, EnemyTypeSO enemyTypeSO) {
 
@@ -56,11 +60,13 @@ public class Enemy : MonoBehaviour {
 
 
     void Update () {
+
         if (isBlocked) {
             return;
         }
 
         MoveToNextWaypoint();
+        RotateToNextWaypoint();
 
         if (Vector3.Distance(transform.position, nextWaypoint.position) <= 1f) {
             GetNextWaypoint();
@@ -130,5 +136,13 @@ public class Enemy : MonoBehaviour {
 
     public void UnblockEnemy() {
         isBlocked = false;
+    }
+
+
+    private void RotateToNextWaypoint() {
+        Vector3 direction = nextWaypoint.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 }
