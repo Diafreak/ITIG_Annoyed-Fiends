@@ -261,7 +261,6 @@ public class PlacedTower : MonoBehaviour {
 
     // shooting at the designated target
     private void Shoot() {
-        Debug.Log("SHOOT!");
         GameObject projectileGO = (GameObject) Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         Projectile projectile = projectileGO.GetComponent<Projectile>();
 

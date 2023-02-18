@@ -39,7 +39,6 @@ public class Projectile : MonoBehaviour {
 
 
     private void HitTarget() {
-        Debug.Log("We Hit Something");
 
         if (damageRadius > 0f) {
             AoEDamage();
