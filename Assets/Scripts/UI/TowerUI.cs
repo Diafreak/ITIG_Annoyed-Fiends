@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class TowerUI : MonoBehaviour {
 
     [Header("UI")]
-    public GameObject towerUI;
+    public GameObject screenSpaceUI;
+    public GameObject worldSpaceUI;
     public Transform towerRange;
 
     [Header("Texts")]
@@ -29,7 +30,7 @@ public class TowerUI : MonoBehaviour {
 
     private void Update() {
         // disable or enable the Upgrade-Button depending if Player has enough Money
-        if (towerUI.activeSelf && targetedGridObject != null) {
+        if (worldSpaceUI.activeSelf && targetedGridObject != null) {
             if (PlayerHasEnoughMoney()) {
                 upgradeButton.interactable = true;
             } else {
@@ -42,15 +43,16 @@ public class TowerUI : MonoBehaviour {
     // sets the selected Tower
     public void SetTarget(GridObject gridObject) {
 
-        if (targetedGridObject == gridObject && towerUI.activeSelf) {
+        if (targetedGridObject == gridObject && worldSpaceUI.activeSelf) {
             // if the same tile is clicked again, hide the Upgrade/Sell-Menu
             HideUI();
         } else {
             // show & move the Upgrade/Sell-Menu over the selected Tower
             targetedGridObject = gridObject;
-            transform.position = gridObject.GetWorldPosition();
+            worldSpaceUI.transform.position = gridObject.GetWorldPosition();
             UpdateUI();
-            towerUI.SetActive(true);
+            worldSpaceUI.SetActive(true);
+            screenSpaceUI.SetActive(true);
         }
     }
 
@@ -65,7 +67,8 @@ public class TowerUI : MonoBehaviour {
     public void HideUI() {
         HideTowerRange();
         targetedGridObject = null;
-        towerUI.SetActive(false);
+        worldSpaceUI.SetActive(false);
+        screenSpaceUI.SetActive(false);
     }
 
 
