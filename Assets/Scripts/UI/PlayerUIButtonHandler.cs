@@ -26,8 +26,16 @@ public class PlayerUIButtonHandler : MonoBehaviour {
 
 
     private void Update() {
+
+        // Check if ESC-Key is pressed
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            TogglePauseMenuVisibility();
+            // if Settings are open, go back to PauseMenu
+            if (settingsUI.activeSelf) {
+                settingsUI.SetActive(false);
+                pauseUI.SetActive(true);
+            } else {
+                TogglePauseMenuVisibility();
+            }
         }
     }
 
@@ -58,6 +66,7 @@ public class PlayerUIButtonHandler : MonoBehaviour {
     public void Continue() {
         TogglePauseMenuVisibility();
     }
+
 
     public void TogglePauseMenuVisibility() {
 

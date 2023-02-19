@@ -16,6 +16,16 @@ public class MainMenuUIButtonHandler : MonoBehaviour {
     }
 
 
+    private void Update() {
+        // hide Settings if ESC-Key is pressed
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (settingsUI.activeSelf) {
+                settingsUI.SetActive(false);
+            }
+        }
+    }
+
+
     public void StartGame() {
         SceneManager.LoadScene(levelName);
     }
