@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9cacaa4dabc24fc42bfe47247abbd5f2, type: 2}
+  - {fileID: 2100000, guid: ceeb9ab76b1db414197692811bc7b56f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -208,14 +208,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6652725513331149018, guid: 1698d32c061578e48b2e7d95efe3e526, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1a84e82d38132fa4189b0f7ad646fe4e, type: 2}
+    - target: {fileID: -5122729196051506736, guid: 1698d32c061578e48b2e7d95efe3e526, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1a84e82d38132fa4189b0f7ad646fe4e, type: 2}
     - target: {fileID: -4157524182732408741, guid: 1698d32c061578e48b2e7d95efe3e526, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+      objectReference: {fileID: 2100000, guid: 1a84e82d38132fa4189b0f7ad646fe4e, type: 2}
     - target: {fileID: 919132149155446097, guid: 1698d32c061578e48b2e7d95efe3e526, type: 3}
       propertyPath: m_Name
       value: Tower_Gargoyle
       objectReference: {fileID: 0}
+    - target: {fileID: 1525539152500033246, guid: 1698d32c061578e48b2e7d95efe3e526, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1a84e82d38132fa4189b0f7ad646fe4e, type: 2}
+    - target: {fileID: 8151023354082563727, guid: 1698d32c061578e48b2e7d95efe3e526, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1a84e82d38132fa4189b0f7ad646fe4e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1698d32c061578e48b2e7d95efe3e526, type: 3}
 --- !u!4 &2208596089048624360 stripped
