@@ -7,6 +7,10 @@ public class Enemy : MonoBehaviour {
     [Header("Health Bar Visual")]
     public Image healthBar;
 
+    [Header("Rotation at Waypoint")]
+    public Transform partToRotate;
+    public float turnSpeed = 10f;
+
     // Attributes
     private string enemyName;
     private float startHp;
@@ -15,15 +19,13 @@ public class Enemy : MonoBehaviour {
 
     private float currentHP;
 
-    private bool isBlocked;
+    private bool isDead { get { return currentHP <= 0; } }
 
     // Pathfinding
     private Transform nextWaypoint;
     private int nextWaypointIndex = 0;
+    private bool isBlocked;
 
-    [Header("Rotation at Waypoint")]
-    public Transform partToRotate;
-    public float turnSpeed = 10f;
 
 
     public static Enemy Create(Vector3 worldPosition, EnemyTypeSO enemyTypeSO) {
@@ -61,6 +63,10 @@ public class Enemy : MonoBehaviour {
 
     void Update () {
 
+        if (isDead) {
+            return;
+        }
+
         if (isBlocked) {
             return;
         }
@@ -83,7 +89,7 @@ public class Enemy : MonoBehaviour {
         currentHP -= amount;
         healthBar.fillAmount = currentHP / startHp;
 
-        if (currentHP <= 0) {
+        if (isDead) {
             Die();
         }
     }
@@ -92,7 +98,14 @@ public class Enemy : MonoBehaviour {
     private void Die() {
         PlayerStats.AddMoney(killValue);
         EnemySpawner.enemiesAlive--;
-        Destroy(gameObject);
+
+        // remove "Enemy"-Tag so Tower doesn't a dead Enemy
+        gameObject.tag = "Dead";
+
+        // play Death-Animation
+        gameObject.GetComponent<Animator>().SetTrigger("death");
+
+        Destroy(gameObject, 0.2f);
     }
 
 

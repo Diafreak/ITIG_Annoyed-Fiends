@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: Archer
   prefab: {fileID: 429035047871832740, guid: 2c2f5e311c21e7a4da15a536d98be512, type: 3}
-  visual: {fileID: 704839367631312151, guid: f79fab7308e2a0347b72da9b1dbac4d1, type: 3}
   projectilePrefab: {fileID: 56698002057083195, guid: a84d36b8672004e4aac87e8d9d835459, type: 3}
   range: 30
   fireRate: 1
   turnSpeed: 10
   enemyTag: Enemy
+  projectileDamage: 30
+  damageRadius: 0
+  projectileSpeed: 70
   price: 100
   upgradeCost: 120
   sellingPrice: 50

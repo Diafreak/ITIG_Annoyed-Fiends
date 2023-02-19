@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour {
 
+    // current Target of the Projectile
     private Transform target;
 
-    public float speed = 70f;
-
-    public float damage = 50;
-    public float damageRadius = 0f;
+    // Projectile Stats
+    private float damage;
+    private float damageRadius;
+    private float speed;
 
 
     void Update() {
@@ -29,6 +30,13 @@ public class Projectile : MonoBehaviour {
 
         transform.Translate(direction.normalized * distanceThisFrame, Space.World);
         transform.LookAt(target);
+    }
+
+
+    public void SetProjectileValues(float _damage, float _damageRadius, float _speed) {
+        damage       = _damage;
+        damageRadius = _damageRadius;
+        speed        = _speed;
     }
 
 
@@ -74,5 +82,4 @@ public class Projectile : MonoBehaviour {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, damageRadius);
     }
-    
 }

@@ -17,6 +17,11 @@ public class TowerTypeSO : ScriptableObject {
     public float turnSpeed;
     public string enemyTag;
 
+    [Header("Projectile")]
+    public float projectileDamage;
+    public float damageRadius;
+    public float projectileSpeed;
+
     [Header("Tower Prices")]
     public int price;
     public int upgradeCost;
