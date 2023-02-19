@@ -7,7 +7,7 @@ TagManager:
   - Enemy
   - Path
   - Placeable
-  - Unusable
+  - Dead
   layers:
   - Default
   - TransparentFX

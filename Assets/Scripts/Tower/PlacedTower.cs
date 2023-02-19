@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlacedTower : MonoBehaviour {
 
-    // current target of the tower
+    // current Target of the Tower
     private Transform target;
 
     // Attributes
@@ -11,8 +11,11 @@ public class PlacedTower : MonoBehaviour {
     private float range;
     private float fireRate;
     private float fireCountdown = 0f;
+    private float projectileDamage;
+    private float damageRadius;
+    private float projectileSpeed;
 
-    // tag to find the enemies
+    // Tag to find Enemies
     private string enemyTag;
 
     // Upgrading
@@ -20,11 +23,11 @@ public class PlacedTower : MonoBehaviour {
     private int upgradeCost;
     private int sellingPrice;
 
-    // variables for rotation
+    // Rotation
     [SerializeField] private Transform partToRotate;
     private float turnSpeed;
 
-    // shooting
+    // Shooting
     private GameObject projectilePrefab;
     [SerializeField] private Transform firePoint;
 
@@ -70,6 +73,9 @@ public class PlacedTower : MonoBehaviour {
         placedTower.towerName        = towerTypeSO.name;
         placedTower.range            = towerTypeSO.range;
         placedTower.fireRate         = towerTypeSO.fireRate;
+        placedTower.projectileDamage = towerTypeSO.projectileDamage;
+        placedTower.damageRadius     = towerTypeSO.damageRadius;
+        placedTower.projectileSpeed  = towerTypeSO.projectileSpeed;
         placedTower.enemyTag         = towerTypeSO.enemyTag;
         placedTower.level            = towerTypeSO.level;
         placedTower.upgradeCost      = towerTypeSO.upgradeCost;
@@ -263,6 +269,7 @@ public class PlacedTower : MonoBehaviour {
     private void Shoot() {
         GameObject projectileGO = (GameObject) Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         Projectile projectile = projectileGO.GetComponent<Projectile>();
+        projectile.SetProjectileValues(projectileDamage, damageRadius, projectileSpeed);
 
         if (projectile != null) {
             projectile.Seek(target);

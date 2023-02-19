@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1698d32c061578e48b2e7d95efe3e526
+guid: a1027e7e5a2ca2f48a93b64b72734245
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,8 +7,33 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 4a3f7299014ed9140aa05a63c34bc3aa, type: 2}
+      name: Cloud
+    second: {fileID: 2100000, guid: 5112464ce157ca745a2795e916785d7c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hat2
+    second: {fileID: 2100000, guid: a295a884da939244c968d7d7be4930d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: d441de044edc901449a2eee6400d924d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shirt4
+    second: {fileID: 2100000, guid: 770a6d31e3cec86438e7d0b4696e3822, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skin1
+    second: {fileID: 2100000, guid: 1dc09c3082188c14cb1a01e32a6115f2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood
+    second: {fileID: 2100000, guid: 8c3a899e933bbb947bf3ae8cd6a4819a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -47,12 +72,12 @@ ModelImporter:
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 0
-    importLights: 0
+    importCameras: 1
+    importLights: 1
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1

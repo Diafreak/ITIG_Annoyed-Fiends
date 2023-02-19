@@ -1,0 +1,507 @@
+fileFormatVersion: 2
+guid: fb76fec894a9eec4d9a50be28c877a87
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Arrow
+    second: {fileID: 2100000, guid: 15704c9b73e8ef4488785befe25f74c2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Belt
+    second: {fileID: 2100000, guid: fd4e81a04c0509a4c964a7a22039c022, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bone
+    second: {fileID: 2100000, guid: 483b5a7f92b8a6844aca257099cf267c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Boot
+    second: {fileID: 2100000, guid: 5d644e2a5bf450b4c98735cc7d3d69e5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bow
+    second: {fileID: 2100000, guid: 206c4fe2b9d4fbe418b41853a6cee438, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metalbelt
+    second: {fileID: 2100000, guid: 538e1207f102fd64eaaf21d844997e4e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Protector
+    second: {fileID: 2100000, guid: fb2bb0fb65f313d4381669c086e50c31, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Robe
+    second: {fileID: 2100000, guid: 37c213ef10b2d3746a4770b47f742406, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Upperkilt.003
+    second: {fileID: 2100000, guid: b3b65f1e2f0227847bdb4ce002a4fc7c, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 1
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'Hips' not found\n"
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: Tower_Archer(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: metarig
+      parentName: Tower_Archer(Clone)
+      position: {x: -0, y: -0.01425096, z: 0.032826774}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: spine
+      parentName: metarig
+      position: {x: -0, y: 0.00031371947, z: 0.007858083}
+      rotation: {x: 0.70051533, y: -0.00000017014438, z: -0.00000016701584, w: 0.71363735}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: spine.001
+      parentName: spine
+      position: {x: -8.881784e-18, y: 0.001208907, z: 1.8626451e-11}
+      rotation: {x: -0.03950866, y: 0.00000011911619, z: 0.0000000141294, w: 0.99921924}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: spine.002
+      parentName: spine.001
+      position: {x: -3.8817005e-18, y: 0.0010926016, z: 0}
+      rotation: {x: -0.09514335, y: 4.953764e-15, z: 0.00000002268394, w: 0.9954636}
+      scale: {x: 1, y: 1, z: 1}
+    - name: spine.003
+      parentName: spine.002
+      position: {x: -1.8365243e-17, y: 0.0009232449, z: -7.4505804e-11}
+      rotation: {x: 0.19535512, y: 1.18802e-16, z: -0.000000046576282, w: 0.9807326}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: spine.004
+      parentName: spine.003
+      position: {x: 2.8409003e-12, y: 0.0020202352, z: 0.000011915601}
+      rotation: {x: 0.2572305, y: 4.464941e-15, z: -0.00000006132853, w: 0.9663501}
+      scale: {x: 1, y: 0.9999999, z: 0.99999994}
+    - name: spine.005
+      parentName: spine.004
+      position: {x: 1.0047518e-16, y: 0.00084458804, z: 4.2375176e-10}
+      rotation: {x: -0.20452486, y: 2.7565152e-15, z: 0.000000048762526, w: 0.9788614}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: spine.006
+      parentName: spine.005
+      position: {x: 4.3853807e-17, y: 0.0005589392, z: -9.313225e-11}
+      rotation: {x: -0.10650877, y: 0.00000011853119, z: 0.000000012696835, w: 0.99431175}
+      scale: {x: 1, y: 1, z: 1}
+    - name: spine.006_end
+      parentName: spine.006
+      position: {x: -0, y: 0.0014416194, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: shoulder.L
+      parentName: spine.003
+      position: {x: -0.00018299972, y: 0.0018502013, z: 0.0012015873}
+      rotation: {x: -0.6453572, y: 0.36886856, z: 0.33224788, w: 0.5805699}
+      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+    - name: upper_arm.L
+      parentName: shoulder.L
+      position: {x: -0.00007791534, y: 0.0020079096, z: -0.0002038499}
+      rotation: {x: -0.05541997, y: -0.740604, z: 0.27091, w: 0.61240685}
+      scale: {x: 1, y: 1.0000001, z: 1.0000002}
+    - name: forearm.L
+      parentName: upper_arm.L
+      position: {x: 5.0288124e-10, y: 0.0028850988, z: -7.4505804e-11}
+      rotation: {x: 0.18181376, y: -0.0013415834, z: 0.040503025, w: 0.9824976}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: hand.L
+      parentName: forearm.L
+      position: {x: -0.0000000011908071, y: 0.0026283546, z: 7.4505804e-11}
+      rotation: {x: -0.025046706, y: 0.0035539821, z: 0.028186588, w: 0.99928254}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hand.L_end
+      parentName: hand.L
+      position: {x: -0, y: 0.0008016086, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: shoulder.R
+      parentName: spine.003
+      position: {x: 0.00018300029, y: 0.0018502014, z: 0.0012015871}
+      rotation: {x: -0.6453573, y: -0.36886838, z: -0.33224773, w: 0.58057}
+      scale: {x: 1, y: 0.9999999, z: 0.99999994}
+    - name: upper_arm.R
+      parentName: shoulder.R
+      position: {x: 0.00007791545, y: 0.0020079096, z: -0.00020384982}
+      rotation: {x: -0.05541987, y: 0.7406039, z: -0.27090997, w: 0.61240697}
+      scale: {x: 0.9999999, y: 1.0000001, z: 0.99999994}
+    - name: forearm.R
+      parentName: upper_arm.R
+      position: {x: -0.0000000012307952, y: 0.0028850979, z: 1.4901161e-10}
+      rotation: {x: 0.18181379, y: 0.0013416472, z: -0.04050307, w: 0.9824976}
+      scale: {x: 0.99999994, y: 1.0000001, z: 1}
+    - name: hand.R
+      parentName: forearm.R
+      position: {x: -1.9608705e-11, y: 0.0026283541, z: 7.4505804e-11}
+      rotation: {x: -0.025046704, y: -0.0035539684, z: -0.028186595, w: 0.99928254}
+      scale: {x: 1, y: 1, z: 0.9999999}
+    - name: hand.R_end
+      parentName: hand.R
+      position: {x: -0, y: 0.0008016086, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: breast.L
+      parentName: spine.003
+      position: {x: -0.0011839999, y: 0.000044794986, z: 0.00021649787}
+      rotation: {x: 0.00000007426803, y: 0.7432615, z: 0.669001, w: -0.00000003472871}
+      scale: {x: 1, y: 1.0000002, z: 1}
+    - name: breast.L_end
+      parentName: breast.L
+      position: {x: -0, y: 0.001392, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: breast.R
+      parentName: spine.003
+      position: {x: 0.001184, y: 0.000044796172, z: 0.00021649712}
+      rotation: {x: 0.00000007426803, y: 0.7432615, z: 0.669001, w: -0.00000003472871}
+      scale: {x: 1, y: 1.0000002, z: 1}
+    - name: breast.R_end
+      parentName: breast.R
+      position: {x: -0, y: 0.001392, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spine
+      parentName: Tower_Archer(Clone)
+      position: {x: -0, y: 1.0308331, z: -0.009847973}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 3.203045, y: 3.203045, z: 3.203045}
+    - name: Ribcage
+      parentName: Tower_Archer(Clone)
+      position: {x: -0, y: 1.2175208, z: 0.14392725}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 14.327845, y: 17.12442, z: 1.1094472}
+    - name: Pelvic
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.00081223046, y: 0.75128996, z: 0.034352638}
+      rotation: {x: -0.6785788, y: 0.19882362, z: 0.1988236, w: 0.6785788}
+      scale: {x: 6.6288376, y: 6.81631, z: 7.4137506}
+    - name: LeftUpperLeg
+      parentName: Tower_Archer(Clone)
+      position: {x: -0.03382373, y: 0.7690518, z: 0.09767471}
+      rotation: {x: -0.81339175, y: 0.023683991, z: 0.017357167, w: 0.5809748}
+      scale: {x: -5.5689573, y: -5.5689573, z: -5.568957}
+    - name: LeftLowerLeg
+      parentName: Tower_Archer(Clone)
+      position: {x: -0.112094454, y: 0.28185984, z: 0.20602813}
+      rotation: {x: -0.6957368, y: 0.021083016, z: 0.020437932, w: 0.71769637}
+      scale: {x: -1.931876, y: -1.9317462, z: -17.177279}
+    - name: RightKneecap
+      parentName: Tower_Archer(Clone)
+      position: {x: -0.1119615, y: 0.4689258, z: 0.24546959}
+      rotation: {x: -0.7068019, y: 0.020762976, z: 0.02076298, w: 0.7068019}
+      scale: {x: 1.4191827, y: 0.6286987, z: 1.892571}
+    - name: RightUpperLeg
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.04866502, y: 0.7690518, z: 0.007585679}
+      rotation: {x: 0.53229684, y: 0.48257366, z: -0.29554343, w: 0.6296323}
+      scale: {x: 5.5689573, y: 5.568957, z: 5.568957}
+    - name: RightLowerLeg
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.13364616, y: 0.2973532, z: -0.12518516}
+      rotation: {x: 0.70496625, y: 0.36540732, z: -0.38524985, w: 0.47019428}
+      scale: {x: 1.931876, y: 1.9317462, z: 17.177277}
+    - name: RightKneecap.001
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.20317759, y: 0.46789843, z: -0.06137625}
+      rotation: {x: 0.65909946, y: 0.45372272, z: -0.3085837, w: 0.5142954}
+      scale: {x: -1.4191827, y: -0.62869877, z: -1.892571}
+    - name: LeftShoe
+      parentName: Tower_Archer(Clone)
+      position: {x: -0.110920645, y: 0.10416494, z: 0.17627703}
+      rotation: {x: -0.7068019, y: 0.02076298, z: 0.020762982, w: 0.7068019}
+      scale: {x: 9.128358, y: 9.128358, z: 10.411482}
+    - name: ShoeBand
+      parentName: Tower_Archer(Clone)
+      position: {x: -0.111594096, y: 0.12215581, z: 0.2149382}
+      rotation: {x: -0.7068019, y: 0.020762978, z: 0.020762978, w: 0.7068019}
+      scale: {x: -7.955683, y: -8.241712, z: -1.4204574}
+    - name: Shoeband
+      parentName: Tower_Archer(Clone)
+      position: {x: -0.11551523, y: 0.09891892, z: 0.19949245}
+      rotation: {x: 0.70546013, y: 0.048230164, z: -0.048230164, w: 0.70546}
+      scale: {x: -8.336375, y: -7.4966774, z: -1.1541365}
+    - name: RightShoe
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.07567121, y: 0.10416494, z: -0.17172278}
+      rotation: {x: 0.5913167, y: 0.3877429, z: -0.38774288, w: 0.59131676}
+      scale: {x: -9.128357, y: -9.128357, z: -10.411482}
+    - name: ShoeBand.001
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.10965427, y: 0.12263535, z: -0.16093677}
+      rotation: {x: 0.5913167, y: 0.38774288, z: -0.3877429, w: 0.5913167}
+      scale: {x: 8.284052, y: 8.581886, z: 1.4790864}
+    - name: ShoeBand.002
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.09689175, y: 0.098439366, z: -0.16994132}
+      rotation: {x: -0.5757929, y: 0.41044202, z: 0.4104421, w: 0.57579273}
+      scale: {x: 8.680456, y: 7.806098, z: 1.2017733}
+    - name: LeftShoulderPlate
+      parentName: Tower_Archer(Clone)
+      position: {x: -0.08792242, y: 1.2557981, z: -0.06966749}
+      rotation: {x: -0.7030443, y: -0.075688906, z: -0.075688906, w: 0.7030442}
+      scale: {x: 5.189206, y: 1.3655624, z: 5.189206}
+    - name: LeftShoulderBlade
+      parentName: Tower_Archer(Clone)
+      position: {x: -0.08792242, y: 1.2557981, z: -0.06966749}
+      rotation: {x: -0.7030443, y: -0.075688906, z: -0.075688906, w: 0.7030442}
+      scale: {x: 5.189206, y: 1.3655624, z: 5.189206}
+    - name: RightShoulderBlade
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.08879561, y: 1.2557981, z: -0.07050626}
+      rotation: {x: 0.7029801, y: 0.07628316, z: -0.07628318, w: 0.70298}
+      scale: {x: -5.189207, y: -1.3655623, z: -5.189206}
+    - name: LeftClavicle
+      parentName: Tower_Archer(Clone)
+      position: {x: -0.10814229, y: 1.2858497, z: 0.030749043}
+      rotation: {x: -0.7060519, y: -0.038610347, z: 0.03861035, w: 0.7060519}
+      scale: {x: 6.4228654, y: 1.1978862, z: 1.0402552}
+    - name: RightClavicle
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.11867893, y: 1.2847112, z: 0.03621899}
+      rotation: {x: 0.70505124, y: -0.053878237, z: -0.053878233, w: 0.7050512}
+      scale: {x: -7.086178, y: -1.1334606, z: -1.1476862}
+    - name: LeftUpperArm
+      parentName: Tower_Archer(Clone)
+      position: {x: -0.18563509, y: 1.2242421, z: 0.011772777}
+      rotation: {x: -0.56967103, y: 0.31461912, z: -0.3596272, w: 0.6686987}
+      scale: {x: -4.1415753, y: -4.511919, z: -4.339356}
+    - name: LeftLowerArm
+      parentName: Tower_Archer(Clone)
+      position: {x: -0.47248217, y: 1.0824434, z: -0.057000894}
+      rotation: {x: -0.67858267, y: 0.35118687, z: -0.29651815, w: 0.5729488}
+      scale: {x: -1.6527976, y: -1.6527978, z: -4.670106}
+    - name: LeftGlove
+      parentName: Tower_Archer(Clone)
+      position: {x: -0.70145905, y: 0.91486883, z: -0.004446379}
+      rotation: {x: -0.66763306, y: -0.23295093, z: 0.23295091, w: 0.66763306}
+      scale: {x: 4.587735, y: 4.060374, z: 2.3466845}
+    - name: LeftFinger
+      parentName: Tower_Archer(Clone)
+      position: {x: -0.7604968, y: 0.8773355, z: 0.007905998}
+      rotation: {x: -0.6566798, y: 0.32884905, z: -0.30389896, w: 0.606857}
+      scale: {x: 1.0745558, y: 0.89879113, z: 1.8997574}
+    - name: LeftFinger.001
+      parentName: Tower_Archer(Clone)
+      position: {x: -0.75208306, y: 0.8842874, z: 0.034128144}
+      rotation: {x: -0.66101635, y: 0.3685348, z: -0.24023965, w: 0.60788524}
+      scale: {x: 0.9433681, y: 0.7925096, z: 1.6680934}
+    - name: LeftFinger.002
+      parentName: Tower_Archer(Clone)
+      position: {x: -0.75556403, y: 0.87907475, z: -0.019389413}
+      rotation: {x: -0.60764384, y: 0.30429304, z: -0.32848445, w: 0.65595186}
+      scale: {x: 0.96445405, y: 0.80667096, z: 1.7051544}
+    - name: LeftFinger.003
+      parentName: Tower_Archer(Clone)
+      position: {x: -0.7498415, y: 0.8832602, z: -0.04584482}
+      rotation: {x: -0.57526225, y: 0.28807712, z: -0.34279415, w: 0.6845269}
+      scale: {x: 0.9587821, y: 0.80372506, z: 1.5093987}
+    - name: LeftThumb
+      parentName: Tower_Archer(Clone)
+      position: {x: -0.70210713, y: 0.907722, z: 0.054736197}
+      rotation: {x: -0.44053125, y: 0.69728816, z: 0.39094916, w: 0.40850976}
+      scale: {x: 0.87973636, y: 0.85863346, z: 1.6535685}
+    - name: LeftWrist
+      parentName: Tower_Archer(Clone)
+      position: {x: -0.6660279, y: 0.94839483, z: 0.010735811}
+      rotation: {x: -0.66398007, y: -0.24316788, z: 0.24316785, w: 0.6639799}
+      scale: {x: -1.223955, y: -1.083261, z: -1.223955}
+    - name: LeftUpperArm.002
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.18563509, y: 1.2242421, z: 0.011772757}
+      rotation: {x: 0.67496437, y: 0.37112617, z: 0.3009689, w: 0.5622332}
+      scale: {x: 4.141575, y: 4.511919, z: 4.339356}
+    - name: LeftLowerArm.002
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.47248217, y: 1.0824434, z: -0.057000935}
+      rotation: {x: 0.57294875, y: 0.2965182, z: 0.3511869, w: 0.6785827}
+      scale: {x: 1.6527973, y: 1.6527975, z: 4.670106}
+    - name: RightGLove
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.70145905, y: 0.91486883, z: -0.0044464385}
+      rotation: {x: 0.66763306, y: -0.23295096, z: -0.23295087, w: 0.66763306}
+      scale: {x: -4.587735, y: -4.060374, z: -2.3466845}
+    - name: RightFinger
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.7604968, y: 0.8773355, z: 0.007905931}
+      rotation: {x: 0.606857, y: 0.303899, z: 0.32884908, w: 0.65667975}
+      scale: {x: -1.0745558, y: -0.89879113, z: -1.8997573}
+    - name: RightFinger.001
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.75208306, y: 0.8842874, z: 0.034128077}
+      rotation: {x: 0.5595647, y: 0.32716164, z: 0.29410577, w: 0.7023919}
+      scale: {x: -0.9433679, y: -0.7925095, z: -1.6680936}
+    - name: RightFinger.002
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.75556403, y: 0.87907475, z: -0.01938948}
+      rotation: {x: 0.6559518, y: 0.32848448, z: 0.304293, w: 0.60764384}
+      scale: {x: -0.96445405, y: -0.8066709, z: -1.7051544}
+    - name: RightFinger.003
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.7498415, y: 0.8832602, z: -0.045844883}
+      rotation: {x: 0.6845068, y: 0.34278405, z: 0.28808913, w: 0.5752862}
+      scale: {x: -0.9587821, y: -0.80372506, z: -1.5093987}
+    - name: RightThumb
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.70210713, y: 0.907722, z: 0.054736137}
+      rotation: {x: 0.47680944, y: -0.24830537, z: 0.65249056, w: 0.5340911}
+      scale: {x: -0.8797363, y: -0.8586334, z: -1.6535684}
+    - name: RightWrist
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.6660279, y: 0.94839483, z: 0.010735751}
+      rotation: {x: 0.66398, y: -0.24316789, z: -0.24316779, w: 0.66397995}
+      scale: {x: 1.2239552, y: 1.083261, z: 1.2239552}
+    - name: Plane.001
+      parentName: Tower_Archer(Clone)
+      position: {x: -0, y: 1.5090362, z: 0.029695429}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: -8.295023, y: -8.295023, z: -8.295023}
+    - name: Head
+      parentName: Tower_Archer(Clone)
+      position: {x: 4.162092e-10, y: 1.4883991, z: 0.051954396}
+      rotation: {x: -0.48163673, y: 0.48163658, z: 0.5177125, w: 0.5177123}
+      scale: {x: 5.870999, y: 5.924663, z: 6.477268}
+    - name: Helmet
+      parentName: Tower_Archer(Clone)
+      position: {x: -0, y: 1.4850761, z: 0.05624524}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 6.7450156, y: 6.7450156, z: 6.7450156}
+    - name: Robe
+      parentName: Tower_Archer(Clone)
+      position: {x: -0, y: 1.1595088, z: 0.060140688}
+      rotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
+      scale: {x: 8.023906, y: 8.023906, z: 1.3376464}
+    - name: WristArmory
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.6073362, y: 0.9879182, z: -0.014451212}
+      rotation: {x: -0.65871185, y: -0.3847944, z: 0.32612488, w: 0.55827814}
+      scale: {x: 4.300409, y: 4.300409, z: 4.828859}
+    - name: Belt
+      parentName: Tower_Archer(Clone)
+      position: {x: -0.0043514846, y: 0.841322, z: 0.030394396}
+      rotation: {x: -0.6542991, y: 0.18358803, z: 0.1782678, w: 0.711624}
+      scale: {x: 16.474342, y: 13.355968, z: 2.179134}
+    - name: Bow
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.75368536, y: 0.8519948, z: 0.0019075366}
+      rotation: {x: -0.000000038611237, y: 0.000000015966926, z: 0.53729963, w: 0.8433914}
+      scale: {x: 2.0904384, y: 2.0904384, z: 2.0904384}
+    - name: Upperkilt.001
+      parentName: Tower_Archer(Clone)
+      position: {x: 0.13408071, y: 0.7630333, z: 0.10641576}
+      rotation: {x: 0.010215112, y: 0.22076777, z: -0.0023123412, w: 0.9752702}
+      scale: {x: 3.2887604, y: 3.9192798, z: 3.0460124}
+    - name: Arrow
+      parentName: Tower_Archer(Clone)
+      position: {x: -0.80321294, y: 0.8159558, z: 0.030348875}
+      rotation: {x: 0.66446316, y: 0.24184456, z: -0.664463, w: 0.24184464}
+      scale: {x: -0.4794945, y: -0.4794945, z: -11.428967}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
