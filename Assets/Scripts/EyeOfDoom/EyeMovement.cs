@@ -37,7 +37,7 @@ public class EyeMovement : MonoBehaviour {
 
 
     private void Update() {
-        //reads mouse input
+        //reads Mouse input
         float mouseX = Input.GetAxisRaw("Mouse X") * (Time.deltaTime/Time.timeScale) * sensitivityX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * (Time.deltaTime/Time.timeScale) * sensitivityY;
 
@@ -48,12 +48,12 @@ public class EyeMovement : MonoBehaviour {
         rotationY += xAccumulator;
         rotationX -= yAccumulator;
 
-        //prevent player to look more then 90° up or down
+        // prevent Player to look more then 90° up or down
         rotationX = Mathf.Clamp(rotationX, -90f, 90f);
 
-        //rotates camera
+        // rotates Camera around both axis
         eyeCam.rotation = Quaternion.Euler(rotationX, rotationY, 0);
-        //rotates eye to follow Camera
+        // rotates eye to follow Camera
         eyeBall.localRotation = Quaternion.Euler(90, rotationY, 0);
         
     }
