@@ -112,6 +112,7 @@ public class GameManager : MonoBehaviour {
     // ------------------------------
     // Endless
     // ------------------------------
+
     public void SetEndlessMode() {
         enemySpawner.SetEndlessMode();
         ContinueGameAfterWin();
