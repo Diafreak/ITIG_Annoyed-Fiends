@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour {
 
+    public GameObject impactParticles;
+
     // current Target of the Projectile
     private Transform target;
 
@@ -50,9 +52,13 @@ public class Projectile : MonoBehaviour {
 
         if (damageRadius > 0f) {
             AoEDamage();
+            GameObject particleInstance = Instantiate(impactParticles, transform.position + new Vector3(0,1,0), Quaternion.identity);
+            Destroy(particleInstance, 2f);
         } else {
             Damage(target);
         }
+
+        // Hit-Particles
 
         Destroy(gameObject);
     }
@@ -63,7 +69,7 @@ public class Projectile : MonoBehaviour {
 
         foreach (Collider hitObject in hitObjects) {
             if (hitObject.tag == "Enemy") {
-                Damage(hitObject.transform);
+                Damage(hitObject.transform.parent.transform);
             }
         }
     }
