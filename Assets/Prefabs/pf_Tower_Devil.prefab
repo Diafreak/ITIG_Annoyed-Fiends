@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 429035047871832740}
   - component: {fileID: -7131239933665047544}
   m_Layer: 0
-  m_Name: pf_TowerDevil
+  m_Name: pf_Tower_Devil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

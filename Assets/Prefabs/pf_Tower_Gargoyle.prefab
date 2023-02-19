@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 429035047871832740}
   - component: {fileID: -8114530407460401265}
   m_Layer: 0
-  m_Name: pf_TowerGargoyle
+  m_Name: pf_Tower_Gargoyle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

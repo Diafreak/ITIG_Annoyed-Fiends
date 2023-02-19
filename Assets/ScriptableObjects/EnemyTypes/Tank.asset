@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2f16d70d55176c42a630161aa0030b2, type: 3}
-  m_Name: Holzfaeller
+  m_Name: Tank
   m_EditorClassIdentifier: 
-  enemyName: "Holzf\xE4ller"
-  prefab: {fileID: 0}
-  visual: {fileID: 0}
+  enemyName: Tank
+  prefab: {fileID: 4033222630682075389, guid: 802c37e7acaa7924ca9ac79415119fc2, type: 3}
   startHp: 1000
   killValue: 250
   speed: 5
