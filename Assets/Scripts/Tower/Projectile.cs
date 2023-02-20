@@ -52,14 +52,16 @@ public class Projectile : MonoBehaviour {
 
         if (damageRadius > 0f) {
             AoEDamage();
-            GameObject particleInstance = Instantiate(impactParticles, transform.position + new Vector3(0,1,0), Quaternion.identity);
-            Destroy(particleInstance, 2f);
         } else {
-            Damage(target);
+            Debug.Log("target: " + target);
+            Debug.Log("target.parent.transform: " + target.parent.transform);
+            Damage(target.parent.transform);
         }
 
         // Hit-Particles
+        GameObject particleInstance = Instantiate(impactParticles, transform.position + new Vector3(0,1,0), Quaternion.identity);
 
+        Destroy(particleInstance, 2f);
         Destroy(gameObject);
     }
 

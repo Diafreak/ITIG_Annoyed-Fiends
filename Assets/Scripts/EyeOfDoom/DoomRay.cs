@@ -41,7 +41,7 @@ public class DoomRay : MonoBehaviour {
                 Debug.Log(hit.transform.name);
                 rayLine.SetPosition(1, hit.point);
 
-                Enemy enemy = hit.transform.GetComponent<Enemy>();
+                Enemy enemy = hit.transform.parent.transform.GetComponent<Enemy>();
 
                 if (enemy != null) {
                     enemy.TakeDamage(damage);

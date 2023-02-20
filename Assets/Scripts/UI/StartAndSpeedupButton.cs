@@ -59,6 +59,7 @@ public class StartAndSpeedupButton : MonoBehaviour {
 
 
     public void SetGameStateToBeforeNewRound() {
+        Time.timeScale = 1f;
         state = GameManager.GameState.beforeNewRound;
         buttonText.text = "Start Round";
     }
