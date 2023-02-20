@@ -15,5 +15,5 @@ MonoBehaviour:
   enemyName: Dorfschranze
   prefab: {fileID: 4033222630682075389, guid: facfa60851e7e0840bd41283619b5b19, type: 3}
   startHp: 50
-  killValue: 120
+  killValue: 20
   speed: 20

@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class DontDestroyMenuMusic : MonoBehaviour {
 
@@ -13,6 +13,13 @@ public class DontDestroyMenuMusic : MonoBehaviour {
             instance = this;
         }
         else {
+            Destroy(gameObject);
+        }
+    }
+
+
+    private void Update() {
+        if (SceneManager.GetActiveScene().name != "MainMenu" && SceneManager.GetActiveScene().name != "LevelSelect") {
             Destroy(gameObject);
         }
     }
