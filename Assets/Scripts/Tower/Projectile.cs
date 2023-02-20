@@ -53,8 +53,6 @@ public class Projectile : MonoBehaviour {
         if (damageRadius > 0f) {
             AoEDamage();
         } else {
-            Debug.Log("target: " + target);
-            Debug.Log("target.parent.transform: " + target.parent.transform);
             Damage(target.parent.transform);
         }
 

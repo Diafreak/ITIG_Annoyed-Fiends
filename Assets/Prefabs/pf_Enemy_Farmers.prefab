@@ -309,8 +309,8 @@ Transform:
   m_GameObject: {fileID: 8981170466004061855}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6552195014267196022}
   - {fileID: 1500466792581305037}
@@ -419,6 +419,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -4683669308469848369, guid: 67f8f1a00ac8ddf49a512aae97c86978, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a9dadf1c607103d4bbc4efd5d259b456, type: 2}
     - target: {fileID: 919132149155446097, guid: 67f8f1a00ac8ddf49a512aae97c86978, type: 3}
       propertyPath: m_Name
       value: Enemy_Farmers
