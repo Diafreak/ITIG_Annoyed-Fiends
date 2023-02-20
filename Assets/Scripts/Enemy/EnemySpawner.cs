@@ -95,7 +95,6 @@ public class EnemySpawner : MonoBehaviour {
 
             if (currentWaveNumber >= minWaveNumberForTank) {
                 numberOfEnemiesUnlocked = 3;
-                waveSpawnRate += 0.5f;
             }
 
             // determine a random next enemy that is spawned, depending on how many enemies are "unlocked"
