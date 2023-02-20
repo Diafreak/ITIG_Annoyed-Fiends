@@ -106,10 +106,14 @@ public class SettingsUI : MonoBehaviour {
     private void InitializeAudioSliders() {
         // if PlayerPrefs aren't set yet, the values from the masterMixer are used instead
         masterMixer.GetFloat("MusicVolume", out float musicVolume);
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", musicVolume);
+        musicVolume = PlayerPrefs.GetFloat("MusicVolume", musicVolume);
+        musicSlider.value = musicVolume;
+        masterMixer.SetFloat("MusicVolume", musicVolume);
 
         masterMixer.GetFloat("SFXVolume", out float sfxVolume);
-        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", sfxVolume);
+        sfxVolume = PlayerPrefs.GetFloat("SFXVolume", sfxVolume);
+        sfxSlider.value = sfxVolume;
+        masterMixer.SetFloat("SFXVolume", sfxVolume);
     }
 
 
@@ -146,11 +150,18 @@ public class SettingsUI : MonoBehaviour {
 
 
     public void AdjustBrightness(float brightnessValue) {
+
+        // snap Slider to 0 when inside the threshold
         if (brightnessValue >= -brightnessSliderThreshold && brightnessValue <= brightnessSliderThreshold) {
             brightnessValue = 0f;
             brightnessSlider.value = brightnessValue;
         }
+
+        // get PostExposure from PostProcessing-Volume
         postProcessingVolume.profile.TryGet(out ColorAdjustments colorAdjustments);
+        // activate PostExposure
+        colorAdjustments.postExposure.overrideState = true;
+        // set PostExposure to Slider-Value
         colorAdjustments.postExposure.value = brightnessValue;
         // Save Brightness
         PlayerPrefs.SetFloat("Brightness", brightnessValue);
