@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour {
     public float waveSpawnRate = 1f;
 
     public int minWaveNumberForDorfschranze = 3;
-    public int minWaveNumberForHolzfaeller = 8;
+    public int minWaveNumberForTank = 8;
 
     private int currentWaveNumber;
     private int maxWaveNumber;
@@ -77,11 +77,11 @@ public class EnemySpawner : MonoBehaviour {
 
         for (int i = 0; i < currentWaveNumber * waveMultiplicator; i++) {
 
-            if (currentWaveNumber > minWaveNumberForDorfschranze && currentWaveNumber <= minWaveNumberForHolzfaeller) {
+            if (currentWaveNumber >= minWaveNumberForDorfschranze && currentWaveNumber < minWaveNumberForTank) {
                 numberOfEnemyTypes = 2;
             }
 
-            if (currentWaveNumber > minWaveNumberForHolzfaeller) {
+            if (currentWaveNumber >= minWaveNumberForTank) {
                 numberOfEnemyTypes = 3;
             }
 

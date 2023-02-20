@@ -1504,8 +1504,8 @@ MonoBehaviour:
   dorfschranzeSO: {fileID: 11400000, guid: 64c9862bcd6a6c54aacd93f21cda5422, type: 2}
   holzfaellerSO: {fileID: 11400000, guid: acefb3af99ab606438ba0842271cb395, type: 2}
   waveSpawnRate: 1
-  minWaveNumberForDorfschranze: 1
-  minWaveNumberForHolzfaeller: 2
+  minWaveNumberForDorfschranze: 2
+  minWaveNumberForTank: 3
 --- !u!4 &121926882 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8688932392210849890, guid: ad256643740a5e84db32dac813a5efd2, type: 3}
@@ -2334,7 +2334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMoney: 1000
-  startLives: 1
+  startLives: 10
 --- !u!114 &192301745
 MonoBehaviour:
   m_ObjectHideFlags: 0
