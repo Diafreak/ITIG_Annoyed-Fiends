@@ -63,4 +63,9 @@ public class StartAndSpeedupButton : MonoBehaviour {
         state = GameManager.GameState.beforeNewRound;
         buttonText.text = "Start Round";
     }
+
+
+    public GameManager.GameState GetCurrentState() {
+        return state;
+    }
 }

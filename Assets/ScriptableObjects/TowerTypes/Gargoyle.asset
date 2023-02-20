@@ -19,8 +19,11 @@ MonoBehaviour:
   fireRate: 0
   turnSpeed: 0
   enemyTag: Enemy
-  price: 350
+  projectileDamage: 0
+  damageRadius: 0
+  projectileSpeed: 0
+  price: 500
   upgradeCost: 0
   sellingPrice: 0
   level: 1
-  despawnTime: 4
+  despawnTime: 5

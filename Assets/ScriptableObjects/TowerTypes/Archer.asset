@@ -19,11 +19,11 @@ MonoBehaviour:
   fireRate: 1
   turnSpeed: 10
   enemyTag: Enemy
-  projectileDamage: 30
+  projectileDamage: 35
   damageRadius: 0
-  projectileSpeed: 70
-  price: 100
+  projectileSpeed: 100
+  price: 200
   upgradeCost: 120
-  sellingPrice: 50
+  sellingPrice: 100
   level: 1
   despawnTime: 0

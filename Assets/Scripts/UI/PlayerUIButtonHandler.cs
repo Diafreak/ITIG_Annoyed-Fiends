@@ -27,12 +27,19 @@ public class PlayerUIButtonHandler : MonoBehaviour {
 
     private void Update() {
 
+        if (gameManager.IsGameOver()) {
+            return;
+        }
+
+        if (gameManager.IsGameWon()) {
+            return;
+        }
+
         // Check if ESC-Key is pressed
         if (Input.GetKeyDown(KeyCode.Escape)) {
             // if Settings are open, go back to PauseMenu
             if (settingsUI.activeSelf) {
-                settingsUI.SetActive(false);
-                pauseUI.SetActive(true);
+                BackToPauseMenu();
             } else {
                 TogglePauseMenuVisibility();
             }
@@ -65,6 +72,13 @@ public class PlayerUIButtonHandler : MonoBehaviour {
     // PauseUI
     public void Continue() {
         TogglePauseMenuVisibility();
+    }
+
+
+    // SettingsUI
+    public void BackToPauseMenu() {
+        settingsUI.SetActive(false);
+        pauseUI.SetActive(true);
     }
 
 

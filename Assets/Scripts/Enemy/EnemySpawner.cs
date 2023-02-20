@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour {
 
     public static int enemiesAlive = 0;
 
-    [Header("Enemy Types")]
+    [Header("Enemies")]
     public EnemyTypeSO farmerSO;
     public EnemyTypeSO dorfschranzeSO;
     public EnemyTypeSO holzfaellerSO;
@@ -15,15 +15,20 @@ public class EnemySpawner : MonoBehaviour {
     public float waveSpawnRate = 1f;
 
     public int minWaveNumberForDorfschranze = 3;
-    public int minWaveNumberForHolzfaeller = 8;
+    public int minWaveNumberForTank = 8;
+
+    [Header("Money")]
+    public int baseMoneyAfterRound = 100;
+
 
     private int currentWaveNumber;
     private int maxWaveNumber;
+    private int waveMultiplicator;
     private bool isEndless;
 
-    private int waveMultiplicator;
+    private int moneyAfterRound;
 
-    private int numberOfEnemyTypes;
+    private int numberOfEnemiesUnlocked;
 
     private StartAndSpeedupButton startAndSpeedupButton;
     private GameManager gameManager;
@@ -43,11 +48,12 @@ public class EnemySpawner : MonoBehaviour {
     private void Start() {
         enemiesAlive = 0;
         currentWaveNumber = 0;
+        waveMultiplicator = 10;
         isEndless = false;
 
-        waveMultiplicator = 10;
+        moneyAfterRound = baseMoneyAfterRound;
 
-        numberOfEnemyTypes = 1;
+        numberOfEnemiesUnlocked = 1;
 
         gameManager = GameManager.instance;
         startAndSpeedupButton = StartAndSpeedupButton.instance;
@@ -66,6 +72,12 @@ public class EnemySpawner : MonoBehaviour {
             return;
         }
 
+        if (startAndSpeedupButton.GetCurrentState() != GameManager.GameState.beforeNewRound) {
+            // earn Money after each successful Wave
+            moneyAfterRound = baseMoneyAfterRound + currentWaveNumber;
+            PlayerStats.AddMoney(moneyAfterRound);
+        }
+
         startAndSpeedupButton.SetGameStateToBeforeNewRound();
     }
 
@@ -77,25 +89,26 @@ public class EnemySpawner : MonoBehaviour {
 
         for (int i = 0; i < currentWaveNumber * waveMultiplicator; i++) {
 
-            if (currentWaveNumber > minWaveNumberForDorfschranze && currentWaveNumber <= minWaveNumberForHolzfaeller) {
-                numberOfEnemyTypes = 2;
+            if (currentWaveNumber >= minWaveNumberForDorfschranze && currentWaveNumber < minWaveNumberForTank) {
+                numberOfEnemiesUnlocked = 2;
             }
 
-            if (currentWaveNumber > minWaveNumberForHolzfaeller) {
-                numberOfEnemyTypes = 3;
+            if (currentWaveNumber >= minWaveNumberForTank) {
+                numberOfEnemiesUnlocked = 3;
+                waveSpawnRate += 0.5f;
             }
 
             // determine a random next enemy that is spawned, depending on how many enemies are "unlocked"
-            int enemyType = Random.Range(1, numberOfEnemyTypes+1);
+            int enemyType = Random.Range(1, (numberOfEnemiesUnlocked + 1)*2 - 1);
 
             switch (enemyType) {
-                case 1:
+                case 1: case 2: case 6:
                     SpawnEnemy(farmerSO);
                     break;
-                case 2:
+                case 3: case 4:
                     SpawnEnemy(dorfschranzeSO);
                     break;
-                case 3:
+                case 5:
                     SpawnEnemy(holzfaellerSO);
                     break;
                 default:

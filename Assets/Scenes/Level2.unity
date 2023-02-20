@@ -1387,8 +1387,8 @@ MonoBehaviour:
   dorfschranzeSO: {fileID: 11400000, guid: 64c9862bcd6a6c54aacd93f21cda5422, type: 2}
   holzfaellerSO: {fileID: 11400000, guid: acefb3af99ab606438ba0842271cb395, type: 2}
   waveSpawnRate: 1
-  minWaveNumberForDorfschranze: 3
-  minWaveNumberForHolzfaeller: 8
+  minWaveNumberForDorfschranze: 2
+  minWaveNumberForTank: 3
 --- !u!1001 &115261899
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2191,7 +2191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMoney: 1000
-  startLives: 1
+  startLives: 10
 --- !u!114 &192301745
 MonoBehaviour:
   m_ObjectHideFlags: 0

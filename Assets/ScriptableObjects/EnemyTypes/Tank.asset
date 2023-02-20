@@ -15,5 +15,5 @@ MonoBehaviour:
   enemyName: Tank
   prefab: {fileID: 4033222630682075389, guid: 802c37e7acaa7924ca9ac79415119fc2, type: 3}
   startHp: 1000
-  killValue: 250
+  killValue: 50
   speed: 5

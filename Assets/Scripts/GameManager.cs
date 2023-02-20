@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour {
 
 
     private bool gameOver = false;
+    private bool gameWon = false;
+
     private int currentWaveNumber = 0;
 
     private bool eyeWasPreviouslyActive;
@@ -70,8 +72,11 @@ public class GameManager : MonoBehaviour {
     // ------------------------------
 
     public void WinLevel() {
+        Debug.Log("Level Won");
+        gameWon = true;
         levelWonUI.SetActive(true);
         DisableEyeOfDoom();
+        Time.timeScale = 0f;
 
         if (nextLevel == 0) {
             // Disable the "Next Level"-Button if on last map
@@ -145,5 +150,13 @@ public class GameManager : MonoBehaviour {
 
     public string GetNextLevelName() {
         return nextLevelName;
+    }
+
+    public bool IsGameOver() {
+        return gameOver;
+    }
+
+    public bool IsGameWon() {
+        return gameWon;
     }
 }
