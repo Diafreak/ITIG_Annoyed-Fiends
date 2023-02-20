@@ -38,10 +38,10 @@ public class DoomRay : MonoBehaviour {
             Vector3 rayOrigin = povCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
 
             if (Physics.Raycast(rayOrigin, povCam.transform.forward, out RaycastHit hit, rayRange)) {
-                Debug.Log(hit.transform.name);
+                // Debug.Log(hit.transform.name);
                 rayLine.SetPosition(1, hit.point);
 
-                Enemy enemy = hit.transform.GetComponent<Enemy>();
+                Enemy enemy = hit.transform.parent.transform.GetComponent<Enemy>();
 
                 if (enemy != null) {
                     enemy.TakeDamage(damage);

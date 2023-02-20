@@ -46,9 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f57a3aaad8ca964a859280587b94e48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerTypeSO: {fileID: 11400000, guid: d807dc856bcbed64fa3fafb736f9cd06, type: 2}
-  speed: 50
-  damageRadius: 15
+  impactParticles: {fileID: 3989138091513987211, guid: 453248e574e15284ba55f72152e32900, type: 3}
 --- !u!135 &4690941325328428311
 SphereCollider:
   m_ObjectHideFlags: 0

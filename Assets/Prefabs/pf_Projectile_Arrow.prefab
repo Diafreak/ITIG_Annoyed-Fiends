@@ -46,9 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f57a3aaad8ca964a859280587b94e48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerTypeSO: {fileID: 11400000, guid: 6af888dffaa970c4e937e69240a097d3, type: 2}
-  speed: 100
-  damageRadius: 0
+  impactParticles: {fileID: 2483350182863925855, guid: d465820dbad7239459970e00f271ff21, type: 3}
 --- !u!135 &4690941325328428311
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -79,11 +77,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9085540144928174824, guid: 916fc501b7b1b604aa80a0d177f9972e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9085540144928174824, guid: 916fc501b7b1b604aa80a0d177f9972e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9085540144928174824, guid: 916fc501b7b1b604aa80a0d177f9972e, type: 3}
       propertyPath: m_LocalScale.z

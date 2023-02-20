@@ -189,7 +189,7 @@ public class PlacedTower : MonoBehaviour {
     private void UnblockEnemies() {
         foreach (Collider enemy in blockedEnemies) {
             if (enemy.tag == enemyTag) {
-                enemy.gameObject.GetComponent<Enemy>().UnblockEnemy();
+                enemy.transform.parent.gameObject.GetComponent<Enemy>().UnblockEnemy();
             }
         }
     }
@@ -200,7 +200,7 @@ public class PlacedTower : MonoBehaviour {
 
         foreach (Collider enemy in blockedEnemies) {
             if (enemy.tag == enemyTag) {
-                enemy.transform.GetComponent<Enemy>().BlockEnemy();
+                enemy.transform.parent.transform.GetComponent<Enemy>().BlockEnemy();
             }
         }
     }
