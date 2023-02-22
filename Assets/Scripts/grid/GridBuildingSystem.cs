@@ -265,7 +265,6 @@ public class GridBuildingSystem : MonoBehaviour {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit raycastHit)) {
-            //if (raycastHit.transform.gameObject.CompareTag("Path"))
                 return raycastHit.point;
         }
         return new Vector3(-1, -1, -1);
@@ -291,5 +290,4 @@ public class GridBuildingSystem : MonoBehaviour {
     public float GetCellSize() {
         return cellSize;
     }
-
 }
