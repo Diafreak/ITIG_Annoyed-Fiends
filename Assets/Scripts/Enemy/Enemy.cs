@@ -96,6 +96,10 @@ public class Enemy : MonoBehaviour {
 
 
     private void Die() {
+        if (gameObject.tag == "Dead") {
+            return;
+        }
+
         PlayerStats.AddMoney(killValue);
         EnemySpawner.enemiesAlive--;
 
