@@ -38,11 +38,11 @@ public class GridXZ<TGridObject> {
 
         bool showDebug = false;
         if (showDebug) {
-            //TextMesh[,] debugTextArray = new TextMesh[width, height];
+            TextMesh[,] debugTextArray = new TextMesh[width, height];
 
             for (int x = 0; x < gridArray.GetLength(0); x++) {
                 for (int z = 0; z < gridArray.GetLength(1); z++) {
-                    //debugTextArray[x, z] = GridUtils.CreateWorldText(gridArray[x, z]?.ToString(), null, GetWorldPosition(x, z) + new Vector3(cellSize, cellSize) * 0.5f, 40, Color.white, TextAnchor.MiddleCenter);
+                    debugTextArray[x, z] = CreateWorldText(gridArray[x, z]?.ToString(), null, GetWorldPosition(x, z) + new Vector3(cellSize, cellSize) * 0.5f, 40, TextAnchor.MiddleCenter);
                     Debug.DrawLine(GetWorldPosition(x, z), GetWorldPosition(x, z + 1), Color.white, 100f);
                     Debug.DrawLine(GetWorldPosition(x, z), GetWorldPosition(x + 1, z), Color.white, 100f);
                 }
@@ -50,9 +50,9 @@ public class GridXZ<TGridObject> {
             Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width, height), Color.white, 100f);
             Debug.DrawLine(GetWorldPosition(width, 0),  GetWorldPosition(width, height), Color.white, 100f);
 
-            /*OnGridValueChanged += (object sender, OnGridValueChangedEventArgs eventArgs) => {
-                debugTextArray[eventArgs.x, eventArgs.z].text = gridArray[eventArgs.x, eventArgs.z]?.ToString();
-            };*/
+            // OnGridValueChanged += (object sender, OnGridValueChangedEventArgs eventArgs) => {
+            //     debugTextArray[eventArgs.x, eventArgs.z].text = gridArray[eventArgs.x, eventArgs.z]?.ToString();
+            // };
         }
     }
 
@@ -105,4 +105,20 @@ public class GridXZ<TGridObject> {
         return (x, z);
     }
 
+
+    // For Debuging
+    private static TextMesh CreateWorldText(string text, Transform parent = null, Vector3 localPosition = default(Vector3), int fontSize = 40, TextAnchor textAnchor = TextAnchor.UpperLeft, TextAlignment textAlignment = TextAlignment.Left, int sortingOrder = 5000) {
+        GameObject gameObject = new GameObject("World_Text", typeof(TextMesh));
+        Transform transform = gameObject.transform;
+        transform.SetParent(parent, false);
+        transform.localPosition = localPosition;
+        TextMesh textMesh = gameObject.GetComponent<TextMesh>();
+        textMesh.anchor = textAnchor;
+        textMesh.alignment = textAlignment;
+        textMesh.text = text;
+        textMesh.fontSize = fontSize;
+        textMesh.color = Color.white;
+        textMesh.GetComponent<MeshRenderer>().sortingOrder = sortingOrder;
+        return textMesh;
+    }
 }

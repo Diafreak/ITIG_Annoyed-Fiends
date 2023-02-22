@@ -3,8 +3,11 @@ using UnityEngine;
 
 public class SwitchGameMode : MonoBehaviour {
 
+    public GameObject stateDrivenCameras;
+
     private DoomRay ray;
     private EyeMovement eyeMovement;
+    private SwitchCam switchCam;
 
     private GameManager gameManager;
 
@@ -27,10 +30,17 @@ public class SwitchGameMode : MonoBehaviour {
         ray.enabled = false;
         eyeMovement = GetComponent<EyeMovement>();
         eyeMovement.enabled = false;
+        switchCam = stateDrivenCameras.GetComponent<SwitchCam>();
+        switchCam.enabled = true;
     }
 
 
     private void Update() {
+
+        if (!switchCam.enabled) {
+            return;
+        }
+
         if (Input.GetKeyDown("space")) {
             ray.enabled = !ray.enabled;
             eyeMovement.enabled = !eyeMovement.enabled;
@@ -41,11 +51,13 @@ public class SwitchGameMode : MonoBehaviour {
     public void DisableEye() {
         ray.enabled = false;
         eyeMovement.enabled = false;
+        switchCam.enabled = false;
     }
 
     public void EnableEye() {
         ray.enabled = true;
         eyeMovement.enabled = true;
+        switchCam.enabled = true;
     }
 
 
