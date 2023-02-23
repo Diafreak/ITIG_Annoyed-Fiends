@@ -31,12 +31,15 @@ public class TowerShop : MonoBehaviour {
 
 
 
-    private void Start() {
+    private void Awake() {
         // Singleton
         if (instance == null) {
             instance = this;
         }
+    }
 
+
+    private void Start() {
         gridBuildingSystem = GridBuildingSystem.instance;
 
         archerTextField.text   = archerTowerSO.name   + " " + "$" + archerTowerSO.price;
@@ -109,5 +112,10 @@ public class TowerShop : MonoBehaviour {
 
     private void UpdateGargoyleCooldownText() {
         gargoyleCooldownText.text = string.Format("{0:0}", timeLeftUntilGargoyleUnlocked);
+    }
+
+
+    public void ResetGargoyleTimer() {
+        timeLeftUntilGargoyleUnlocked = 0.0f;
     }
 }

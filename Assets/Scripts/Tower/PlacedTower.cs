@@ -1,25 +1,33 @@
 using UnityEngine;
+using TMPro;
 
 
 public class PlacedTower : MonoBehaviour {
 
+    [Header("UI")]
+    public TMP_Text levelText;
+
     // current Target of the Tower
     private Transform target;
 
-    // Attributes
+    // Stats
     private string towerName;
     private float range;
     private float fireRate;
     private float fireCountdown = 0f;
+
+    // Projectiles
     private float projectileDamage;
     private float damageRadius;
     private float projectileSpeed;
 
     // Tag to find Enemies
-    private string enemyTag;
+    private string enemyTag = "Enemy";
 
     // Upgrading
     private int level;
+    private int maxLevel = 5;
+    private bool isMaxLevel;
     private int upgradeCost;
     private int sellingPrice;
 
@@ -41,13 +49,46 @@ public class PlacedTower : MonoBehaviour {
     private TowerShop towerShop;
 
 
+
     private void Start() {
         gridBuildingSystem = GridBuildingSystem.instance;
         towerShop = TowerShop.instance;
 
+        isMaxLevel = false;
+        levelText.text = level.ToString();
+
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
+
+    private void Update() {
+
+        if (towerName == "Gargoyle") {
+            towerShop.LockGargoyle();
+            BlockEnemies();
+            DestroySelf();
+            return;
+        }
+
+        if (target == null) {
+            return;
+        }
+
+        LockOnTarget();
+
+        if (fireCountdown <= 0f) {
+            Shoot();
+            fireCountdown = 1f / fireRate;
+        }
+
+        fireCountdown -= Time.deltaTime;
+    }
+
+
+
+    // ------------------------------
+    // Create Tower
+    // ------------------------------
 
     // create a Tower on the clicked position
     public static PlacedTower Create(Vector3 worldPosition, TowerTypeSO towerTypeSO, float yOffset) {
@@ -88,29 +129,16 @@ public class PlacedTower : MonoBehaviour {
     }
 
 
-    public int GetUpgradeCost() {
-        return upgradeCost;
-    }
-
-    public int GetLevel() {
-        return level;
-    }
-
-    public int GetSellingPrice() {
-        return sellingPrice;
-    }
-
-    public float GetRange() {
-        return range;
-    }
-
-
 
     // ------------------------------
     // Upgrade
     // ------------------------------
 
-    public void UpgradeTower() {
+    public void UpgradeTower(int _upgradeCostIncrease, float _fireRateIncrease, float _rangeIncrease) {
+
+        if (isMaxLevel) {
+            return;
+        }
 
         if (!PlayerHasEnoughMoney()) {
             Debug.Log("Not enough money to upgrade!");
@@ -119,11 +147,26 @@ public class PlacedTower : MonoBehaviour {
 
         PlayerStats.SubtractMoney(upgradeCost);
         IncreaseLevel(1);
-        IncreaseUpgradeCost(20);
-        IncreaseFireRate(0.5f);
-        IncreaseRange(1.5f);
-        IncreaseSellingPrice(10);
-        Debug.Log("Upgraded!");
+        IncreaseFireRate(_fireRateIncrease);        // 0.5f
+        IncreaseRange(_rangeIncrease);              // 1.5f
+        IncreaseUpgradeCost(_upgradeCostIncrease);  // 20
+        IncreaseSellingPrice(_upgradeCostIncrease / 2);
+
+        if (level == maxLevel) {
+            isMaxLevel = true;
+        }
+
+        UpdateLevelText();
+    }
+
+
+    private void UpdateLevelText() {
+        if (isMaxLevel) {
+            levelText.text = "Max";
+        }
+        else {
+            levelText.text = level.ToString();
+        }
     }
 
 
@@ -163,7 +206,6 @@ public class PlacedTower : MonoBehaviour {
     }
 
 
-    // Destroy the tower-visual
     private void DestroySelf() {
         Destroy(gameObject, despawnTime);
     }
@@ -175,6 +217,7 @@ public class PlacedTower : MonoBehaviour {
         }
 
         UnblockEnemies();
+
         // reactivate the Placement-Tile on the Gargoyle's Position
         GridObject gargoyle = gridBuildingSystem.GetGridXZ().GetGridObject(transform.position);
         gridBuildingSystem.ReactivateGridTile(gargoyle.GetGridPosition().x, gargoyle.GetGridPosition().z);
@@ -211,38 +254,15 @@ public class PlacedTower : MonoBehaviour {
     // Shooting / Blocking
     // ------------------------------
 
-    private void Update() {
-
-        if (towerName == "Gargoyle") {
-            towerShop.LockGargoyle();
-            BlockEnemies();
-            DestroySelf();
-            return;
-        }
-
-        if (target == null) {
-            return;
-        }
-
-        LockOnTarget();
-
-        if (fireCountdown <= 0f) {
-            Shoot();
-            fireCountdown = 1f / fireRate;
-        }
-
-        fireCountdown -= Time.deltaTime;
-    }
-
-
     // finding the closest enemy in range
     private void UpdateTarget() {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        float shortestDistance = Mathf.Infinity;
+        GameObject[] enemies    = GameObject.FindGameObjectsWithTag(enemyTag);
+        float shortestDistance  = Mathf.Infinity;
         GameObject nearestEnemy = null;
 
         foreach(GameObject enemy in enemies) {
             float distanceToEnemy = Vector3.Distance(transform.position + gridBuildingSystem.GetBuildOffset(), enemy.transform.position);
+
             if (distanceToEnemy < shortestDistance) {
                 shortestDistance = distanceToEnemy;
                 nearestEnemy = enemy;
@@ -258,22 +278,43 @@ public class PlacedTower : MonoBehaviour {
 
 
     private void LockOnTarget() {
-        Vector3 direction = target.position - transform.position;
+        Vector3 direction       = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
-        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        Vector3 rotation        = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+        partToRotate.rotation   = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
 
     // shooting at the designated target
     private void Shoot() {
         GameObject projectileGO = (GameObject) Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-        Projectile projectile = projectileGO.GetComponent<Projectile>();
+        Projectile projectile   = projectileGO.GetComponent<Projectile>();
         projectile.SetProjectileValues(projectileDamage, damageRadius, projectileSpeed);
 
         if (projectile != null) {
             projectile.Seek(target);
         }
+    }
+
+
+    // ------------------------------
+    // Getter & Setter
+    // ------------------------------
+
+    public int GetUpgradeCost() {
+        return upgradeCost;
+    }
+
+    public bool IsMaxLevel() {
+        return isMaxLevel;
+    }
+
+    public int GetSellingPrice() {
+        return sellingPrice;
+    }
+
+    public float GetRange() {
+        return range;
     }
 
 

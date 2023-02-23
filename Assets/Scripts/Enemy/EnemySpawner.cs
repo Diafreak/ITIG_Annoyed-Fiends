@@ -32,9 +32,11 @@ public class EnemySpawner : MonoBehaviour {
 
     private StartAndSpeedupButton startAndSpeedupButton;
     private GameManager gameManager;
+    private TowerShop towerShop;
 
     // Singleton
     public static EnemySpawner instance;
+
 
 
     private void Awake() {
@@ -46,6 +48,10 @@ public class EnemySpawner : MonoBehaviour {
 
 
     private void Start() {
+        gameManager = GameManager.instance;
+        startAndSpeedupButton = StartAndSpeedupButton.instance;
+        towerShop = TowerShop.instance;
+
         enemiesAlive = 0;
         currentWaveNumber = 0;
         waveMultiplicator = 10;
@@ -55,8 +61,6 @@ public class EnemySpawner : MonoBehaviour {
 
         numberOfEnemiesUnlocked = 1;
 
-        gameManager = GameManager.instance;
-        startAndSpeedupButton = StartAndSpeedupButton.instance;
         maxWaveNumber = gameManager.GetMaxWaveNumber();
     }
 
@@ -78,6 +82,7 @@ public class EnemySpawner : MonoBehaviour {
             PlayerStats.AddMoney(moneyAfterRound);
         }
 
+        towerShop.ResetGargoyleTimer();
         startAndSpeedupButton.SetGameStateToBeforeNewRound();
     }
 

@@ -20,7 +20,7 @@ MonoBehaviour:
   turnSpeed: 10
   enemyTag: Enemy
   projectileDamage: 50
-  damageRadius: 10
+  damageRadius: 15
   projectileSpeed: 70
   price: 450
   upgradeCost: 200
