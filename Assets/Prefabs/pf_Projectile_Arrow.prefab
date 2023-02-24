@@ -71,6 +71,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arrow
       objectReference: {fileID: 0}
+    - target: {fileID: 6973103747176231510, guid: 916fc501b7b1b604aa80a0d177f9972e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -7929139438592967118, guid: fb76fec894a9eec4d9a50be28c877a87, type: 3}
     - target: {fileID: 9085540144928174824, guid: 916fc501b7b1b604aa80a0d177f9972e, type: 3}
       propertyPath: m_RootOrder
       value: 0
