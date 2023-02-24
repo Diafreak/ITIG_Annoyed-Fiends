@@ -9,7 +9,7 @@ public class SwitchCam : MonoBehaviour {
     private Animator animator;
 
     // start with Main Camera because the priority is higher
-    private bool MainCam = true;
+    private bool mainCameraIsActive = true;
 
 
     private void Awake() {
@@ -34,12 +34,12 @@ public class SwitchCam : MonoBehaviour {
     // switch Cameras
     private void SwitchState() {
 
-        if (MainCam) {
+        if (mainCameraIsActive) {
             animator.Play("EyeCam");
-            MainCam = false;
+            mainCameraIsActive = false;
         } else {
             animator.Play("MainCam");
-            MainCam = true;
+            mainCameraIsActive = true;
         }
     }
 }
