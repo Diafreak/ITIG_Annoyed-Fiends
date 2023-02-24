@@ -7,9 +7,6 @@ public class GridBuildingSystem : MonoBehaviour {
     // current selected Tower-Type
     private TowerTypeSO currentlySelectedTowerTypeSO;
 
-    // Collider Mask to check where the Mouse has clicked on the Grid
-    [SerializeField] private LayerMask mouseColliderLayerMask;
-
     // Grid that holds all Objects on it
     private GridXZ<GridObject> grid;
 
@@ -268,17 +265,6 @@ public class GridBuildingSystem : MonoBehaviour {
                 return raycastHit.point;
         }
         return new Vector3(-1, -1, -1);
-    }
-
-
-    // Mouse-Position in 3D-Space
-    private Vector3 GetMouseWorldPosition3d() {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, mouseColliderLayerMask)) {
-            return raycastHit.point;
-        }
-        return Vector3.zero;
     }
 
 
