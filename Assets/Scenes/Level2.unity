@@ -2800,7 +2800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab64022a4bf16e42a0450bf0ef96f79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxWaveNumber: 12
+  maxWaveNumber: 10
   nextLevelName: Level3
   nextLevel: 3
   gameOverUI: {fileID: 2007055728}
@@ -13424,9 +13424,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0acb037393f02604fa482a01de2543ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseColliderLayerMask:
-    serializedVersion: 2
-    m_Bits: 1024
   gridWidth: 16
   gridHeight: 16
   gridTileSO: {fileID: 11400000, guid: fe12d01522dd2d444a33af20bf08d898, type: 2}
