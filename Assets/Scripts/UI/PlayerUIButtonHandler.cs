@@ -10,6 +10,7 @@ public class PlayerUIButtonHandler : MonoBehaviour {
     [Header("UI Elements")]
     public GameObject pauseUI;
     public GameObject settingsUI;
+    public GameObject tutorialUI;
 
     private float previousGameSpeed;
 
@@ -35,12 +36,17 @@ public class PlayerUIButtonHandler : MonoBehaviour {
             return;
         }
 
+        if (tutorialUI.activeSelf) {
+            return;
+        }
+
         // Check if ESC-Key is pressed
         if (Input.GetKeyDown(KeyCode.Escape)) {
             // if Settings are open, go back to PauseMenu
             if (settingsUI.activeSelf) {
                 BackToPauseMenu();
-            } else {
+            }
+            else {
                 TogglePauseMenuVisibility();
             }
         }

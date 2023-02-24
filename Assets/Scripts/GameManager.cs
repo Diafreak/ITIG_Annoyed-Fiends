@@ -80,11 +80,13 @@ public class GameManager : MonoBehaviour {
 
         if (nextLevel == 0) {
             // Disable the "Next Level"-Button if on last map
-            nextLevelButton.interactable = false;
+            nextLevelButton.gameObject.SetActive(false);
             return;
         }
 
-        PlayerPrefs.SetInt("levelsUnlocked", nextLevel);
+        if (nextLevel > PlayerPrefs.GetInt("levelsUnlocked", 0)) {
+            PlayerPrefs.SetInt("levelsUnlocked", nextLevel);
+        }
     }
 
     public void LostLevel() {

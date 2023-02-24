@@ -22,18 +22,27 @@ public class TowerUI : MonoBehaviour {
     private GridBuildingSystem gridBuildingSystem;
 
 
+
     private void Start() {
         gridBuildingSystem = GridBuildingSystem.instance;
+
         HideUI();
     }
 
 
     private void Update() {
-        // disable or enable the Upgrade-Button depending if Player has enough Money
+        // disable or enable the Upgrade-Button depending if Player has enough Money or the Tower is max level
         if (worldSpaceUI.activeSelf && targetedGridObject != null) {
+
+            if (targetedGridObject.GetTower().IsMaxLevel()) {
+                upgradeButton.interactable = false;
+                return;
+            }
+
             if (PlayerHasEnoughMoney()) {
                 upgradeButton.interactable = true;
-            } else {
+            }
+            else {
                 upgradeButton.interactable = false;
             }
         }
@@ -46,7 +55,8 @@ public class TowerUI : MonoBehaviour {
         if (targetedGridObject == gridObject && worldSpaceUI.activeSelf) {
             // if the same tile is clicked again, hide the Upgrade/Sell-Menu
             HideUI();
-        } else {
+        }
+        else {
             // show & move the Upgrade/Sell-Menu over the selected Tower
             targetedGridObject = gridObject;
             worldSpaceUI.transform.position = gridObject.GetWorldPosition();
@@ -58,8 +68,15 @@ public class TowerUI : MonoBehaviour {
 
 
     private void UpdateUI() {
-        upgradeText.text = "$" + targetedGridObject.GetTower().GetUpgradeCost().ToString();
-        sellText.text    = "$" + targetedGridObject.GetTower().GetSellingPrice().ToString();
+        if (targetedGridObject.GetTower().IsMaxLevel()) {
+            upgradeText.text = "Max Lv.";
+            upgradeButton.interactable = false;
+        }
+        else {
+            upgradeText.text = "$" + targetedGridObject.GetTower().GetUpgradeCost().ToString();
+        }
+
+        sellText.text = "$" + targetedGridObject.GetTower().GetSellingPrice().ToString();
         ShowTowerRange();
     }
 
@@ -78,7 +95,10 @@ public class TowerUI : MonoBehaviour {
     // ------------------------------
 
     public void Upgrade() {
-        targetedGridObject.GetTower().UpgradeTower();
+        int upgradeCostIncrease = 20;
+        float fireRateIncrease  = 0.2f;
+        float rangeIncrease     = 1.0f;
+        targetedGridObject.GetTower().UpgradeTower(upgradeCostIncrease, fireRateIncrease, rangeIncrease);
         UpdateUI();
     }
 
