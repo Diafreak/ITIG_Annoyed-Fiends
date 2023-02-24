@@ -19,7 +19,7 @@ MonoBehaviour:
   fireRate: 0.3
   turnSpeed: 10
   enemyTag: Enemy
-  projectileDamage: 50
+  projectileDamage: 35
   damageRadius: 15
   projectileSpeed: 70
   price: 450
@@ -27,3 +27,4 @@ MonoBehaviour:
   sellingPrice: 225
   level: 1
   despawnTime: 0
+  shootSound: {fileID: 8300000, guid: 7b3c3acaecf026e41b71226a70dddd79, type: 3}

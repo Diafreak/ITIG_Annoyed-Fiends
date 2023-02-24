@@ -27,3 +27,4 @@ MonoBehaviour:
   sellingPrice: 100
   level: 1
   despawnTime: 0
+  shootSound: {fileID: 8300000, guid: f5f738f3272ea6e4bbce235da466a28f, type: 3}

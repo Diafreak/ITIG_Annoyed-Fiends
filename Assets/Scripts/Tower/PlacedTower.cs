@@ -46,13 +46,11 @@ public class PlacedTower : MonoBehaviour {
     private Collider[] blockedEnemies;
 
     private GridBuildingSystem gridBuildingSystem;
-    private TowerShop towerShop;
 
 
 
     private void Start() {
         gridBuildingSystem = GridBuildingSystem.instance;
-        towerShop = TowerShop.instance;
 
         isMaxLevel = false;
         levelText.text = level.ToString();
@@ -64,7 +62,7 @@ public class PlacedTower : MonoBehaviour {
     private void Update() {
 
         if (towerName == "Gargoyle") {
-            towerShop.LockGargoyle();
+            TowerShop.instance.LockGargoyle();
             BlockEnemies();
             DestroySelf();
             return;
@@ -293,7 +291,13 @@ public class PlacedTower : MonoBehaviour {
 
         if (projectile != null) {
             projectile.Seek(target);
+            PlayShootSound();
         }
+    }
+
+
+    private void PlayShootSound() {
+        gameObject.GetComponent<AudioSource>().Play();
     }
 
 
