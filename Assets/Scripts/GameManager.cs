@@ -73,9 +73,12 @@ public class GameManager : MonoBehaviour {
 
     public void WinLevel() {
         Debug.Log("Level Won");
+
         gameWon = true;
         levelWonUI.SetActive(true);
+
         DisableEyeOfDoom();
+
         Time.timeScale = 0f;
 
         if (nextLevel == 0) {
@@ -89,11 +92,15 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+
     public void LostLevel() {
         Debug.Log("Game Over");
+
         gameOver = true;
         gameOverUI.SetActive(true);
+
         DisableEyeOfDoom();
+
         Time.timeScale = 0f;
     }
 
@@ -109,6 +116,8 @@ public class GameManager : MonoBehaviour {
     }
 
     public void EnableEyeOfDoom() {
+        switchGameMode.EnableSwitchCam();
+
         if (eyeWasPreviouslyActive) {
             switchGameMode.EnableEye();
         }
@@ -126,7 +135,10 @@ public class GameManager : MonoBehaviour {
     }
 
     private void ContinueGameAfterWin() {
+        gameWon = false;
         levelWonUI.SetActive(false);
+        switchGameMode.EnableSwitchCam();
+
         if (eyeWasPreviouslyActive) {
             EnableEyeOfDoom();
         }

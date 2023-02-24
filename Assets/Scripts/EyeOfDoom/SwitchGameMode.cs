@@ -57,11 +57,16 @@ public class SwitchGameMode : MonoBehaviour {
     public void EnableEye() {
         ray.enabled = true;
         eyeMovement.enabled = true;
-        switchCam.enabled = true;
+        EnableSwitchCam();
     }
 
 
     public bool IsEyeOfDoomActive() {
         return eyeMovement.enabled;
+    }
+
+
+    public void EnableSwitchCam() {
+        switchCam.enabled = true;
     }
 }
