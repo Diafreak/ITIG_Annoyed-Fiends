@@ -98,10 +98,6 @@ public class GridBuildingSystem : MonoBehaviour {
 
             ClearTowerSelection();
         }
-
-        if (Input.GetMouseButtonDown(1)) {
-            PlayerStats.AddMoney(100);
-        }
     }
 
 

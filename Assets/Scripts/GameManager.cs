@@ -64,6 +64,11 @@ public class GameManager : MonoBehaviour {
         if (PlayerStats.lives <= 0) {
             LostLevel();
         }
+
+        // Dev-Function
+        if (Input.GetKeyDown(KeyCode.M)) {
+            PlayerStats.AddMoney(100);
+        }
     }
 
 
