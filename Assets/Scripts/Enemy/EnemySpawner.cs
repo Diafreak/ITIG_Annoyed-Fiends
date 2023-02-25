@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour {
     [Header("Enemies")]
     public EnemyTypeSO farmerSO;
     public EnemyTypeSO dorfschranzeSO;
-    public EnemyTypeSO holzfaellerSO;
+    public EnemyTypeSO tankSO;
 
     [Header("Attributes")]
     public float waveSpawnRate = 1f;
@@ -113,7 +113,7 @@ public class EnemySpawner : MonoBehaviour {
                     SpawnEnemy(dorfschranzeSO);
                     break;
                 case 5:
-                    SpawnEnemy(holzfaellerSO);
+                    SpawnEnemy(tankSO);
                     break;
                 default:
                     SpawnEnemy(farmerSO);
