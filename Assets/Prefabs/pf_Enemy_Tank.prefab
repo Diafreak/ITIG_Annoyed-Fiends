@@ -292,7 +292,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4033222630682075389}
   - component: {fileID: 2666445697759459671}
-  - component: {fileID: 203650137098512379}
   m_Layer: 0
   m_Name: pf_Enemy_Tank
   m_TagString: Untagged
@@ -332,26 +331,7 @@ MonoBehaviour:
   healthBar: {fileID: 4141758708601603863}
   partToRotate: {fileID: 6552195014267196022}
   turnSpeed: 10
---- !u!95 &203650137098512379
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8981170466004061855}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9e7add84ead48d14bad6d4b155541d10, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  animator: {fileID: 131344107341389024}
 --- !u!1001 &3122000672007570961
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -369,15 +349,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4665300666417917215, guid: 46dc19b374c01a4469182b015b0c127c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.4802551
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4665300666417917215, guid: 46dc19b374c01a4469182b015b0c127c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.02
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4665300666417917215, guid: 46dc19b374c01a4469182b015b0c127c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.20428506
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4665300666417917215, guid: 46dc19b374c01a4469182b015b0c127c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -411,8 +391,57 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Tank_Posed
       objectReference: {fileID: 0}
+    - target: {fileID: 8145507919801166100, guid: 46dc19b374c01a4469182b015b0c127c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145507919801166100, guid: 46dc19b374c01a4469182b015b0c127c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145507919801166100, guid: 46dc19b374c01a4469182b015b0c127c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 9142839964392308942, guid: 46dc19b374c01a4469182b015b0c127c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 9142839964392308942, guid: 46dc19b374c01a4469182b015b0c127c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 9142839964392308942, guid: 46dc19b374c01a4469182b015b0c127c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.23
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46dc19b374c01a4469182b015b0c127c, type: 3}
+--- !u!1 &6964317097455333812 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5473468464478549925, guid: 46dc19b374c01a4469182b015b0c127c, type: 3}
+  m_PrefabInstance: {fileID: 3122000672007570961}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &131344107341389024
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6964317097455333812}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9e7add84ead48d14bad6d4b155541d10, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &7777128510815038222 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4665300666417917215, guid: 46dc19b374c01a4469182b015b0c127c, type: 3}

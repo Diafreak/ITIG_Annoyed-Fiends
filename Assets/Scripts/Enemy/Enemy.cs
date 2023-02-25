@@ -11,6 +11,9 @@ public class Enemy : MonoBehaviour {
     public Transform partToRotate;
     public float turnSpeed = 10f;
 
+    [Header("Animator for Death")]
+    public Animator animator;
+
     // Attributes
     private string enemyName;
     private float startHp;
@@ -104,10 +107,10 @@ public class Enemy : MonoBehaviour {
         EnemySpawner.enemiesAlive--;
 
         // remove "Enemy"-Tag so Tower doesn't a dead Enemy
-        gameObject.tag = "Dead";
+        gameObject.transform.GetChild(0).tag = "Dead";
 
         // play Death-Animation
-        gameObject.GetComponent<Animator>().SetTrigger("death");
+        animator.SetTrigger("death");
 
         Destroy(gameObject, 0.2f);
     }
