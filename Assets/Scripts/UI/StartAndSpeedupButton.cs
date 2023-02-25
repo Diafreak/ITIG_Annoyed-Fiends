@@ -4,7 +4,11 @@ using TMPro;
 
 public class StartAndSpeedupButton : MonoBehaviour {
 
+    [Header("Button Text")]
     public TMP_Text buttonText;
+
+    [Header("Enemy Direction Arrows")]
+    public GameObject enemyArrows;
 
     private static GameManager.GameState state;
 
@@ -12,6 +16,7 @@ public class StartAndSpeedupButton : MonoBehaviour {
 
     // Singleton
     public static StartAndSpeedupButton instance;
+
 
 
     private void Awake() {
@@ -24,6 +29,8 @@ public class StartAndSpeedupButton : MonoBehaviour {
     private void Start() {
         enemySpawner = EnemySpawner.instance;
         state = GameManager.GameState.beforeNewRound;
+
+        enemyArrows.SetActive(true);
     }
 
 
@@ -33,6 +40,7 @@ public class StartAndSpeedupButton : MonoBehaviour {
             case (GameManager.GameState.beforeNewRound):
                 Time.timeScale = 1f;
                 state = GameManager.GameState.play;
+                enemyArrows.SetActive(false);
                 StartCoroutine(enemySpawner.SpawnWave());
                 buttonText.text = "x1 Speed";
                 break;
