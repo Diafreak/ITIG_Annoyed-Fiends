@@ -292,7 +292,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4033222630682075389}
   - component: {fileID: 2666445697759459671}
-  - component: {fileID: 203650137098512379}
   m_Layer: 0
   m_Name: pf_Enemy_Farmers
   m_TagString: Untagged
@@ -332,26 +331,7 @@ MonoBehaviour:
   healthBar: {fileID: 4141758708601603863}
   partToRotate: {fileID: 6552195014267196022}
   turnSpeed: 10
---- !u!95 &203650137098512379
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8981170466004061855}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9e7add84ead48d14bad6d4b155541d10, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  animator: {fileID: 4589311917893535286}
 --- !u!1001 &5479683998230829316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -429,6 +409,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67f8f1a00ac8ddf49a512aae97c86978, type: 3}
+--- !u!1 &4668779541471028309 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 67f8f1a00ac8ddf49a512aae97c86978, type: 3}
+  m_PrefabInstance: {fileID: 5479683998230829316}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4589311917893535286
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668779541471028309}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9e7add84ead48d14bad6d4b155541d10, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &5440637440577355503 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 67f8f1a00ac8ddf49a512aae97c86978, type: 3}
